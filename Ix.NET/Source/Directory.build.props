@@ -28,6 +28,7 @@
   
   <ItemGroup>
     <PackageReference Include="Nerdbank.GitVersioning" Version="2.0.41" PrivateAssets="all" />
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="4.6.0-xprivate-9064" PrivateAssets="all" />
   </ItemGroup>
 
   <!-- https://github.com/NuGet/Home/issues/4337 -->
