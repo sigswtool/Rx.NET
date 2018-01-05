@@ -26,5 +26,10 @@
     <PackageReference Include="Nerdbank.GitVersioning" Version="2.0.41" PrivateAssets="all" />
     <PackageReference Include="NuGet.Build.Tasks.Pack" Version="4.6.0-xprivate-9075" PrivateAssets="all" />
   </ItemGroup>
+  
+    
+  <PropertyGroup>
+    <GetPackageVersionDependsOn>GetBuildVersion;$(GetPackageVersionDependsOn)</GetPackageVersionDependsOn>
+  </PropertyGroup>
 
 </Project>
