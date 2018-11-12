@@ -14,18 +14,21 @@ namespace System.Linq
         public static IAsyncEnumerable<TResult> Select<TSource, TResult>(this IAsyncEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
+
             if (selector == null)
+            {
                 throw new ArgumentNullException(nameof(selector));
-            
-            var iterator = source as AsyncIterator<TSource>;
-            if (iterator != null)
+            }
+
+            if (source is AsyncIterator<TSource> iterator)
             {
                 return iterator.Select(selector);
             }
 
-            var ilist = source as IList<TSource>;
-            if (ilist != null)
+            if (source is IList<TSource> ilist)
             {
                 return new SelectIListIterator<TSource, TResult>(ilist, selector);
             }
@@ -36,9 +39,14 @@ namespace System.Linq
         public static IAsyncEnumerable<TResult> Select<TSource, TResult>(this IAsyncEnumerable<TSource> source, Func<TSource, int, TResult> selector)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
+
             if (selector == null)
+            {
                 throw new ArgumentNullException(nameof(selector));
+            }
 
             return new SelectEnumerableWithIndexAsyncIterator<TSource, TResult>(source, selector);
         }

@@ -6,7 +6,7 @@ using System.Reactive.Disposables;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal class AddRef<TSource> : Producer<TSource>
+    internal class AddRef<TSource> : Producer<TSource, AddRef<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly RefCountDisposable _refCount;
@@ -17,37 +17,28 @@ namespace System.Reactive.Linq.ObservableImpl
             _refCount = refCount;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(observer, _refCount.GetDisposable());
+
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : IdentitySink<TSource>
         {
-            var d = StableCompositeDisposable.Create(_refCount.GetDisposable(), cancel);
+            private readonly IDisposable _refCountDisposable;
 
-            var sink = new _(observer, d);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
-
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
-        {
-            public _(IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(IObserver<TSource> observer, IDisposable refCountDisposable)
+                : base(observer)
             {
+                _refCountDisposable = refCountDisposable;
             }
 
-            public void OnNext(TSource value)
+            protected override void Dispose(bool disposing)
             {
-                base._observer.OnNext(value);
-            }
+                if (disposing)
+                {
+                    _refCountDisposable.Dispose();
+                }
 
-            public void OnError(Exception error)
-            {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnCompleted();
-                base.Dispose();
+                base.Dispose(disposing);
             }
         }
     }

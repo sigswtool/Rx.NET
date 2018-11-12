@@ -4,7 +4,7 @@
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class DefaultIfEmpty<TSource> : Producer<TSource>
+    internal sealed class DefaultIfEmpty<TSource> : Producer<TSource, DefaultIfEmpty<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly TSource _defaultValue;
@@ -15,43 +15,36 @@ namespace System.Reactive.Linq.ObservableImpl
             _defaultValue = defaultValue;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(_defaultValue, observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(_defaultValue, observer);
 
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : IdentitySink<TSource>
         {
             private readonly TSource _defaultValue;
             private bool _found;
 
-            public _(TSource defaultValue, IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(TSource defaultValue, IObserver<TSource> observer)
+                : base(observer)
             {
                 _defaultValue = defaultValue;
                 _found = false;
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 _found = true;
-                base._observer.OnNext(value);
+                ForwardOnNext(value);
             }
 
-            public void OnError(Exception error)
-            {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
+            public override void OnCompleted()
             {
                 if (!_found)
-                    base._observer.OnNext(_defaultValue);
-                base._observer.OnCompleted();
-                base.Dispose();
+                {
+                    ForwardOnNext(_defaultValue);
+                }
+
+                ForwardOnCompleted();
             }
         }
     }

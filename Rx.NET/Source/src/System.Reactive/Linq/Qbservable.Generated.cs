@@ -1,25 +1,21 @@
-/*
- * WARNING: Auto-generated file (5/1/2015 21:21:20)
+﻿/*
+ * WARNING: Auto-generated file (merged on 06/13/2018)
  * Run Rx's auto-homoiconizer tool to generate this file (in the HomoIcon directory).
  */
 
 #pragma warning disable 1591
 
-using System;
-using System.Reactive.Concurrency;
 using System.Collections.Generic;
-using System.Reactive.Joins;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Threading;
-using System.Reactive;
+using System.Reactive.Concurrency;
 using System.Reactive.Subjects;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-#if !NO_REMOTING
-using System.Runtime.Remoting.Lifetime;
+#if !CRIPPLED_REFLECTION
+using System.Reflection;
 #endif
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace System.Reactive.Linq
 {
@@ -28,7 +24,7 @@ namespace System.Reactive.Linq
     {
         /// <summary>
         /// Applies an accumulator function over an observable sequence, returning the result of the aggregation as a single element in the result sequence.
-        /// For aggregation behavior with incremental intermediate results, see <see cref="Observable.Scan{TSource}(IObservable{TSource},Func{TSource,TSource,TSource})" />.
+        /// For aggregation behavior with incremental intermediate results, see <see cref="M:System.Reactive.Linq.Observable.Scan``1(System.IObservable{``0},System.Func{``0,``0,``0})" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence and the result of the aggregation.</typeparam>
         /// <param name="source">An observable sequence to aggregate over.</param>
@@ -44,7 +40,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (accumulator == null)
                 throw new ArgumentNullException(nameof(accumulator));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -61,7 +57,7 @@ namespace System.Reactive.Linq
 
         /// <summary>
         /// Applies an accumulator function over an observable sequence, returning the result of the aggregation as a single element in the result sequence. The specified seed value is used as the initial accumulator value.
-        /// For aggregation behavior with incremental intermediate results, see <see cref="Observable.Scan{TSource, TAccumulate}(IObservable{TSource}, TAccumulate, Func{TAccumulate, TSource, TAccumulate})" />.
+        /// For aggregation behavior with incremental intermediate results, see <see cref="M:System.Reactive.Linq.Observable.Scan``2(System.IObservable{``0},``1,System.Func{``1,``0,``1})" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TAccumulate">The type of the result of the aggregation.</typeparam>
@@ -78,7 +74,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (accumulator == null)
                 throw new ArgumentNullException(nameof(accumulator));
-            
+
             return source.Provider.CreateQuery<TAccumulate>(
                 Expression.Call(
                     null,
@@ -93,7 +89,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies an accumulator function over an observable sequence, returning the result of the aggregation as a single element in the result sequence. The specified seed value is used as the initial accumulator value,
         /// and the specified result selector function is used to select the result value.
@@ -117,7 +113,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(accumulator));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -133,7 +129,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether all elements of an observable sequence satisfy a condition.
         /// </summary>
@@ -150,7 +146,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -164,7 +160,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Propagates the observable sequence that reacts first.
         /// </summary>
@@ -180,7 +176,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(first));
             if (second == null)
                 throw new ArgumentNullException(nameof(second));
-            
+
             return first.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -194,7 +190,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Propagates the observable sequence that reacts first.
         /// </summary>
@@ -210,7 +206,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -224,7 +220,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Propagates the observable sequence that reacts first.
         /// </summary>
@@ -240,7 +236,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -254,7 +250,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether an observable sequence contains any elements.
         /// </summary>
@@ -268,7 +264,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -281,7 +277,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether any element of an observable sequence satisfies a condition.
         /// </summary>
@@ -298,7 +294,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -312,7 +308,104 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Append a value to an observable sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">Source sequence to append the value to.</param>
+        /// <param name="value">Value to append to the specified sequence.</param>
+        /// <returns>The source sequence appended with the specified value.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> is null.</exception>
+        public static IQbservable<TSource> Append<TSource>(this IQbservable<TSource> source, TSource value)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Append<TSource>(default(IQbservable<TSource>), default(TSource))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    Expression.Constant(value, typeof(TSource))
+                )
+            );
+        }
+
+        /// <summary>
+        /// Append a value to an observable sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">Source sequence to append the value to.</param>
+        /// <param name="value">Value to append to the specified sequence.</param>
+        /// <param name="scheduler">Scheduler to emit the append values on.</param>
+        /// <returns>The source sequence appended with the specified value.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> is null.</exception>
+        public static IQbservable<TSource> Append<TSource>(this IQbservable<TSource> source, TSource value, IScheduler scheduler)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (scheduler == null)
+                throw new ArgumentNullException(nameof(scheduler));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Append<TSource>(default(IQbservable<TSource>), default(TSource), default(IScheduler))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    Expression.Constant(value, typeof(TSource)),
+                    Expression.Constant(scheduler, typeof(IScheduler))
+                )
+            );
+        }
+
+        /// <summary>
+        /// Automatically connect the upstream IConnectableObservable at most once when the
+        /// specified number of IObservers have subscribed to this IObservable.
+        /// </summary>
+        /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">Connectable observable sequence.</param>
+        /// <param name="minObservers">The number of observers required to subscribe before the connection to source happens, non-positive value will trigger an immediate subscription.</param>
+        /// <param name="onConnect">If not null, the connection's IDisposable is provided to it.</param>
+        /// <returns>An observable sequence that connects to the source at most once when the given number of observers have subscribed to it.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> is null.</exception>
+        public static IQbservable<TSource> AutoConnect<TSource>(this IQbservableProvider provider, IConnectableObservable<TSource> source, int minObservers, Expression<Action<IDisposable>> onConnect)
+        {
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider));
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (onConnect == null)
+                throw new ArgumentNullException(nameof(onConnect));
+
+            return provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.AutoConnect<TSource>(default(IQbservableProvider), default(IConnectableObservable<TSource>), default(int), default(Expression<Action<IDisposable>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    Expression.Constant(provider, typeof(IQbservableProvider)),
+                    Expression.Constant(source, typeof(IConnectableObservable<TSource>)),
+                    Expression.Constant(minObservers, typeof(int)),
+                    onConnect
+                )
+            );
+        }
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="Decimal" /> values.
         /// </summary>
@@ -321,13 +414,13 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Decimal.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<decimal> Average(this IQbservable<decimal> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<decimal>(
                 Expression.Call(
                     null,
@@ -340,7 +433,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="double" /> values.
         /// </summary>
@@ -354,7 +447,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -367,7 +460,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="int" /> values.
         /// </summary>
@@ -376,13 +469,13 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<double> Average(this IQbservable<int> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -395,7 +488,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="long" /> values.
         /// </summary>
@@ -404,13 +497,13 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<double> Average(this IQbservable<long> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -423,7 +516,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="Decimal" /> values.
         /// </summary>
@@ -432,13 +525,13 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Decimal.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<decimal?> Average(this IQbservable<decimal?> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<decimal?>(
                 Expression.Call(
                     null,
@@ -451,7 +544,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="double" /> values.
         /// </summary>
@@ -465,7 +558,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -478,7 +571,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="int" /> values.
         /// </summary>
@@ -488,12 +581,12 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         public static IQbservable<double?> Average(this IQbservable<int?> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -506,7 +599,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="long" /> values.
         /// </summary>
@@ -515,13 +608,13 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<double?> Average(this IQbservable<long?> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -534,7 +627,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="Single" /> values.
         /// </summary>
@@ -548,7 +641,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<float?>(
                 Expression.Call(
                     null,
@@ -561,7 +654,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="Single" /> values.
         /// </summary>
@@ -575,7 +668,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<float>(
                 Expression.Call(
                     null,
@@ -588,7 +681,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="Decimal" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -599,7 +692,7 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Decimal.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<decimal> Average<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal>> selector)
         {
@@ -607,7 +700,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<decimal>(
                 Expression.Call(
                     null,
@@ -621,7 +714,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="double" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -639,7 +732,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -653,7 +746,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="Single" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -671,7 +764,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<float>(
                 Expression.Call(
                     null,
@@ -685,7 +778,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="int" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -696,7 +789,7 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<double> Average<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int>> selector)
         {
@@ -704,7 +797,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -718,7 +811,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of <see cref="long" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -729,7 +822,7 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<double> Average<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long>> selector)
         {
@@ -737,7 +830,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -751,7 +844,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="Decimal" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -762,7 +855,7 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Decimal.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<decimal?> Average<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal?>> selector)
         {
@@ -770,7 +863,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<decimal?>(
                 Expression.Call(
                     null,
@@ -784,7 +877,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="double" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -802,7 +895,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -816,7 +909,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="Single" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -834,7 +927,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<float?>(
                 Expression.Call(
                     null,
@@ -848,7 +941,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="int" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -859,7 +952,7 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<double?> Average<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int?>> selector)
         {
@@ -867,7 +960,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -881,7 +974,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the average of an observable sequence of nullable <see cref="long" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -892,7 +985,7 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <exception cref="InvalidOperationException">(Asynchronous) The source sequence is empty.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<double?> Average<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long?>> selector)
         {
@@ -900,7 +993,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -914,7 +1007,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping buffers which are produced based on element count information.
         /// </summary>
@@ -930,7 +1023,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -944,7 +1037,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into zero or more buffers which are produced based on element count information.
         /// </summary>
@@ -961,7 +1054,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -976,7 +1069,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping buffers which are produced based on timing information.
         /// </summary>
@@ -997,7 +1090,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1011,7 +1104,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into a buffer that's sent out when either it's full or a given amount of time has elapsed.
         /// A useful real-world analogy of this overload is the behavior of a ferry leaving the dock when all seats are taken, or at the scheduled time of departure, whichever event occurs first.
@@ -1034,7 +1127,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1049,7 +1142,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into a buffer that's sent out when either it's full or a given amount of time has elapsed, using the specified scheduler to run timers.
         /// A useful real-world analogy of this overload is the behavior of a ferry leaving the dock when all seats are taken, or at the scheduled time of departure, whichever event occurs first.
@@ -1075,7 +1168,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1091,7 +1184,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping buffers which are produced based on timing information, using the specified scheduler to run timers.
         /// </summary>
@@ -1115,7 +1208,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1130,7 +1223,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into zero or more buffers which are produced based on timing information.
         /// </summary>
@@ -1159,7 +1252,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1174,7 +1267,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into zero or more buffers which are produced based on timing information, using the specified scheduler to run timers.
         /// </summary>
@@ -1206,7 +1299,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1222,7 +1315,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping buffers.
         /// </summary>
@@ -1239,7 +1332,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (bufferBoundaries == null)
                 throw new ArgumentNullException(nameof(bufferBoundaries));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1253,7 +1346,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping buffers.
         /// </summary>
@@ -1270,7 +1363,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (bufferClosingSelector == null)
                 throw new ArgumentNullException(nameof(bufferClosingSelector));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1284,7 +1377,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into zero or more buffers.
         /// </summary>
@@ -1305,7 +1398,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(bufferOpenings));
             if (bufferClosingSelector == null)
                 throw new ArgumentNullException(nameof(bufferClosingSelector));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1320,7 +1413,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Uses <paramref name="selector" /> to determine which source in <paramref name="sources" /> to return, choosing an empty sequence if no match is found.
         /// </summary>
@@ -1340,7 +1433,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(selector));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1355,7 +1448,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Uses <paramref name="selector" /> to determine which source in <paramref name="sources" /> to return, choosing <paramref name="defaultSource" /> if no match is found.
         /// </summary>
@@ -1378,7 +1471,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(sources));
             if (defaultSource == null)
                 throw new ArgumentNullException(nameof(defaultSource));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1394,7 +1487,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Uses <paramref name="selector" /> to determine which source in <paramref name="sources" /> to return, choosing an empty sequence on the specified scheduler if no match is found.
         /// </summary>
@@ -1417,7 +1510,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(sources));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1433,7 +1526,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the elements of an observable sequence to the specified type.
         /// </summary>
@@ -1446,7 +1539,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1459,7 +1552,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Continues an observable sequence that is terminated by an exception with the next observable sequence.
         /// </summary>
@@ -1475,7 +1568,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(first));
             if (second == null)
                 throw new ArgumentNullException(nameof(second));
-            
+
             return first.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -1489,7 +1582,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Continues an observable sequence that is terminated by an exception with the next observable sequence.
         /// </summary>
@@ -1505,7 +1598,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -1519,7 +1612,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Continues an observable sequence that is terminated by an exception with the next observable sequence.
         /// </summary>
@@ -1535,7 +1628,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -1549,7 +1642,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Continues an observable sequence that is terminated by an exception of the specified type with the observable sequence produced by the handler.
         /// </summary>
@@ -1567,7 +1660,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (handler == null)
                 throw new ArgumentNullException(nameof(handler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -1581,7 +1674,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Produces an enumerable sequence of consecutive (possibly empty) chunks of the source sequence.
         /// </summary>
@@ -1595,7 +1688,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return ((IQueryProvider)source.Provider).CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1608,7 +1701,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Produces an enumerable sequence that returns elements collected/aggregated from the source sequence between consecutive iterations.
         /// </summary>
@@ -1632,7 +1725,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(merge));
             if (getNewCollector == null)
                 throw new ArgumentNullException(nameof(getNewCollector));
-            
+
             return ((IQueryProvider)source.Provider).CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1648,7 +1741,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Produces an enumerable sequence that returns elements collected/aggregated from the source sequence between consecutive iterations.
         /// </summary>
@@ -1669,7 +1762,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(newCollector));
             if (merge == null)
                 throw new ArgumentNullException(nameof(merge));
-            
+
             return ((IQueryProvider)source.Provider).CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1684,7 +1777,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by emitting a list with the latest source elements whenever any of the observable sequences produces an element.
         /// </summary>
@@ -1700,7 +1793,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1714,7 +1807,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by emitting a list with the latest source elements whenever any of the observable sequences produces an element.
         /// </summary>
@@ -1730,7 +1823,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -1744,7 +1837,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -1764,7 +1857,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(sources));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1779,7 +1872,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges two observable sequences into one observable sequence by using the selector function whenever one of the observable sequences produces an element.
         /// </summary>
@@ -1800,7 +1893,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(second));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return first.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1815,7 +1908,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -1840,7 +1933,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source3));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1856,7 +1949,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -1885,7 +1978,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source4));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1902,7 +1995,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -1935,7 +2028,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source5));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -1953,7 +2046,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -1990,7 +2083,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source6));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2009,7 +2102,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2050,7 +2143,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source7));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2070,7 +2163,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2115,7 +2208,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source8));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2136,7 +2229,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2185,7 +2278,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source9));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2207,7 +2300,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2260,7 +2353,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source10));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2283,7 +2376,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2340,7 +2433,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source11));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2364,7 +2457,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2425,7 +2518,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source12));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2450,7 +2543,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2515,7 +2608,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source13));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2541,7 +2634,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2610,7 +2703,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source14));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2637,7 +2730,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2710,7 +2803,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source15));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2738,7 +2831,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
         /// </summary>
@@ -2815,7 +2908,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source16));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -2844,7 +2937,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Concatenates the second observable sequence to the first observable sequence upon successful termination of the first.
         /// </summary>
@@ -2860,7 +2953,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(first));
             if (second == null)
                 throw new ArgumentNullException(nameof(second));
-            
+
             return first.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -2874,7 +2967,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Concatenates all of the specified observable sequences, as long as the previous observable sequence terminated successfully.
         /// </summary>
@@ -2890,7 +2983,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -2904,7 +2997,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Concatenates all observable sequences in the given enumerable sequence, as long as the previous observable sequence terminated successfully.
         /// </summary>
@@ -2920,7 +3013,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -2934,7 +3027,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Concatenates all inner observable sequences, as long as the previous observable sequence terminated successfully.
         /// </summary>
@@ -2947,7 +3040,7 @@ namespace System.Reactive.Linq
         {
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return sources.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -2969,12 +3062,12 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence that contains the results of each task, in sequential order.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="sources" /> is null.</exception>
-        /// <remarks>If the tasks support cancellation, consider manual conversion of the tasks using <see cref="Observable.FromAsync{TSource}(Func{CancellationToken,Task{TSource}})" />, followed by a concatenation operation using <see cref="Observable.Concat{TSource}(IObservable{IObservable{TSource}})" />.</remarks>
+        /// <remarks>If the tasks support cancellation, consider manual conversion of the tasks using <see cref="M:System.Reactive.Linq.Observable.FromAsync``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})" />, followed by a concatenation operation using <see cref="M:System.Reactive.Linq.Observable.Concat``1(System.IObservable{System.IObservable{``0}})" />.</remarks>
         public static IQbservable<TSource> Concat<TSource>(this IQbservable<Task<TSource>> sources)
         {
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return sources.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -2987,7 +3080,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether an observable sequence contains a specified element by using the default equality comparer.
         /// </summary>
@@ -3002,7 +3095,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -3016,9 +3109,9 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
-        /// Determines whether an observable sequence contains a specified element by using a specified <see cref="IEqualityComparer{T}"/>.
+        /// Determines whether an observable sequence contains a specified element by using a specified System.Collections.Generic.IEqualityComparer{T}.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <param name="source">An observable sequence in which to locate a value.</param>
@@ -3034,7 +3127,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -3049,7 +3142,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence containing an <see cref="int" /> that represents the total number of elements in an observable sequence.
         /// </summary>
@@ -3058,13 +3151,13 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the number of elements in the input sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The number of elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The number of elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<int> Count<TSource>(this IQbservable<TSource> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -3077,7 +3170,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence containing an <see cref="int" /> that represents how many elements in the specified observable sequence satisfy a condition.
         /// </summary>
@@ -3094,7 +3187,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -3119,9 +3212,9 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="subscribe" /> is null.</exception>
         /// <remarks>
-        /// Use of this operator is preferred over manual implementation of the <see cref="IObservable{T}"/> interface. In case
-        /// you need a type implementing <see cref="IObservable{T}"/> rather than an anonymous implementation, consider using
-        /// the <see cref="Reactive.ObservableBase{TResult}" /> abstract base class.
+        /// Use of this operator is preferred over manual implementation of the <see cref="IObservable{T}" /> interface. In case
+        /// you need a type implementing <see cref="IObservable{T}" /> rather than an anonymous implementation, consider using
+        /// the <see cref="T:System.Reactive.ObservableBase`1" /> abstract base class.
         /// </remarks>
         public static IQbservable<TResult> Create<TResult>(this IQbservableProvider provider, Expression<Func<IObserver<TResult>, IDisposable>> subscribe)
         {
@@ -3129,7 +3222,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (subscribe == null)
                 throw new ArgumentNullException(nameof(subscribe));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3154,9 +3247,9 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="subscribe" /> is null.</exception>
         /// <remarks>
-        /// Use of this operator is preferred over manual implementation of the <see cref="IObservable{T}"/> interface. In case
-        /// you need a type implementing <see cref="IObservable{T}"/> rather than an anonymous implementation, consider using
-        /// the <see cref="Reactive.ObservableBase{TResult}" /> abstract base class.
+        /// Use of this operator is preferred over manual implementation of the <see cref="IObservable{T}" /> interface. In case
+        /// you need a type implementing <see cref="IObservable{T}" /> rather than an anonymous implementation, consider using
+        /// the <see cref="T:System.Reactive.ObservableBase`1" /> abstract base class.
         /// </remarks>
         public static IQbservable<TResult> Create<TResult>(this IQbservableProvider provider, Expression<Func<IObserver<TResult>, Action>> subscribe)
         {
@@ -3164,7 +3257,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (subscribe == null)
                 throw new ArgumentNullException(nameof(subscribe));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3178,7 +3271,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates an observable sequence from a specified cancellable asynchronous Subscribe method.
         /// The CancellationToken passed to the asynchronous Subscribe method is tied to the returned disposable subscription, allowing best-effort cancellation.
@@ -3197,7 +3290,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (subscribeAsync == null)
                 throw new ArgumentNullException(nameof(subscribeAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3211,7 +3304,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates an observable sequence from a specified asynchronous Subscribe method.
         /// </summary>
@@ -3228,7 +3321,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (subscribeAsync == null)
                 throw new ArgumentNullException(nameof(subscribeAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3242,7 +3335,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates an observable sequence from a specified cancellable asynchronous Subscribe method.
         /// The CancellationToken passed to the asynchronous Subscribe method is tied to the returned disposable subscription, allowing best-effort cancellation.
@@ -3261,7 +3354,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (subscribeAsync == null)
                 throw new ArgumentNullException(nameof(subscribeAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3275,7 +3368,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates an observable sequence from a specified asynchronous Subscribe method.
         /// </summary>
@@ -3292,7 +3385,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (subscribeAsync == null)
                 throw new ArgumentNullException(nameof(subscribeAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3306,7 +3399,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates an observable sequence from a specified cancellable asynchronous Subscribe method.
         /// The CancellationToken passed to the asynchronous Subscribe method is tied to the returned disposable subscription, allowing best-effort cancellation.
@@ -3325,7 +3418,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (subscribeAsync == null)
                 throw new ArgumentNullException(nameof(subscribeAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3339,7 +3432,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates an observable sequence from a specified asynchronous Subscribe method.
         /// </summary>
@@ -3356,7 +3449,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (subscribeAsync == null)
                 throw new ArgumentNullException(nameof(subscribeAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3370,7 +3463,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the elements of the specified sequence or the type parameter's default value in a singleton sequence if the sequence is empty.
         /// </summary>
@@ -3383,7 +3476,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3396,7 +3489,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the elements of the specified sequence or the specified value in a singleton sequence if the sequence is empty.
         /// </summary>
@@ -3410,7 +3503,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3424,7 +3517,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that invokes the specified factory function whenever a new observer subscribes.
         /// </summary>
@@ -3440,7 +3533,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (observableFactory == null)
                 throw new ArgumentNullException(nameof(observableFactory));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3454,7 +3547,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that starts the specified asynchronous factory function whenever a new observer subscribes.
         /// </summary>
@@ -3471,7 +3564,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (observableFactoryAsync == null)
                 throw new ArgumentNullException(nameof(observableFactoryAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3485,7 +3578,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that starts the specified cancellable asynchronous factory function whenever a new observer subscribes.
         /// The CancellationToken passed to the asynchronous factory function is tied to the returned disposable subscription, allowing best-effort cancellation.
@@ -3504,7 +3597,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (observableFactoryAsync == null)
                 throw new ArgumentNullException(nameof(observableFactoryAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -3531,21 +3624,21 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> is null.</exception>
         /// <remarks>
         /// <para>
-        /// This operator is less efficient than <see cref="Observable.DelaySubscription{TSource}(IObservable{TSource},DateTimeOffset)">DelaySubscription</see> because it records all notifications and time-delays those. This allows for immediate propagation of errors.
+        /// This operator is less efficient than <see cref="M:System.Reactive.Linq.Observable.DelaySubscription``1(System.IObservable{``0},System.DateTimeOffset)">DelaySubscription</see> because it records all notifications and time-delays those. This allows for immediate propagation of errors.
         /// </para>
         /// <para>
         /// Observer callbacks for the resulting sequence will be run on the default scheduler. This effect is similar to using ObserveOn.
         /// </para>
         /// <para>
         /// Exceptions signaled by the source sequence through an OnError callback are forwarded immediately to the result sequence. Any OnNext notifications that were in the queue at the point of the OnError callback will be dropped.
-        /// In order to delay error propagation, consider using the <see cref="Observable.Materialize{TSource}(IObservable{TSource})">Observable.Materialize</see> and <see cref="Observable.Dematerialize{TSource}(IObservable{Notification{TSource}})">Observable.Dematerialize</see> operators, or use <see cref="Observable.DelaySubscription{TSource}(IObservable{TSource},DateTimeOffset)">DelaySubscription</see>.
+        /// In order to delay error propagation, consider using the <see cref="M:System.Reactive.Linq.Observable.Materialize``1(System.IObservable{``0})">Observable.Materialize</see> and <see cref="M:System.Reactive.Linq.Observable.Dematerialize``1(System.IObservable{System.Reactive.Notification{``0}})">Observable.Dematerialize</see> operators, or use <see cref="M:System.Reactive.Linq.Observable.DelaySubscription``1(System.IObservable{``0},System.DateTimeOffset)">DelaySubscription</see>.
         /// </para>
         /// </remarks>
         public static IQbservable<TSource> Delay<TSource>(this IQbservable<TSource> source, DateTimeOffset dueTime)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3573,14 +3666,14 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="scheduler" /> is null.</exception>
         /// <remarks>
         /// <para>
-        /// This operator is less efficient than <see cref="Observable.DelaySubscription{TSource}(IObservable{TSource},DateTimeOffset,IScheduler)">DelaySubscription</see> because it records all notifications and time-delays those. This allows for immediate propagation of errors.
+        /// This operator is less efficient than <see cref="M:System.Reactive.Linq.Observable.DelaySubscription``1(System.IObservable{``0},System.DateTimeOffset,System.Reactive.Concurrency.IScheduler)">DelaySubscription</see> because it records all notifications and time-delays those. This allows for immediate propagation of errors.
         /// </para>
         /// <para>
         /// Observer callbacks for the resulting sequence will be run on the specified scheduler. This effect is similar to using ObserveOn.
         /// </para>
         /// <para>
         /// Exceptions signaled by the source sequence through an OnError callback are forwarded immediately to the result sequence. Any OnNext notifications that were in the queue at the point of the OnError callback will be dropped.
-        /// In order to delay error propagation, consider using the <see cref="Observable.Materialize{TSource}(IObservable{TSource})">Observable.Materialize</see> and <see cref="Observable.Dematerialize{TSource}(IObservable{Notification{TSource}})">Observable.Dematerialize</see> operators, or use <see cref="Observable.DelaySubscription{TSource}(IObservable{TSource},DateTimeOffset,IScheduler)">DelaySubscription</see>.
+        /// In order to delay error propagation, consider using the <see cref="M:System.Reactive.Linq.Observable.Materialize``1(System.IObservable{``0})">Observable.Materialize</see> and <see cref="M:System.Reactive.Linq.Observable.Dematerialize``1(System.IObservable{System.Reactive.Notification{``0}})">Observable.Dematerialize</see> operators, or use <see cref="M:System.Reactive.Linq.Observable.DelaySubscription``1(System.IObservable{``0},System.DateTimeOffset,System.Reactive.Concurrency.IScheduler)">DelaySubscription</see>.
         /// </para>
         /// </remarks>
         public static IQbservable<TSource> Delay<TSource>(this IQbservable<TSource> source, DateTimeOffset dueTime, IScheduler scheduler)
@@ -3589,7 +3682,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3604,7 +3697,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Time shifts the observable sequence by the specified relative time duration.
         /// The relative time intervals between the values are preserved.
@@ -3619,21 +3712,21 @@ namespace System.Reactive.Linq
         /// <paramref name="dueTime" /> is less than TimeSpan.Zero.</exception>
         /// <remarks>
         /// <para>
-        /// This operator is less efficient than <see cref="Observable.DelaySubscription{TSource}(IObservable{TSource},TimeSpan)">DelaySubscription</see> because it records all notifications and time-delays those. This allows for immediate propagation of errors.
+        /// This operator is less efficient than <see cref="M:System.Reactive.Linq.Observable.DelaySubscription``1(System.IObservable{``0},System.TimeSpan)">DelaySubscription</see> because it records all notifications and time-delays those. This allows for immediate propagation of errors.
         /// </para>
         /// <para>
         /// Observer callbacks for the resulting sequence will be run on the default scheduler. This effect is similar to using ObserveOn.
         /// </para>
         /// <para>
         /// Exceptions signaled by the source sequence through an OnError callback are forwarded immediately to the result sequence. Any OnNext notifications that were in the queue at the point of the OnError callback will be dropped.
-        /// In order to delay error propagation, consider using the <see cref="Observable.Materialize{TSource}(IObservable{TSource})">Observable.Materialize</see> and <see cref="Observable.Dematerialize{TSource}(IObservable{Notification{TSource}})">Observable.Dematerialize</see> operators, or use <see cref="Observable.DelaySubscription{TSource}(IObservable{TSource},TimeSpan)">DelaySubscription</see>.
+        /// In order to delay error propagation, consider using the <see cref="M:System.Reactive.Linq.Observable.Materialize``1(System.IObservable{``0})">Observable.Materialize</see> and <see cref="M:System.Reactive.Linq.Observable.Dematerialize``1(System.IObservable{System.Reactive.Notification{``0}})">Observable.Dematerialize</see> operators, or use <see cref="M:System.Reactive.Linq.Observable.DelaySubscription``1(System.IObservable{``0},System.TimeSpan)">DelaySubscription</see>.
         /// </para>
         /// </remarks>
         public static IQbservable<TSource> Delay<TSource>(this IQbservable<TSource> source, TimeSpan dueTime)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3663,7 +3756,7 @@ namespace System.Reactive.Linq
         /// <paramref name="dueTime" /> is less than TimeSpan.Zero.</exception>
         /// <remarks>
         /// <para>
-        /// This operator is less efficient than <see cref="Observable.DelaySubscription{TSource}(IObservable{TSource},TimeSpan,IScheduler)">DelaySubscription</see> because it records all notifications and time-delays those. This allows for immediate propagation of errors.
+        /// This operator is less efficient than <see cref="M:System.Reactive.Linq.Observable.DelaySubscription``1(System.IObservable{``0},System.TimeSpan,System.Reactive.Concurrency.IScheduler)">DelaySubscription</see> because it records all notifications and time-delays those. This allows for immediate propagation of errors.
         /// </para>
         /// <para>
         /// Observer callbacks for the resulting sequence will be run on the specified scheduler. This effect is similar to using ObserveOn.
@@ -3673,7 +3766,7 @@ namespace System.Reactive.Linq
         /// </para>
         /// <para>
         /// Exceptions signaled by the source sequence through an OnError callback are forwarded immediately to the result sequence. Any OnNext notifications that were in the queue at the point of the OnError callback will be dropped.
-        /// In order to delay error propagation, consider using the <see cref="Observable.Materialize{TSource}(IObservable{TSource})">Observable.Materialize</see> and <see cref="Observable.Dematerialize{TSource}(IObservable{Notification{TSource}})">Observable.Dematerialize</see> operators, or use <see cref="Observable.DelaySubscription{TSource}(IObservable{TSource},TimeSpan,IScheduler)">DelaySubscription</see>.
+        /// In order to delay error propagation, consider using the <see cref="M:System.Reactive.Linq.Observable.Materialize``1(System.IObservable{``0})">Observable.Materialize</see> and <see cref="M:System.Reactive.Linq.Observable.Dematerialize``1(System.IObservable{System.Reactive.Notification{``0}})">Observable.Dematerialize</see> operators, or use <see cref="M:System.Reactive.Linq.Observable.DelaySubscription``1(System.IObservable{``0},System.TimeSpan,System.Reactive.Concurrency.IScheduler)">DelaySubscription</see>.
         /// </para>
         /// </remarks>
         public static IQbservable<TSource> Delay<TSource>(this IQbservable<TSource> source, TimeSpan dueTime, IScheduler scheduler)
@@ -3682,7 +3775,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3697,7 +3790,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Time shifts the observable sequence based on a delay selector function for each element.
         /// </summary>
@@ -3714,7 +3807,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (delayDurationSelector == null)
                 throw new ArgumentNullException(nameof(delayDurationSelector));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3728,7 +3821,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Time shifts the observable sequence based on a subscription delay and a delay selector function for each element.
         /// </summary>
@@ -3748,7 +3841,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(subscriptionDelay));
             if (delayDurationSelector == null)
                 throw new ArgumentNullException(nameof(delayDurationSelector));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3775,7 +3868,7 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> is null.</exception>
         /// <remarks>
         /// <para>
-        /// This operator is more efficient than <see cref="Observable.Delay{TSource}(IObservable{TSource},DateTimeOffset)">Delay</see> but postpones all side-effects of subscription and affects error propagation timing.
+        /// This operator is more efficient than <see cref="M:System.Reactive.Linq.Observable.Delay``1(System.IObservable{``0},System.DateTimeOffset)">Delay</see> but postpones all side-effects of subscription and affects error propagation timing.
         /// </para>
         /// <para>
         /// The side-effects of subscribing to the source sequence will be run on the default scheduler. Observer callbacks will not be affected.
@@ -3785,7 +3878,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3799,7 +3892,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Time shifts the observable sequence by delaying the subscription to the specified absolute time, using the specified scheduler to run timers.
         /// </summary>
@@ -3812,7 +3905,7 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="scheduler" /> is null.</exception>
         /// <remarks>
         /// <para>
-        /// This operator is more efficient than <see cref="Observable.Delay{TSource}(IObservable{TSource},DateTimeOffset,IScheduler)">Delay</see> but postpones all side-effects of subscription and affects error propagation timing.
+        /// This operator is more efficient than <see cref="M:System.Reactive.Linq.Observable.Delay``1(System.IObservable{``0},System.DateTimeOffset,System.Reactive.Concurrency.IScheduler)">Delay</see> but postpones all side-effects of subscription and affects error propagation timing.
         /// </para>
         /// <para>
         /// The side-effects of subscribing to the source sequence will be run on the specified scheduler. Observer callbacks will not be affected.
@@ -3824,7 +3917,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3839,7 +3932,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Time shifts the observable sequence by delaying the subscription with the specified relative time duration.
         /// </summary>
@@ -3853,7 +3946,7 @@ namespace System.Reactive.Linq
         /// <paramref name="dueTime" /> is less than TimeSpan.Zero.</exception>
         /// <remarks>
         /// <para>
-        /// This operator is more efficient than <see cref="Observable.Delay{TSource}(IObservable{TSource},TimeSpan)">Delay</see> but postpones all side-effects of subscription and affects error propagation timing.
+        /// This operator is more efficient than <see cref="M:System.Reactive.Linq.Observable.Delay``1(System.IObservable{``0},System.TimeSpan)">Delay</see> but postpones all side-effects of subscription and affects error propagation timing.
         /// </para>
         /// <para>
         /// The side-effects of subscribing to the source sequence will be run on the default scheduler. Observer callbacks will not be affected.
@@ -3863,7 +3956,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3877,7 +3970,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Time shifts the observable sequence by delaying the subscription with the specified relative time duration, using the specified scheduler to run timers.
         /// </summary>
@@ -3892,7 +3985,7 @@ namespace System.Reactive.Linq
         /// <paramref name="dueTime" /> is less than TimeSpan.Zero.</exception>
         /// <remarks>
         /// <para>
-        /// This operator is more efficient than <see cref="Observable.Delay{TSource}(IObservable{TSource},TimeSpan,IScheduler)">Delay</see> but postpones all side-effects of subscription and affects error propagation timing.
+        /// This operator is more efficient than <see cref="M:System.Reactive.Linq.Observable.Delay``1(System.IObservable{``0},System.TimeSpan,System.Reactive.Concurrency.IScheduler)">Delay</see> but postpones all side-effects of subscription and affects error propagation timing.
         /// </para>
         /// <para>
         /// The side-effects of subscribing to the source sequence will be run on the specified scheduler. Observer callbacks will not be affected.
@@ -3904,7 +3997,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3919,7 +4012,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Dematerializes the explicit notification values of an observable sequence as implicit notifications.
         /// </summary>
@@ -3932,7 +4025,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3945,7 +4038,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains only distinct elements.
         /// </summary>
@@ -3959,7 +4052,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -3972,7 +4065,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains only distinct elements according to the comparer.
         /// </summary>
@@ -3989,7 +4082,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4003,7 +4096,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains only distinct elements according to the keySelector.
         /// </summary>
@@ -4021,7 +4114,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (keySelector == null)
                 throw new ArgumentNullException(nameof(keySelector));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4035,7 +4128,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains only distinct elements according to the keySelector and the comparer.
         /// </summary>
@@ -4056,7 +4149,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4071,7 +4164,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains only distinct contiguous elements.
         /// </summary>
@@ -4084,7 +4177,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4097,7 +4190,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains only distinct contiguous elements according to the comparer.
         /// </summary>
@@ -4113,7 +4206,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4127,7 +4220,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains only distinct contiguous elements according to the keySelector.
         /// </summary>
@@ -4144,7 +4237,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (keySelector == null)
                 throw new ArgumentNullException(nameof(keySelector));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4158,7 +4251,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains only distinct contiguous elements according to the keySelector and the comparer.
         /// </summary>
@@ -4178,7 +4271,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4193,7 +4286,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the observer's methods for each message in the source sequence.
         /// This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.
@@ -4210,7 +4303,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (observer == null)
                 throw new ArgumentNullException(nameof(observer));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4224,7 +4317,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes an action for each element in the observable sequence, and propagates all observer messages through the result sequence.
         /// This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.
@@ -4241,7 +4334,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (onNext == null)
                 throw new ArgumentNullException(nameof(onNext));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4255,7 +4348,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes an action for each element in the observable sequence and invokes an action upon graceful termination of the observable sequence.
         /// This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.
@@ -4275,7 +4368,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(onNext));
             if (onCompleted == null)
                 throw new ArgumentNullException(nameof(onCompleted));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4290,7 +4383,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes an action for each element in the observable sequence and invokes an action upon exceptional termination of the observable sequence.
         /// This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.
@@ -4310,7 +4403,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(onNext));
             if (onError == null)
                 throw new ArgumentNullException(nameof(onError));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4325,7 +4418,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes an action for each element in the observable sequence and invokes an action upon graceful or exceptional termination of the observable sequence.
         /// This method can be used for debugging, logging, etc. of query behavior by intercepting the message stream to run arbitrary actions for messages on the pipeline.
@@ -4348,7 +4441,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(onError));
             if (onCompleted == null)
                 throw new ArgumentNullException(nameof(onCompleted));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4364,7 +4457,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Repeats the given <paramref name="source" /> as long as the specified <paramref name="condition" /> holds, where the <paramref name="condition" /> is evaluated after each repeated <paramref name="source" /> completed.
         /// </summary>
@@ -4380,7 +4473,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (condition == null)
                 throw new ArgumentNullException(nameof(condition));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4394,7 +4487,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the element at a specified index in a sequence.
         /// </summary>
@@ -4411,7 +4504,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4425,7 +4518,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the element at a specified index in a sequence or a default value if the index is out of range.
         /// </summary>
@@ -4441,7 +4534,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4455,18 +4548,18 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an empty observable sequence.
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <returns>An observable sequence with no elements.</returns>
         public static IQbservable<TResult> Empty<TResult>(this IQbservableProvider provider)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -4479,12 +4572,12 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an empty observable sequence, using the specified scheduler to send out the single OnCompleted message.
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <param name="scheduler">Scheduler to send the termination call on.</param>
         /// <returns>An observable sequence with no elements.</returns>
         /// <exception cref="ArgumentNullException">
@@ -4495,7 +4588,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -4509,12 +4602,12 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an empty observable sequence, using the specified scheduler to send out the single OnCompleted message.
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <param name="scheduler">Scheduler to send the termination call on.</param>
         /// <param name="witness">Object solely used to infer the type of the <typeparamref name="TResult" /> type parameter. This parameter is typically used when creating a sequence of anonymously typed elements.</param>
         /// <returns>An observable sequence with no elements.</returns>
@@ -4526,7 +4619,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -4541,19 +4634,19 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an empty observable sequence.
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <param name="witness">Object solely used to infer the type of the <typeparamref name="TResult" /> type parameter. This parameter is typically used when creating a sequence of anonymously typed elements.</param>
         /// <returns>An observable sequence with no elements.</returns>
         public static IQbservable<TResult> Empty<TResult>(this IQbservableProvider provider, TResult witness)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -4567,7 +4660,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a specified action after the source observable sequence terminates gracefully or exceptionally.
         /// </summary>
@@ -4583,7 +4676,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (finallyAction == null)
                 throw new ArgumentNullException(nameof(finallyAction));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4597,7 +4690,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the first element of an observable sequence.
         /// </summary>
@@ -4611,7 +4704,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4624,7 +4717,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the first element of an observable sequence that satisfies the condition in the predicate.
         /// </summary>
@@ -4641,7 +4734,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4655,7 +4748,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the first element of an observable sequence, or a default value if no such element exists.
         /// </summary>
@@ -4668,7 +4761,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4681,7 +4774,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the first element of an observable sequence that satisfies the condition in the predicate, or a default value if no such element exists.
         /// </summary>
@@ -4697,7 +4790,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -4711,7 +4804,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Concatenates the observable sequences obtained by running the <paramref name="resultSelector" /> for each element in the given enumerable <paramref name="source" />.
         /// </summary>
@@ -4731,7 +4824,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -4746,7 +4839,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts to asynchronous action into an observable sequence. Each subscription to the resulting sequence causes the action to be started.
         /// </summary>
@@ -4761,7 +4854,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (actionAsync == null)
                 throw new ArgumentNullException(nameof(actionAsync));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -4775,7 +4868,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts to asynchronous action into an observable sequence. Each subscription to the resulting sequence causes the action to be started.
         /// </summary>
@@ -4793,7 +4886,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(actionAsync));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -4808,7 +4901,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts to asynchronous action into an observable sequence. Each subscription to the resulting sequence causes the action to be started.
         /// The CancellationToken passed to the asynchronous action is tied to the observable sequence's subscription that triggered the action's invocation and can be used for best-effort cancellation.
@@ -4825,7 +4918,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (actionAsync == null)
                 throw new ArgumentNullException(nameof(actionAsync));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -4839,7 +4932,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts to asynchronous action into an observable sequence. Each subscription to the resulting sequence causes the action to be started.
         /// The CancellationToken passed to the asynchronous action is tied to the observable sequence's subscription that triggered the action's invocation and can be used for best-effort cancellation.
@@ -4859,7 +4952,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(actionAsync));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -4874,7 +4967,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts to asynchronous function into an observable sequence. Each subscription to the resulting sequence causes the function to be started.
         /// </summary>
@@ -4890,7 +4983,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (functionAsync == null)
                 throw new ArgumentNullException(nameof(functionAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -4904,7 +4997,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts to asynchronous function into an observable sequence. Each subscription to the resulting sequence causes the function to be started.
         /// The CancellationToken passed to the asynchronous function is tied to the observable sequence's subscription that triggered the function's invocation and can be used for best-effort cancellation.
@@ -4922,7 +5015,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (functionAsync == null)
                 throw new ArgumentNullException(nameof(functionAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -4936,7 +5029,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts to asynchronous function into an observable sequence. Each subscription to the resulting sequence causes the function to be started.
         /// </summary>
@@ -4955,7 +5048,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(functionAsync));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -4970,7 +5063,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts to asynchronous function into an observable sequence. Each subscription to the resulting sequence causes the function to be started.
         /// The CancellationToken passed to the asynchronous function is tied to the observable sequence's subscription that triggered the function's invocation and can be used for best-effort cancellation.
@@ -4991,7 +5084,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(functionAsync));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -5006,7 +5099,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an Action-based .NET event to an observable sequence. Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events conforming to the standard .NET event pattern, use any of the FromEventPattern overloads instead.
@@ -5023,7 +5116,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEvent, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEvent, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5036,7 +5129,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEvent(IObservable{Reactive.Unit})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEvent(System.IObservable{System.Reactive.Unit})" />
         public static IQbservable<Unit> FromEvent(this IQbservableProvider provider, Expression<Action<Action>> addHandler, Expression<Action<Action>> removeHandler)
         {
             if (provider == null)
@@ -5045,7 +5138,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -5060,7 +5153,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an Action-based .NET event to an observable sequence. Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events conforming to the standard .NET event pattern, use any of the FromEventPattern overloads instead.
@@ -5087,7 +5180,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEvent(IObservable{Reactive.Unit})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEvent(System.IObservable{System.Reactive.Unit})" />
         public static IQbservable<Unit> FromEvent(this IQbservableProvider provider, Expression<Action<Action>> addHandler, Expression<Action<Action>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -5098,7 +5191,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -5114,7 +5207,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event to an observable sequence, using a supplied event delegate type. Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events conforming to the standard .NET event pattern, use any of the FromEventPattern overloads instead.
@@ -5133,7 +5226,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEvent, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEvent, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5146,7 +5239,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEvent(IObservable{Reactive.Unit})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEvent(System.IObservable{System.Reactive.Unit})" />
         public static IQbservable<TEventArgs> FromEvent<TDelegate, TEventArgs>(this IQbservableProvider provider, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler)
         {
             if (provider == null)
@@ -5155,7 +5248,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<TEventArgs>(
                 Expression.Call(
                     null,
@@ -5170,7 +5263,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event to an observable sequence, using a supplied event delegate type. Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events conforming to the standard .NET event pattern, use any of the FromEventPattern overloads instead.
@@ -5199,7 +5292,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEvent(IObservable{Reactive.Unit})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEvent(System.IObservable{System.Reactive.Unit})" />
         public static IQbservable<TEventArgs> FromEvent<TDelegate, TEventArgs>(this IQbservableProvider provider, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -5210,7 +5303,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TEventArgs>(
                 Expression.Call(
                     null,
@@ -5226,7 +5319,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event to an observable sequence, using a conversion function to obtain the event delegate. Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events conforming to the standard .NET event pattern, use any of the FromEventPattern overloads instead.
@@ -5246,7 +5339,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEvent, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEvent, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5259,7 +5352,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEvent(IObservable{Reactive.Unit})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEvent(System.IObservable{System.Reactive.Unit})" />
         public static IQbservable<TEventArgs> FromEvent<TDelegate, TEventArgs>(this IQbservableProvider provider, Expression<Func<Action<TEventArgs>, TDelegate>> conversion, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler)
         {
             if (provider == null)
@@ -5270,7 +5363,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<TEventArgs>(
                 Expression.Call(
                     null,
@@ -5286,7 +5379,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event to an observable sequence, using a conversion function to obtain the event delegate. Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events conforming to the standard .NET event pattern, use any of the FromEventPattern overloads instead.
@@ -5316,7 +5409,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEvent(IObservable{Reactive.Unit})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEvent(System.IObservable{System.Reactive.Unit})" />
         public static IQbservable<TEventArgs> FromEvent<TDelegate, TEventArgs>(this IQbservableProvider provider, Expression<Func<Action<TEventArgs>, TDelegate>> conversion, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -5329,7 +5422,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TEventArgs>(
                 Expression.Call(
                     null,
@@ -5346,7 +5439,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a generic Action-based .NET event to an observable sequence. Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events conforming to the standard .NET event pattern, use any of the FromEventPattern overloads instead.
@@ -5364,7 +5457,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEvent, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEvent, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5377,7 +5470,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEvent(IObservable{Reactive.Unit})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEvent(System.IObservable{System.Reactive.Unit})" />
         public static IQbservable<TEventArgs> FromEvent<TEventArgs>(this IQbservableProvider provider, Expression<Action<Action<TEventArgs>>> addHandler, Expression<Action<Action<TEventArgs>>> removeHandler)
         {
             if (provider == null)
@@ -5386,7 +5479,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<TEventArgs>(
                 Expression.Call(
                     null,
@@ -5401,7 +5494,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a generic Action-based .NET event to an observable sequence. Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events conforming to the standard .NET event pattern, use any of the FromEventPattern overloads instead.
@@ -5429,7 +5522,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEvent(IObservable{Reactive.Unit})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEvent(System.IObservable{System.Reactive.Unit})" />
         public static IQbservable<TEventArgs> FromEvent<TEventArgs>(this IQbservableProvider provider, Expression<Action<Action<TEventArgs>>> addHandler, Expression<Action<Action<TEventArgs>>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -5440,7 +5533,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TEventArgs>(
                 Expression.Call(
                     null,
@@ -5456,7 +5549,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="EventHandler" />, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -5474,7 +5567,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5487,7 +5580,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<object>> FromEventPattern(this IQbservableProvider provider, Expression<Action<EventHandler>> addHandler, Expression<Action<EventHandler>> removeHandler)
         {
             if (provider == null)
@@ -5496,7 +5589,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<EventPattern<object>>(
                 Expression.Call(
                     null,
@@ -5511,7 +5604,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="EventHandler" />, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -5539,7 +5632,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<object>> FromEventPattern(this IQbservableProvider provider, Expression<Action<EventHandler>> addHandler, Expression<Action<EventHandler>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -5550,7 +5643,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<object>>(
                 Expression.Call(
                     null,
@@ -5566,7 +5659,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an instance .NET event, conforming to the standard .NET event pattern with an <see cref="EventArgs" /> parameter, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -5586,7 +5679,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5599,7 +5692,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<object>> FromEventPattern(this IQbservableProvider provider, object target, string eventName)
         {
             if (provider == null)
@@ -5608,7 +5701,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(target));
             if (eventName == null)
                 throw new ArgumentNullException(nameof(eventName));
-            
+
             return provider.CreateQuery<EventPattern<object>>(
                 Expression.Call(
                     null,
@@ -5623,7 +5716,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an instance .NET event, conforming to the standard .NET event pattern with an <see cref="EventArgs" /> parameter, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -5653,7 +5746,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<object>> FromEventPattern(this IQbservableProvider provider, object target, string eventName, IScheduler scheduler)
         {
             if (provider == null)
@@ -5664,7 +5757,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(eventName));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<object>>(
                 Expression.Call(
                     null,
@@ -5680,7 +5773,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a static .NET event, conforming to the standard .NET event pattern with an <see cref="EventArgs" /> parameter, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -5700,7 +5793,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5713,7 +5806,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<object>> FromEventPattern(this IQbservableProvider provider, Type type, string eventName)
         {
             if (provider == null)
@@ -5722,7 +5815,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(type));
             if (eventName == null)
                 throw new ArgumentNullException(nameof(eventName));
-            
+
             return provider.CreateQuery<EventPattern<object>>(
                 Expression.Call(
                     null,
@@ -5737,7 +5830,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a static .NET event, conforming to the standard .NET event pattern with an <see cref="EventArgs" /> parameter, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -5767,7 +5860,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<object>> FromEventPattern(this IQbservableProvider provider, Type type, string eventName, IScheduler scheduler)
         {
             if (provider == null)
@@ -5778,7 +5871,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(eventName));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<object>>(
                 Expression.Call(
                     null,
@@ -5794,7 +5887,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event, conforming to the standard .NET event pattern based on a supplied event delegate type, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -5814,7 +5907,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5827,7 +5920,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TDelegate, TEventArgs>(this IQbservableProvider provider, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler)
         {
             if (provider == null)
@@ -5836,7 +5929,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -5851,7 +5944,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event, conforming to the standard .NET event pattern based on a supplied event delegate type, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -5881,7 +5974,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TDelegate, TEventArgs>(this IQbservableProvider provider, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -5892,7 +5985,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -5910,7 +6003,7 @@ namespace System.Reactive.Linq
         }
 
         /// <summary>
-        /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="EventHandler{TEventArgs}" />, to an observable sequence.
+        /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="T:System.EventHandler`1" />, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events that don't conform to the standard .NET event pattern, use any of the FromEvent overloads instead.
         /// </summary>
@@ -5929,7 +6022,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -5942,7 +6035,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TDelegate, TEventArgs>(this IQbservableProvider provider, Expression<Func<EventHandler<TEventArgs>, TDelegate>> conversion, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler)
         {
             if (provider == null)
@@ -5953,7 +6046,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -5969,9 +6062,9 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
-        /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="EventHandler{TEventArgs}" />, to an observable sequence.
+        /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="T:System.EventHandler`1" />, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events that don't conform to the standard .NET event pattern, use any of the FromEvent overloads instead.
         /// </summary>
@@ -6000,7 +6093,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TDelegate, TEventArgs>(this IQbservableProvider provider, Expression<Func<EventHandler<TEventArgs>, TDelegate>> conversion, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -6013,7 +6106,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6030,7 +6123,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event, conforming to the standard .NET event pattern based on a supplied event delegate type with a strongly typed sender parameter, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6051,7 +6144,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -6064,7 +6157,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TSender, TEventArgs>> FromEventPattern<TDelegate, TSender, TEventArgs>(this IQbservableProvider provider, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler)
         {
             if (provider == null)
@@ -6073,7 +6166,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<EventPattern<TSender, TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6088,7 +6181,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a .NET event, conforming to the standard .NET event pattern based on a supplied event delegate type with a strongly typed sender parameter, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6119,7 +6212,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TSender, TEventArgs>> FromEventPattern<TDelegate, TSender, TEventArgs>(this IQbservableProvider provider, Expression<Action<TDelegate>> addHandler, Expression<Action<TDelegate>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -6130,7 +6223,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<TSender, TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6146,9 +6239,9 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
-        /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="EventHandler{TEventArgs}" />, to an observable sequence.
+        /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="T:System.EventHandler`1" />, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events that don't conform to the standard .NET event pattern, use any of the FromEvent overloads instead.
         /// </summary>
@@ -6163,7 +6256,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -6176,7 +6269,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TEventArgs>(this IQbservableProvider provider, Expression<Action<EventHandler<TEventArgs>>> addHandler, Expression<Action<EventHandler<TEventArgs>>> removeHandler)
         {
             if (provider == null)
@@ -6185,7 +6278,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(addHandler));
             if (removeHandler == null)
                 throw new ArgumentNullException(nameof(removeHandler));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6200,9 +6293,9 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
-        /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="EventHandler{TEventArgs}" />, to an observable sequence.
+        /// Converts a .NET event, conforming to the standard .NET event pattern based on <see cref="T:System.EventHandler`1" />, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
         /// For conversion of events that don't conform to the standard .NET event pattern, use any of the FromEvent overloads instead.
         /// </summary>
@@ -6227,7 +6320,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TEventArgs>(this IQbservableProvider provider, Expression<Action<EventHandler<TEventArgs>>> addHandler, Expression<Action<EventHandler<TEventArgs>>> removeHandler, IScheduler scheduler)
         {
             if (provider == null)
@@ -6238,7 +6331,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(removeHandler));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6254,7 +6347,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an instance .NET event, conforming to the standard .NET event pattern with strongly typed event arguments, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6275,7 +6368,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -6288,7 +6381,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TEventArgs>(this IQbservableProvider provider, object target, string eventName)
         {
             if (provider == null)
@@ -6297,7 +6390,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(target));
             if (eventName == null)
                 throw new ArgumentNullException(nameof(eventName));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6312,7 +6405,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an instance .NET event, conforming to the standard .NET event pattern with strongly typed event arguments, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6343,7 +6436,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TEventArgs>(this IQbservableProvider provider, object target, string eventName, IScheduler scheduler)
         {
             if (provider == null)
@@ -6354,7 +6447,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(eventName));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6370,7 +6463,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a static .NET event, conforming to the standard .NET event pattern with strongly typed event arguments, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6391,7 +6484,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -6404,7 +6497,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TEventArgs>(this IQbservableProvider provider, Type type, string eventName)
         {
             if (provider == null)
@@ -6413,7 +6506,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(type));
             if (eventName == null)
                 throw new ArgumentNullException(nameof(eventName));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6428,7 +6521,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a static .NET event, conforming to the standard .NET event pattern with strongly typed event arguments, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6459,7 +6552,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TEventArgs>> FromEventPattern<TEventArgs>(this IQbservableProvider provider, Type type, string eventName, IScheduler scheduler)
         {
             if (provider == null)
@@ -6470,7 +6563,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(eventName));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6486,7 +6579,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an instance .NET event, conforming to the standard .NET event pattern with a strongly typed sender and strongly typed event arguments, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6508,7 +6601,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -6521,7 +6614,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TSender, TEventArgs>> FromEventPattern<TSender, TEventArgs>(this IQbservableProvider provider, object target, string eventName)
         {
             if (provider == null)
@@ -6530,7 +6623,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(target));
             if (eventName == null)
                 throw new ArgumentNullException(nameof(eventName));
-            
+
             return provider.CreateQuery<EventPattern<TSender, TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6545,7 +6638,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an instance .NET event, conforming to the standard .NET event pattern with a strongly typed sender and strongly typed event arguments, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6577,7 +6670,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TSender, TEventArgs>> FromEventPattern<TSender, TEventArgs>(this IQbservableProvider provider, object target, string eventName, IScheduler scheduler)
         {
             if (provider == null)
@@ -6588,7 +6681,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(eventName));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<TSender, TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6604,7 +6697,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a static .NET event, conforming to the standard .NET event pattern with a strongly typed sender and strongly typed event arguments, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6626,7 +6719,7 @@ namespace System.Reactive.Linq
         /// As such, an event handler may be shared by multiple simultaneously active observers, using a subject for multicasting.
         /// </para>
         /// <para>
-        /// The current <see cref="SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
+        /// The current <see cref="T:System.Threading.SynchronizationContext" /> is captured during the call to FromEventPattern, and is used to post add and remove handler invocations.
         /// This behavior ensures add and remove handler operations for thread-affine events are accessed from the same context, as required by some UI frameworks.
         /// </para>
         /// <para>
@@ -6639,7 +6732,7 @@ namespace System.Reactive.Linq
         /// more concise and easier to understand.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TSender, TEventArgs>> FromEventPattern<TSender, TEventArgs>(this IQbservableProvider provider, Type type, string eventName)
         {
             if (provider == null)
@@ -6648,7 +6741,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(type));
             if (eventName == null)
                 throw new ArgumentNullException(nameof(eventName));
-            
+
             return provider.CreateQuery<EventPattern<TSender, TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6663,7 +6756,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a static .NET event, conforming to the standard .NET event pattern with a strongly typed sender and strongly typed event arguments, to an observable sequence.
         /// Each event invocation is surfaced through an OnNext message in the resulting sequence.
@@ -6695,7 +6788,7 @@ namespace System.Reactive.Linq
         /// parameter. For more information, see the remarks section on those overloads.
         /// </para>
         /// </remarks>
-        /// <seealso cref="Observable.ToEventPattern{TEventArgs}(IObservable{EventPattern{TEventArgs}})" />
+        /// <seealso cref="M:System.Reactive.Linq.Observable.ToEventPattern``1(System.IObservable{System.Reactive.EventPattern{``0}})" />
         public static IQbservable<EventPattern<TSender, TEventArgs>> FromEventPattern<TSender, TEventArgs>(this IQbservableProvider provider, Type type, string eventName, IScheduler scheduler)
         {
             if (provider == null)
@@ -6706,7 +6799,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(eventName));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<EventPattern<TSender, TEventArgs>>(
                 Expression.Call(
                     null,
@@ -6722,7 +6815,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence by running a state-driven loop producing the sequence's elements.
         /// </summary>
@@ -6746,7 +6839,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(iterate));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -6763,7 +6856,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence by running a state-driven loop producing the sequence's elements, using the specified scheduler to send out observer messages.
         /// </summary>
@@ -6790,7 +6883,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(resultSelector));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -6808,7 +6901,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence by running a state-driven and temporal loop producing the sequence's elements.
         /// </summary>
@@ -6835,7 +6928,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(resultSelector));
             if (timeSelector == null)
                 throw new ArgumentNullException(nameof(timeSelector));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -6853,7 +6946,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence by running a state-driven and temporal loop producing the sequence's elements.
         /// </summary>
@@ -6880,7 +6973,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(resultSelector));
             if (timeSelector == null)
                 throw new ArgumentNullException(nameof(timeSelector));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -6898,7 +6991,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence by running a state-driven and temporal loop producing the sequence's elements, using the specified scheduler to run timers and to send out observer messages.
         /// </summary>
@@ -6928,7 +7021,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(timeSelector));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -6947,7 +7040,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence by running a state-driven and temporal loop producing the sequence's elements, using the specified scheduler to run timers and to send out observer messages.
         /// </summary>
@@ -6977,7 +7070,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(timeSelector));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -6996,7 +7089,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence according to a specified key selector function.
         /// </summary>
@@ -7013,7 +7106,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (keySelector == null)
                 throw new ArgumentNullException(nameof(keySelector));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -7027,7 +7120,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function.
         /// </summary>
@@ -7047,7 +7140,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (keySelector == null)
                 throw new ArgumentNullException(nameof(keySelector));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -7062,7 +7155,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and comparer.
         /// </summary>
@@ -7085,7 +7178,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -7101,7 +7194,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence according to a specified key selector function and comparer.
         /// </summary>
@@ -7121,7 +7214,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -7136,7 +7229,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence and selects the resulting elements by using a specified function.
         /// </summary>
@@ -7157,7 +7250,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (elementSelector == null)
                 throw new ArgumentNullException(nameof(elementSelector));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -7172,7 +7265,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence with the specified initial capacity and selects the resulting elements by using a specified function.
         /// </summary>
@@ -7196,7 +7289,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (elementSelector == null)
                 throw new ArgumentNullException(nameof(elementSelector));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -7212,7 +7305,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
         /// </summary>
@@ -7239,7 +7332,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(elementSelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -7256,7 +7349,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
         /// </summary>
@@ -7280,7 +7373,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(elementSelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -7296,7 +7389,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence according to a specified key selector function.
         /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
@@ -7310,7 +7403,7 @@ namespace System.Reactive.Linq
         /// <param name="durationSelector">A function to signal the expiration of a group.</param>
         /// <returns>
         /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
-        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encountered.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="durationSelector" /> is null.</exception>
@@ -7322,7 +7415,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (durationSelector == null)
                 throw new ArgumentNullException(nameof(durationSelector));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -7337,7 +7430,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function.
         /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
@@ -7352,7 +7445,7 @@ namespace System.Reactive.Linq
         /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
         /// <returns>
         /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
-        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encountered.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="durationSelector" /> is null.</exception>
@@ -7366,7 +7459,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (durationSelector == null)
                 throw new ArgumentNullException(nameof(durationSelector));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -7382,7 +7475,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and comparer.
         /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
@@ -7398,7 +7491,7 @@ namespace System.Reactive.Linq
         /// <param name="comparer">An equality comparer to compare keys with.</param>
         /// <returns>
         /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
-        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encountered.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="durationSelector" /> or <paramref name="comparer" /> is null.</exception>
@@ -7414,7 +7507,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(durationSelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -7431,7 +7524,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence according to a specified key selector function and comparer.
         /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
@@ -7446,7 +7539,7 @@ namespace System.Reactive.Linq
         /// <param name="comparer">An equality comparer to compare keys with.</param>
         /// <returns>
         /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
-        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encountered.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="durationSelector" /> or <paramref name="comparer" /> is null.</exception>
@@ -7460,7 +7553,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(durationSelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -7476,7 +7569,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence according to a specified key selector function and selects the resulting elements by using a specified function.
         /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
@@ -7492,7 +7585,7 @@ namespace System.Reactive.Linq
         /// <param name="durationSelector">A function to signal the expiration of a group.</param>
         /// <returns>
         /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
-        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encountered.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="elementSelector" /> or <paramref name="durationSelector" /> is null.</exception>
@@ -7506,7 +7599,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(elementSelector));
             if (durationSelector == null)
                 throw new ArgumentNullException(nameof(durationSelector));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -7522,7 +7615,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and selects the resulting elements by using a specified function.
         /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
@@ -7539,7 +7632,7 @@ namespace System.Reactive.Linq
         /// <param name="capacity">The initial number of elements that the underlying dictionary can contain.</param>
         /// <returns>
         /// A sequence of observable groups, each of which corresponds to a unique key value, containing all elements that share that same key value.
-        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encoutered.
+        /// If a group's lifetime expires, a new group with the same key value can be created once an element with such a key value is encountered.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="keySelector" /> or <paramref name="elementSelector" /> or <paramref name="durationSelector" /> is null.</exception>
@@ -7555,7 +7648,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(elementSelector));
             if (durationSelector == null)
                 throw new ArgumentNullException(nameof(durationSelector));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -7572,7 +7665,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence with the specified initial capacity according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
         /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
@@ -7608,7 +7701,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(durationSelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -7626,7 +7719,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Groups the elements of an observable sequence according to a specified key selector function and comparer and selects the resulting elements by using a specified function.
         /// A duration selector function is used to control the lifetime of groups. When a group expires, it receives an OnCompleted notification. When a new element with the same
@@ -7659,7 +7752,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(durationSelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IGroupedObservable<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -7676,7 +7769,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Correlates the elements of two sequences based on overlapping durations, and groups the results.
         /// </summary>
@@ -7705,7 +7798,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(rightDurationSelector));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return left.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -7722,7 +7815,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// If the specified <paramref name="condition" /> evaluates true, select the <paramref name="thenSource" /> sequence. Otherwise, return an empty sequence.
         /// </summary>
@@ -7742,7 +7835,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(condition));
             if (thenSource == null)
                 throw new ArgumentNullException(nameof(thenSource));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -7757,7 +7850,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// If the specified <paramref name="condition" /> evaluates true, select the <paramref name="thenSource" /> sequence. Otherwise, select the <paramref name="elseSource" /> sequence.
         /// </summary>
@@ -7780,7 +7873,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(thenSource));
             if (elseSource == null)
                 throw new ArgumentNullException(nameof(elseSource));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -7796,7 +7889,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// If the specified <paramref name="condition" /> evaluates true, select the <paramref name="thenSource" /> sequence. Otherwise, return an empty sequence generated on the specified scheduler.
         /// </summary>
@@ -7819,7 +7912,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(thenSource));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -7835,7 +7928,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Ignores all elements in an observable sequence leaving only the termination messages.
         /// </summary>
@@ -7848,7 +7941,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -7874,13 +7967,14 @@ namespace System.Reactive.Linq
         /// Intervals are measured between the start of subsequent notifications, not between the end of the previous and the start of the next notification.
         /// If the observer takes longer than the interval period to handle the message, the subsequent notification will be delivered immediately after the
         /// current one has been handled. In case you need to control the time between the end and the start of consecutive notifications, consider using the
-        /// <see cref="Observable.Generate{T, R}(T,Func{T,Boolean},Func{T,T},Func{T,R},Func{T,TimeSpan})" /> operator instead.
+        /// <see cref="M:System.Reactive.Linq.Observable.Generate``2(``0,System.Func{``0,System.Boolean},System.Func{``0,``0},System.Func{``0,``1},System.Func{``0,System.TimeSpan})" />
+        /// operator instead.
         /// </remarks>
         public static IQbservable<long> Interval(this IQbservableProvider provider, TimeSpan period)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -7910,7 +8004,8 @@ namespace System.Reactive.Linq
         /// Intervals are measured between the start of subsequent notifications, not between the end of the previous and the start of the next notification.
         /// If the observer takes longer than the interval period to handle the message, the subsequent notification will be delivered immediately after the
         /// current one has been handled. In case you need to control the time between the end and the start of consecutive notifications, consider using the
-        /// <see cref="Observable.Generate{T, R}(T,Func{T,Boolean},Func{T,T},Func{T,R},Func{T,TimeSpan},IScheduler)" /> operator instead.
+        /// <see cref="M:System.Reactive.Linq.Observable.Generate``2(``0,System.Func{``0,System.Boolean},System.Func{``0,``0},System.Func{``0,``1},System.Func{``0,System.TimeSpan},System.Reactive.Concurrency.IScheduler)" />
+        /// operator instead.
         /// </remarks>
         public static IQbservable<long> Interval(this IQbservableProvider provider, TimeSpan period, IScheduler scheduler)
         {
@@ -7918,7 +8013,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -7933,7 +8028,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether an observable sequence is empty.
         /// </summary>
@@ -7946,7 +8041,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -7959,7 +8054,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Correlates the elements of two sequences based on overlapping durations.
         /// </summary>
@@ -7988,7 +8083,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(rightDurationSelector));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return left.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -8005,7 +8100,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the last element of an observable sequence.
         /// </summary>
@@ -8019,7 +8114,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -8032,7 +8127,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the last element of an observable sequence that satisfies the condition in the predicate.
         /// </summary>
@@ -8049,7 +8144,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -8063,7 +8158,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the last element of an observable sequence, or a default value if no such element exists.
         /// </summary>
@@ -8076,7 +8171,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -8089,7 +8184,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the last element of an observable sequence that satisfies the condition in the predicate, or a default value if no such element exists.
         /// </summary>
@@ -8105,7 +8200,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -8119,7 +8214,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an enumerable sequence whose enumeration returns the latest observed element in the source observable sequence.
         /// Enumerators on the resulting sequence will never produce the same element repeatedly, and will block until the next element becomes available.
@@ -8132,7 +8227,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return ((IQueryProvider)source.Provider).CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -8145,7 +8240,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence containing an <see cref="long" /> that represents the total number of elements in an observable sequence.
         /// </summary>
@@ -8154,13 +8249,13 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the number of elements in the input sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The number of elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The number of elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<long> LongCount<TSource>(this IQbservable<TSource> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -8173,7 +8268,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence containing an <see cref="long" /> that represents how many elements in the specified observable sequence satisfy a condition.
         /// </summary>
@@ -8190,7 +8285,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -8204,7 +8299,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Materializes the implicit notifications of an observable sequence as explicit notification values.
         /// </summary>
@@ -8217,7 +8312,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<Notification<TSource>>(
                 Expression.Call(
                     null,
@@ -8230,7 +8325,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of <see cref="Decimal" /> values.
         /// </summary>
@@ -8243,7 +8338,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<decimal>(
                 Expression.Call(
                     null,
@@ -8256,7 +8351,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of <see cref="double" /> values.
         /// </summary>
@@ -8269,7 +8364,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -8282,7 +8377,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of <see cref="int" /> values.
         /// </summary>
@@ -8295,7 +8390,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -8308,7 +8403,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of <see cref="long" /> values.
         /// </summary>
@@ -8321,7 +8416,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -8334,7 +8429,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of nullable <see cref="Decimal" /> values.
         /// </summary>
@@ -8347,7 +8442,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<decimal?>(
                 Expression.Call(
                     null,
@@ -8360,7 +8455,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of nullable <see cref="double" /> values.
         /// </summary>
@@ -8373,7 +8468,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -8386,7 +8481,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of nullable <see cref="int" /> values.
         /// </summary>
@@ -8399,7 +8494,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<int?>(
                 Expression.Call(
                     null,
@@ -8412,7 +8507,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of nullable <see cref="long" /> values.
         /// </summary>
@@ -8425,7 +8520,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<long?>(
                 Expression.Call(
                     null,
@@ -8438,7 +8533,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of nullable <see cref="Single" /> values.
         /// </summary>
@@ -8451,7 +8546,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<float?>(
                 Expression.Call(
                     null,
@@ -8464,7 +8559,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence of <see cref="Single" /> values.
         /// </summary>
@@ -8477,7 +8572,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<float>(
                 Expression.Call(
                     null,
@@ -8490,7 +8585,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum element in an observable sequence.
         /// </summary>
@@ -8504,7 +8599,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -8517,7 +8612,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the maximum value in an observable sequence according to the specified comparer.
         /// </summary>
@@ -8534,7 +8629,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -8548,255 +8643,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
-        /// <summary>
-        /// Invokes a transform function on each element of a sequence and returns the maximum <see cref="Decimal" /> value.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values to determine the maximum value of.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Decimal" /> that corresponds to the maximum value in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<decimal> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<decimal>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, decimal>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Invokes a transform function on each element of a sequence and returns the maximum <see cref="int" /> value.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values to determine the maximum value of.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="int" /> that corresponds to the maximum value in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<int> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<int>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, int>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Invokes a transform function on each element of a sequence and returns the maximum <see cref="long" /> value.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values to determine the maximum value of.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="long" /> that corresponds to the maximum value in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<long> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<long>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, long>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="double" /> value.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values to determine the maximum value of.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Double}" /> that corresponds to the maximum value in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<double?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, double?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<double?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, double?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="Single" /> value.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values to determine the maximum value of.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Single}" /> that corresponds to the maximum value in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<float?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, float?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<float?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, float?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="Decimal" /> value.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values to determine the maximum value of.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Decimal}" /> that corresponds to the maximum value in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<decimal?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<decimal?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, decimal?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="int" /> value.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values to determine the maximum value of.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Int32}" /> that corresponds to the maximum value in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<int?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<int?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, int?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="long" /> value.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values to determine the maximum value of.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Int64}" /> that corresponds to the maximum value in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<long?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<long?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, long?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the maximum <see cref="double" /> value.
         /// </summary>
@@ -8813,7 +8660,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -8827,7 +8674,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the maximum <see cref="Single" /> value.
         /// </summary>
@@ -8844,7 +8691,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<float>(
                 Expression.Call(
                     null,
@@ -8858,13 +8705,261 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Invokes a transform function on each element of a sequence and returns the maximum <see cref="Decimal" /> value.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values to determine the maximum value of.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="Decimal" /> that corresponds to the maximum value in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<decimal> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<decimal>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, decimal>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Invokes a transform function on each element of a sequence and returns the maximum <see cref="int" /> value.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values to determine the maximum value of.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="int" /> that corresponds to the maximum value in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<int> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<int>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, int>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Invokes a transform function on each element of a sequence and returns the maximum <see cref="long" /> value.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values to determine the maximum value of.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="long" /> that corresponds to the maximum value in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<long> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<long>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, long>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="double" /> value.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values to determine the maximum value of.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the maximum value in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<double?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, double?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<double?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, double?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="Single" /> value.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values to determine the maximum value of.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the maximum value in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<float?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, float?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<float?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, float?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="Decimal" /> value.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values to determine the maximum value of.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the maximum value in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<decimal?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<decimal?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, decimal?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="int" /> value.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values to determine the maximum value of.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the maximum value in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<int?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<int?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, int?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Invokes a transform function on each element of a sequence and returns the maximum nullable <see cref="long" /> value.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values to determine the maximum value of.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the maximum value in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<long?> Max<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<long?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Max<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, long?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the maximum value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the objects derived from the elements in the source sequence to determine the maximum of.</typeparam>
-        /// <param name="source">An observable sequence to determine the mimimum element of.</param>
+        /// <param name="source">An observable sequence to determine the minimum element of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>An observable sequence containing a single element with the value that corresponds to the maximum element in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
@@ -8876,7 +8971,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -8890,13 +8985,13 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the maximum value according to the specified comparer.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the objects derived from the elements in the source sequence to determine the maximum of.</typeparam>
-        /// <param name="source">An observable sequence to determine the mimimum element of.</param>
+        /// <param name="source">An observable sequence to determine the minimum element of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <param name="comparer">Comparer used to compare elements.</param>
         /// <returns>An observable sequence containing a single element with the value that corresponds to the maximum element in the source sequence.</returns>
@@ -8911,7 +9006,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(selector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -8926,7 +9021,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the elements in an observable sequence with the maximum key value.
         /// </summary>
@@ -8944,7 +9039,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (keySelector == null)
                 throw new ArgumentNullException(nameof(keySelector));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -8958,7 +9053,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the elements in an observable sequence with the maximum key value according to the specified comparer.
         /// </summary>
@@ -8979,7 +9074,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -8994,7 +9089,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges elements from two observable sequences into a single observable sequence.
         /// </summary>
@@ -9010,7 +9105,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(first));
             if (second == null)
                 throw new ArgumentNullException(nameof(second));
-            
+
             return first.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9024,7 +9119,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges elements from two observable sequences into a single observable sequence, using the specified scheduler for enumeration of and subscription to the sources.
         /// </summary>
@@ -9043,7 +9138,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(second));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return first.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9058,7 +9153,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges elements from all of the specified observable sequences into a single observable sequence, using the specified scheduler for enumeration of and subscription to the sources.
         /// </summary>
@@ -9077,7 +9172,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(scheduler));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9092,37 +9187,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
-        /// <summary>
-        /// Merges elements from all observable sequences in the given enumerable sequence into a single observable sequence.
-        /// </summary>
-        /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TSource">The type of the elements in the source sequences.</typeparam>
-        /// <param name="sources">Enumerable sequence of observable sequences.</param>
-        /// <returns>The observable sequence that merges the elements of the observable sequences.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="sources" /> is null.</exception>
-        public static IQbservable<TSource> Merge<TSource>(this IQbservableProvider provider, IEnumerable<IObservable<TSource>> sources)
-        {
-            if (provider == null)
-                throw new ArgumentNullException(nameof(provider));
-            if (sources == null)
-                throw new ArgumentNullException(nameof(sources));
-            
-            return provider.CreateQuery<TSource>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Merge<TSource>(default(IQbservableProvider), default(IEnumerable<IObservable<TSource>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    Expression.Constant(provider, typeof(IQbservableProvider)),
-                    GetSourceExpression(sources)
-                )
-            );
-        }
-        
+
         /// <summary>
         /// Merges elements from all inner observable sequences into a single observable sequence.
         /// </summary>
@@ -9135,7 +9200,7 @@ namespace System.Reactive.Linq
         {
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return sources.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9157,12 +9222,12 @@ namespace System.Reactive.Linq
         /// <returns>The observable sequence that merges the results of the source tasks.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="sources" /> is null.</exception>
-        /// <remarks>If the tasks support cancellation, consider manual conversion of the tasks using <see cref="Observable.FromAsync{TSource}(Func{CancellationToken,Task{TSource}})" />, followed by a merge operation using <see cref="Observable.Merge{TSource}(IObservable{IObservable{TSource}})" />.</remarks>
+        /// <remarks>If the tasks support cancellation, consider manual conversion of the tasks using <see cref="M:System.Reactive.Linq.Observable.FromAsync``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})" />, followed by a merge operation using <see cref="M:System.Reactive.Linq.Observable.Merge``1(System.IObservable{System.IObservable{``0}})" />.</remarks>
         public static IQbservable<TSource> Merge<TSource>(this IQbservable<Task<TSource>> sources)
         {
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return sources.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9175,7 +9240,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges elements from all of the specified observable sequences into a single observable sequence.
         /// </summary>
@@ -9191,7 +9256,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9205,7 +9270,37 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Merges elements from all observable sequences in the given enumerable sequence into a single observable sequence.
+        /// </summary>
+        /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
+        /// <typeparam name="TSource">The type of the elements in the source sequences.</typeparam>
+        /// <param name="sources">Enumerable sequence of observable sequences.</param>
+        /// <returns>The observable sequence that merges the elements of the observable sequences.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="sources" /> is null.</exception>
+        public static IQbservable<TSource> Merge<TSource>(this IQbservableProvider provider, IEnumerable<IObservable<TSource>> sources)
+        {
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider));
+            if (sources == null)
+                throw new ArgumentNullException(nameof(sources));
+
+            return provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Merge<TSource>(default(IQbservableProvider), default(IEnumerable<IObservable<TSource>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    Expression.Constant(provider, typeof(IQbservableProvider)),
+                    GetSourceExpression(sources)
+                )
+            );
+        }
+
         /// <summary>
         /// Merges elements from all inner observable sequences into a single observable sequence, limiting the number of concurrent subscriptions to inner sequences.
         /// </summary>
@@ -9221,7 +9316,7 @@ namespace System.Reactive.Linq
         {
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return sources.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9235,7 +9330,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges elements from all observable sequences in the given enumerable sequence into a single observable sequence, limiting the number of concurrent subscriptions to inner sequences.
         /// </summary>
@@ -9254,7 +9349,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9269,7 +9364,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges elements from all observable sequences in the given enumerable sequence into a single observable sequence, limiting the number of concurrent subscriptions to inner sequences, and using the specified scheduler for enumeration of and subscription to the sources.
         /// </summary>
@@ -9291,7 +9386,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(sources));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9307,7 +9402,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges elements from all observable sequences in the given enumerable sequence into a single observable sequence, using the specified scheduler for enumeration of and subscription to the sources.
         /// </summary>
@@ -9326,7 +9421,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(sources));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9341,7 +9436,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of <see cref="Decimal" /> values.
         /// </summary>
@@ -9354,7 +9449,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<decimal>(
                 Expression.Call(
                     null,
@@ -9367,7 +9462,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of <see cref="double" /> values.
         /// </summary>
@@ -9380,7 +9475,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -9393,7 +9488,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of <see cref="int" /> values.
         /// </summary>
@@ -9406,7 +9501,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -9419,7 +9514,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of <see cref="long" /> values.
         /// </summary>
@@ -9432,7 +9527,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -9445,7 +9540,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of nullable <see cref="Decimal" /> values.
         /// </summary>
@@ -9458,7 +9553,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<decimal?>(
                 Expression.Call(
                     null,
@@ -9471,7 +9566,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of nullable <see cref="double" /> values.
         /// </summary>
@@ -9484,7 +9579,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -9497,7 +9592,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of nullable <see cref="int" /> values.
         /// </summary>
@@ -9510,7 +9605,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<int?>(
                 Expression.Call(
                     null,
@@ -9523,7 +9618,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of nullable <see cref="long" /> values.
         /// </summary>
@@ -9536,7 +9631,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<long?>(
                 Expression.Call(
                     null,
@@ -9549,7 +9644,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of nullable <see cref="Single" /> values.
         /// </summary>
@@ -9562,7 +9657,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<float?>(
                 Expression.Call(
                     null,
@@ -9575,7 +9670,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum value in an observable sequence of <see cref="Single" /> values.
         /// </summary>
@@ -9588,7 +9683,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<float>(
                 Expression.Call(
                     null,
@@ -9601,12 +9696,12 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum element in an observable sequence.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">An observable sequence to determine the mimimum element of.</param>
+        /// <param name="source">An observable sequence to determine the minimum element of.</param>
         /// <returns>An observable sequence containing a single element with the minimum element in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
@@ -9615,7 +9710,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9628,12 +9723,12 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the minimum element in an observable sequence according to the specified comparer.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">An observable sequence to determine the mimimum element of.</param>
+        /// <param name="source">An observable sequence to determine the minimum element of.</param>
         /// <param name="comparer">Comparer used to compare elements.</param>
         /// <returns>An observable sequence containing a single element with the minimum element in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
@@ -9645,7 +9740,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -9659,7 +9754,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum <see cref="double" /> value.
         /// </summary>
@@ -9676,7 +9771,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -9690,7 +9785,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum <see cref="Single" /> value.
         /// </summary>
@@ -9707,7 +9802,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<float>(
                 Expression.Call(
                     null,
@@ -9721,7 +9816,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum <see cref="Decimal" /> value.
         /// </summary>
@@ -9738,7 +9833,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<decimal>(
                 Expression.Call(
                     null,
@@ -9752,7 +9847,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum <see cref="int" /> value.
         /// </summary>
@@ -9769,7 +9864,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -9783,7 +9878,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum <see cref="long" /> value.
         /// </summary>
@@ -9800,7 +9895,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -9814,14 +9909,14 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum nullable <see cref="double" /> value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <param name="source">A sequence of values to determine the minimum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Double}" /> that corresponds to the minimum value in the source sequence.</returns>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the minimum value in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
@@ -9831,7 +9926,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -9845,14 +9940,14 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum nullable <see cref="Single" /> value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <param name="source">A sequence of values to determine the minimum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Single}" /> that corresponds to the minimum value in the source sequence.</returns>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the minimum value in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
@@ -9862,7 +9957,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<float?>(
                 Expression.Call(
                     null,
@@ -9876,14 +9971,14 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum nullable <see cref="Decimal" /> value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <param name="source">A sequence of values to determine the minimum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Decimal}" /> that corresponds to the minimum value in the source sequence.</returns>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the minimum value in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
@@ -9893,7 +9988,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<decimal?>(
                 Expression.Call(
                     null,
@@ -9907,14 +10002,14 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum nullable <see cref="int" /> value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <param name="source">A sequence of values to determine the minimum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Int32}" /> that corresponds to the minimum value in the source sequence.</returns>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the minimum value in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
@@ -9924,7 +10019,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<int?>(
                 Expression.Call(
                     null,
@@ -9938,14 +10033,14 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum nullable <see cref="long" /> value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <param name="source">A sequence of values to determine the minimum value of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the value of type <see cref="Nullable{Int64}" /> that corresponds to the minimum value in the source sequence.</returns>
+        /// <returns>An observable sequence containing a single element with the value of type <see cref="T:System.Nullable`1" /> that corresponds to the minimum value in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
@@ -9955,7 +10050,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<long?>(
                 Expression.Call(
                     null,
@@ -9969,13 +10064,13 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum value.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the objects derived from the elements in the source sequence to determine the minimum of.</typeparam>
-        /// <param name="source">An observable sequence to determine the mimimum element of.</param>
+        /// <param name="source">An observable sequence to determine the minimum element of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>An observable sequence containing a single element with the value that corresponds to the minimum element in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
@@ -9987,7 +10082,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10001,13 +10096,13 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes a transform function on each element of a sequence and returns the minimum value according to the specified comparer.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the objects derived from the elements in the source sequence to determine the minimum of.</typeparam>
-        /// <param name="source">An observable sequence to determine the mimimum element of.</param>
+        /// <param name="source">An observable sequence to determine the minimum element of.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <param name="comparer">Comparer used to compare elements.</param>
         /// <returns>An observable sequence containing a single element with the value that corresponds to the minimum element in the source sequence.</returns>
@@ -10022,7 +10117,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(selector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10037,7 +10132,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the elements in an observable sequence with the minimum key value.
         /// </summary>
@@ -10055,7 +10150,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (keySelector == null)
                 throw new ArgumentNullException(nameof(keySelector));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -10069,7 +10164,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the elements in an observable sequence with the minimum key value according to the specified comparer.
         /// </summary>
@@ -10090,7 +10185,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -10105,7 +10200,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an enumerable sequence whose enumeration returns the most recently observed element in the source observable sequence, using the specified initial value in case no element has been sampled yet.
         /// Enumerators on the resulting sequence never block and can produce the same element repeatedly.
@@ -10121,7 +10216,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return ((IQueryProvider)source.Provider).CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10135,7 +10230,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Multicasts the source sequence notifications through an instantiated subject into all uses of the sequence within a selector function. Each
         /// subscription to the resulting sequence causes a separate multicast invocation, exposing the sequence resulting from the selector function's
@@ -10158,7 +10253,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(subjectSelector));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10173,18 +10268,18 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a non-terminating observable sequence, which can be used to denote an infinite duration (e.g. when using reactive joins).
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <returns>An observable sequence whose observers will never get called.</returns>
         public static IQbservable<TResult> Never<TResult>(this IQbservableProvider provider)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10197,19 +10292,19 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a non-terminating observable sequence, which can be used to denote an infinite duration (e.g. when using reactive joins).
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <param name="witness">Object solely used to infer the type of the <typeparamref name="TResult" /> type parameter. This parameter is typically used when creating a sequence of anonymously typed elements.</param>
         /// <returns>An observable sequence whose observers will never get called.</returns>
         public static IQbservable<TResult> Never<TResult>(this IQbservableProvider provider, TResult witness)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10223,7 +10318,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an enumerable sequence whose enumeration blocks until the next element in the source observable sequence becomes available.
         /// Enumerators on the resulting sequence will block until the next element becomes available.
@@ -10238,7 +10333,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return ((IQueryProvider)source.Provider).CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10251,7 +10346,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Wraps the source sequence in order to run its observer callbacks on the specified synchronization context.
         /// </summary>
@@ -10263,7 +10358,7 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="context" /> is null.</exception>
         /// <remarks>
         /// This only invokes observer callbacks on a synchronization context. In case the subscription and/or unsubscription actions have side-effects
-        /// that require to be run on a synchronization context, use <see cref="Observable.SubscribeOn{TSource}(IObservable{TSource},SynchronizationContext)" />.
+        /// that require to be run on a synchronization context, use <see cref="M:System.Reactive.Linq.Observable.SubscribeOn``1(System.IObservable{``0},System.Threading.SynchronizationContext)" />.
         /// </remarks>
         public static IQbservable<TSource> ObserveOn<TSource>(this IQbservable<TSource> source, SynchronizationContext context)
         {
@@ -10271,7 +10366,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10285,7 +10380,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Wraps the source sequence in order to run its observer callbacks on the specified scheduler.
         /// </summary>
@@ -10297,7 +10392,7 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="scheduler" /> is null.</exception>
         /// <remarks>
         /// This only invokes observer callbacks on a scheduler. In case the subscription and/or unsubscription actions have side-effects
-        /// that require to be run on a scheduler, use <see cref="Observable.SubscribeOn{TSource}(IObservable{TSource},IScheduler)" />.
+        /// that require to be run on a scheduler, use <see cref="M:System.Reactive.Linq.Observable.SubscribeOn``1(System.IObservable{``0},System.Reactive.Concurrency.IScheduler)" />.
         /// </remarks>
         public static IQbservable<TSource> ObserveOn<TSource>(this IQbservable<TSource> source, IScheduler scheduler)
         {
@@ -10305,7 +10400,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10319,7 +10414,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Filters the elements of an observable sequence based on the specified type.
         /// </summary>
@@ -10332,7 +10427,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10345,7 +10440,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Concatenates the second observable sequence to the first observable sequence upon successful or exceptional termination of the first.
         /// </summary>
@@ -10361,7 +10456,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(first));
             if (second == null)
                 throw new ArgumentNullException(nameof(second));
-            
+
             return first.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10375,7 +10470,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Concatenates all of the specified observable sequences, even if the previous observable sequence terminated exceptionally.
         /// </summary>
@@ -10391,7 +10486,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10405,7 +10500,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Concatenates all observable sequences in the given enumerable sequence, even if the previous observable sequence terminated exceptionally.
         /// </summary>
@@ -10421,7 +10516,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10435,10 +10530,70 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Prepend a value to an observable sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">Source sequence to prepend the value to.</param>
+        /// <param name="value">Value to prepend to the specified sequence.</param>
+        /// <returns>The source sequence prepended with the specified value.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> is null.</exception>
+        public static IQbservable<TSource> Prepend<TSource>(this IQbservable<TSource> source, TSource value)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Prepend<TSource>(default(IQbservable<TSource>), default(TSource))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    Expression.Constant(value, typeof(TSource))
+                )
+            );
+        }
+
+        /// <summary>
+        /// Prepend a value to an observable sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">Source sequence to prepend the value to.</param>
+        /// <param name="value">Value to prepend to the specified sequence.</param>
+        /// <param name="scheduler">Scheduler to emit the prepend values on.</param>
+        /// <returns>The source sequence prepended with the specified value.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> is null.</exception>
+        public static IQbservable<TSource> Prepend<TSource>(this IQbservable<TSource> source, TSource value, IScheduler scheduler)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (scheduler == null)
+                throw new ArgumentNullException(nameof(scheduler));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Prepend<TSource>(default(IQbservable<TSource>), default(TSource), default(IScheduler))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    Expression.Constant(value, typeof(TSource)),
+                    Expression.Constant(scheduler, typeof(IScheduler))
+                )
+            );
+        }
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence.
-        /// This operator is a specialization of Multicast using a regular <see cref="Reactive.Subjects.Subject{TResult}" />.
+        /// This operator is a specialization of Multicast using a regular <see cref="T:System.Reactive.Subjects.Subject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -10447,14 +10602,14 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence that contains the elements of a sequence produced by multicasting the source sequence within a selector function.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <seealso cref="Reactive.Subjects.Subject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.Subject`1" />
         public static IQbservable<TResult> Publish<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10468,10 +10623,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence and starts with initialValue.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.BehaviorSubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.BehaviorSubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -10481,14 +10636,14 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence that contains the elements of a sequence produced by multicasting the source sequence within a selector function.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <seealso cref="Reactive.Subjects.BehaviorSubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.BehaviorSubject`1" />
         public static IQbservable<TResult> Publish<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector, TSource initialValue)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10503,10 +10658,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence containing only the last notification.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.AsyncSubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.AsyncSubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -10515,14 +10670,14 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence that contains the elements of a sequence produced by multicasting the source sequence within a selector function.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <seealso cref="Reactive.Subjects.AsyncSubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.AsyncSubject`1" />
         public static IQbservable<TResult> PublishLast<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10536,7 +10691,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence of integral numbers within a specified range.
         /// </summary>
@@ -10545,12 +10700,12 @@ namespace System.Reactive.Linq
         /// <param name="count">The number of sequential integers to generate.</param>
         /// <returns>An observable sequence that contains a range of sequential integral numbers.</returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// <paramref name="count" /> is less than zero. -or- <paramref name="start" /> + <paramref name="count" /> - 1 is larger than <see cref="Int32.MaxValue" />.</exception>
+        /// <paramref name="count" /> is less than zero. -or- <paramref name="start" /> + <paramref name="count" /> - 1 is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         public static IQbservable<int> Range(this IQbservableProvider provider, int start, int count)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -10565,7 +10720,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence of integral numbers within a specified range, using the specified scheduler to send out observer messages.
         /// </summary>
@@ -10575,7 +10730,7 @@ namespace System.Reactive.Linq
         /// <param name="scheduler">Scheduler to run the generator loop on.</param>
         /// <returns>An observable sequence that contains a range of sequential integral numbers.</returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// <paramref name="count" /> is less than zero. -or- <paramref name="start" /> + <paramref name="count" /> - 1 is larger than <see cref="Int32.MaxValue" />.</exception>
+        /// <paramref name="count" /> is less than zero. -or- <paramref name="start" /> + <paramref name="count" /> - 1 is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="scheduler" /> is null.</exception>
         public static IQbservable<int> Range(this IQbservableProvider provider, int start, int count, IScheduler scheduler)
@@ -10584,7 +10739,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -10600,7 +10755,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that stays connected to the source as long as there is at least one subscription to the observable sequence.
         /// </summary>
@@ -10616,7 +10771,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10630,7 +10785,75 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Returns an observable sequence that stays connected to the source as long as there is at least one subscription to the observable sequence.
+        /// </summary>
+        /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">Connectable observable sequence.</param>
+        /// <param name="disconnectDelay">The time span that should be waited before possibly unsubscribing from the connectable observable.</param>
+        /// <returns>An observable sequence that stays connected to the source as long as there is at least one subscription to the observable sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> is null.</exception>
+        public static IQbservable<TSource> RefCount<TSource>(this IQbservableProvider provider, IConnectableObservable<TSource> source, TimeSpan disconnectDelay)
+        {
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider));
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.RefCount<TSource>(default(IQbservableProvider), default(IConnectableObservable<TSource>), default(TimeSpan))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    Expression.Constant(provider, typeof(IQbservableProvider)),
+                    Expression.Constant(source, typeof(IConnectableObservable<TSource>)),
+                    Expression.Constant(disconnectDelay, typeof(TimeSpan))
+                )
+            );
+        }
+
+        /// <summary>
+        /// Returns an observable sequence that stays connected to the source as long as there is at least one subscription to the observable sequence.
+        /// </summary>
+        /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">Connectable observable sequence.</param>
+        /// <param name="disconnectDelay">The time span that should be waited before possibly unsubscribing from the connectable observable.</param>
+        /// <param name="scheduler">The scheduler to use for delayed unsubscription.</param>
+        /// <returns>An observable sequence that stays connected to the source as long as there is at least one subscription to the observable sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> is null.</exception>
+        public static IQbservable<TSource> RefCount<TSource>(this IQbservableProvider provider, IConnectableObservable<TSource> source, TimeSpan disconnectDelay, IScheduler scheduler)
+        {
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider));
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (scheduler == null)
+                throw new ArgumentNullException(nameof(scheduler));
+
+            return provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.RefCount<TSource>(default(IQbservableProvider), default(IConnectableObservable<TSource>), default(TimeSpan), default(IScheduler))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    Expression.Constant(provider, typeof(IQbservableProvider)),
+                    Expression.Constant(source, typeof(IConnectableObservable<TSource>)),
+                    Expression.Constant(disconnectDelay, typeof(TimeSpan)),
+                    Expression.Constant(scheduler, typeof(IScheduler))
+                )
+            );
+        }
+
         /// <summary>
         /// Generates an observable sequence that repeats the given element infinitely.
         /// </summary>
@@ -10642,7 +10865,7 @@ namespace System.Reactive.Linq
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10656,7 +10879,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence that repeats the given element the specified number of times.
         /// </summary>
@@ -10671,7 +10894,7 @@ namespace System.Reactive.Linq
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10686,7 +10909,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence that repeats the given element the specified number of times, using the specified scheduler to send out observer messages.
         /// </summary>
@@ -10706,7 +10929,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10722,7 +10945,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Generates an observable sequence that repeats the given element infinitely, using the specified scheduler to send out observer messages.
         /// </summary>
@@ -10739,7 +10962,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10754,7 +10977,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Repeats the observable sequence indefinitely.
         /// </summary>
@@ -10767,7 +10990,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10780,7 +11003,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Repeats the observable sequence a specified number of times.
         /// </summary>
@@ -10796,7 +11019,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -10810,10 +11033,45 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Repeatedly resubscribes to the source observable after a normal completion and when the observable
+        /// returned by a handler produces an arbitrary item.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TSignal">The arbitrary element type signaled by the handler observable.</typeparam>
+        /// <param name="source">Observable sequence to keep repeating when it successfully terminates.</param>
+        /// <param name="handler">The function that is called for each observer and takes an observable sequence objects.
+        /// It should return an observable of arbitrary items that should signal that arbitrary item in
+        /// response to receiving the completion signal from the source observable. If this observable signals
+        /// a terminal event, the sequence is terminated with that signal instead.</param>
+        /// <returns>An observable sequence producing the elements of the given sequence repeatedly while each repetition terminates successfully.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="handler"/> is null.</exception>
+        public static IQbservable<TSource> RepeatWhen<TSource, TSignal>(this IQbservable<TSource> source, Expression<Func<IObservable<object>, IObservable<TSignal>>> handler)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (handler == null)
+                throw new ArgumentNullException(nameof(handler));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.RepeatWhen<TSource, TSignal>(default(IQbservable<TSource>), default(Expression<Func<IObservable<object>, IObservable<TSignal>>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TSignal)),
+#endif
+                    source.Expression,
+                    handler
+                )
+            );
+        }
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying all notifications.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.ReplaySubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.ReplaySubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -10822,14 +11080,14 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence that contains the elements of a sequence produced by multicasting the source sequence within a selector function.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <seealso cref="Reactive.Subjects.ReplaySubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.ReplaySubject`1" />
         public static IQbservable<TResult> Replay<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10843,10 +11101,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum element count for the replay buffer.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.ReplaySubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.ReplaySubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -10858,14 +11116,14 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="bufferSize" /> is less than zero.</exception>
-        /// <seealso cref="Reactive.Subjects.ReplaySubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.ReplaySubject`1" />
         public static IQbservable<TResult> Replay<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector, int bufferSize)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10880,10 +11138,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum element count for the replay buffer.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.ReplaySubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.ReplaySubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -10896,7 +11154,7 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="selector" /> or <paramref name="scheduler" /> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="bufferSize" /> is less than zero.</exception>
-        /// <seealso cref="Reactive.Subjects.ReplaySubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.ReplaySubject`1" />
         public static IQbservable<TResult> Replay<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector, int bufferSize, IScheduler scheduler)
         {
             if (source == null)
@@ -10905,7 +11163,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(selector));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10921,10 +11179,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum time length and element count for the replay buffer.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.ReplaySubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.ReplaySubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -10939,14 +11197,14 @@ namespace System.Reactive.Linq
         /// <paramref name="bufferSize" /> is less than zero.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="window" /> is less than TimeSpan.Zero.</exception>
-        /// <seealso cref="Reactive.Subjects.ReplaySubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.ReplaySubject`1" />
         public static IQbservable<TResult> Replay<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector, int bufferSize, TimeSpan window)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -10962,10 +11220,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum time length and element count for the replay buffer.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.ReplaySubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.ReplaySubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -10981,7 +11239,7 @@ namespace System.Reactive.Linq
         /// <paramref name="bufferSize" /> is less than zero.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="window" /> is less than TimeSpan.Zero.</exception>
-        /// <seealso cref="Reactive.Subjects.ReplaySubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.ReplaySubject`1" />
         public static IQbservable<TResult> Replay<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector, int bufferSize, TimeSpan window, IScheduler scheduler)
         {
             if (source == null)
@@ -10990,7 +11248,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(selector));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11007,10 +11265,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying all notifications.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.ReplaySubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.ReplaySubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -11020,7 +11278,7 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence that contains the elements of a sequence produced by multicasting the source sequence within a selector function.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> or <paramref name="scheduler" /> is null.</exception>
-        /// <seealso cref="Reactive.Subjects.ReplaySubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.ReplaySubject`1" />
         public static IQbservable<TResult> Replay<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector, IScheduler scheduler)
         {
             if (source == null)
@@ -11029,7 +11287,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(selector));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11044,10 +11302,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum time length for the replay buffer.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.ReplaySubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.ReplaySubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -11059,14 +11317,14 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="window" /> is less than TimeSpan.Zero.</exception>
-        /// <seealso cref="Reactive.Subjects.ReplaySubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.ReplaySubject`1" />
         public static IQbservable<TResult> Replay<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector, TimeSpan window)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11081,10 +11339,10 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that is the result of invoking the selector on a connectable observable sequence that shares a single subscription to the underlying sequence replaying notifications subject to a maximum time length for the replay buffer.
-        /// This operator is a specialization of Multicast using a <see cref="Reactive.Subjects.ReplaySubject{TResult}" />.
+        /// This operator is a specialization of Multicast using a <see cref="T:System.Reactive.Subjects.ReplaySubject`1" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TResult">The type of the elements in the result sequence.</typeparam>
@@ -11097,7 +11355,7 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="selector" /> or <paramref name="scheduler" /> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="window" /> is less than TimeSpan.Zero.</exception>
-        /// <seealso cref="Reactive.Subjects.ReplaySubject{TResult}" />
+        /// <seealso cref="T:System.Reactive.Subjects.ReplaySubject`1" />
         public static IQbservable<TResult> Replay<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<IObservable<TSource>, IObservable<TResult>>> selector, TimeSpan window, IScheduler scheduler)
         {
             if (source == null)
@@ -11106,7 +11364,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(selector));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11122,7 +11380,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Repeats the source observable sequence until it successfully terminates.
         /// </summary>
@@ -11135,7 +11393,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -11148,7 +11406,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Repeats the source observable sequence the specified number of times or until it successfully terminates.
         /// </summary>
@@ -11164,7 +11422,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -11178,7 +11436,44 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Retries (resubscribes to) the source observable after a failure and when the observable
+        /// returned by a handler produces an arbitrary item.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TSignal">The arbitrary element type signaled by the handler observable.</typeparam>
+        /// <param name="source">Observable sequence to repeat until it successfully terminates.</param>
+        /// <param name="handler">The function that is called for each observer and takes an observable sequence of
+        /// errors. It should return an observable of arbitrary items that should signal that arbitrary item in
+        /// response to receiving the failure Exception from the source observable. If this observable signals
+        /// a terminal event, the sequence is terminated with that signal instead.</param>
+        /// <returns>An observable sequence producing the elements of the given sequence repeatedly until it terminates successfully.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> is null.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="handler" /> is null.</exception>
+        public static IQbservable<TSource> RetryWhen<TSource, TSignal>(this IQbservable<TSource> source, Expression<Func<IObservable<Exception>, IObservable<TSignal>>> handler)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (handler == null)
+                throw new ArgumentNullException(nameof(handler));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.RetryWhen<TSource, TSignal>(default(IQbservable<TSource>), default(Expression<Func<IObservable<Exception>, IObservable<TSignal>>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TSignal)),
+#endif
+                    source.Expression,
+                    handler
+                )
+            );
+        }
+
         /// <summary>
         /// Returns an observable sequence that contains a single element.
         /// </summary>
@@ -11190,7 +11485,7 @@ namespace System.Reactive.Linq
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11204,7 +11499,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that contains a single element, using the specified scheduler to send out observer messages.
         /// </summary>
@@ -11221,7 +11516,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11236,7 +11531,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Samples the observable sequence at each interval.
         /// Upon each sampling tick, the latest element (if any) in the source sequence during the last sampling interval is sent to the resulting sequence.
@@ -11257,7 +11552,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -11271,7 +11566,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Samples the observable sequence at each interval, using the specified scheduler to run sampling timers.
         /// Upon each sampling tick, the latest element (if any) in the source sequence during the last sampling interval is sent to the resulting sequence.
@@ -11295,7 +11590,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -11310,9 +11605,9 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
-        /// Samples the source observable sequence using a samper observable sequence producing sampling ticks.
+        /// Samples the source observable sequence using a sampler observable sequence producing sampling ticks.
         /// Upon each sampling tick, the latest element (if any) in the source sequence during the last sampling interval is sent to the resulting sequence.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
@@ -11328,7 +11623,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (sampler == null)
                 throw new ArgumentNullException(nameof(sampler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -11345,7 +11640,7 @@ namespace System.Reactive.Linq
 
         /// <summary>
         /// Applies an accumulator function over an observable sequence and returns each intermediate result.
-        /// For aggregation behavior with no intermediate results, see <see cref="Observable.Aggregate{TSource}(IObservable{TSource},Func{TSource,TSource,TSource})" />.
+        /// For aggregation behavior with no intermediate results, see <see cref="M:System.Reactive.Linq.Observable.Aggregate``1(System.IObservable{``0},System.Func{``0,``0,``0})" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence and the result of the aggregation.</typeparam>
         /// <param name="source">An observable sequence to accumulate over.</param>
@@ -11359,7 +11654,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (accumulator == null)
                 throw new ArgumentNullException(nameof(accumulator));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -11376,7 +11671,7 @@ namespace System.Reactive.Linq
 
         /// <summary>
         /// Applies an accumulator function over an observable sequence and returns each intermediate result. The specified seed value is used as the initial accumulator value.
-        /// For aggregation behavior with no intermediate results, see <see cref="Observable.Aggregate{TSource,TAccumulate}(IObservable{TSource},TAccumulate,Func{TAccumulate,TSource,TAccumulate})" />.
+        /// For aggregation behavior with no intermediate results, see <see cref="M:System.Reactive.Linq.Observable.Aggregate``2(System.IObservable{``0},``1,System.Func{``1,``0,``1})" />.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TAccumulate">The type of the result of the aggregation.</typeparam>
@@ -11392,7 +11687,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (accumulator == null)
                 throw new ArgumentNullException(nameof(accumulator));
-            
+
             return source.Provider.CreateQuery<TAccumulate>(
                 Expression.Call(
                     null,
@@ -11407,7 +11702,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into a new form.
         /// </summary>
@@ -11424,7 +11719,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11438,7 +11733,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into a new form by incorporating the element's index.
         /// </summary>
@@ -11455,7 +11750,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11469,81 +11764,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
-        /// <summary>
-        /// Projects each element of an observable sequence to an enumerable sequence, invokes the result selector for the source element and each of the corresponding inner sequence's elements, and merges the results into one observable sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <typeparam name="TCollection">The type of the elements in the projected intermediate enumerable sequences.</typeparam>
-        /// <typeparam name="TResult">The type of the elements in the result sequence, obtained by using the selector to combine source sequence elements with their corresponding intermediate sequence elements.</typeparam>
-        /// <param name="source">An observable sequence of elements to project.</param>
-        /// <param name="collectionSelector">A transform function to apply to each element.</param>
-        /// <param name="resultSelector">A transform function to apply to each element of the intermediate sequence.</param>
-        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function collectionSelector on each element of the input sequence and then mapping each of those sequence elements and their corresponding source element to a result element.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="collectionSelector" /> or <paramref name="resultSelector" /> is null.</exception>
-        /// <remarks>The projected sequences are enumerated synchonously within the OnNext call of the source sequence. In order to do a concurrent, non-blocking merge, change the selector to return an observable sequence obtained using the <see cref="Observable.ToObservable{TSource}(IEnumerable{TSource})" /> conversion.</remarks>
-        public static IQbservable<TResult> SelectMany<TSource, TCollection, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, IEnumerable<TCollection>>> collectionSelector, Expression<Func<TSource, TCollection, TResult>> resultSelector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (collectionSelector == null)
-                throw new ArgumentNullException(nameof(collectionSelector));
-            if (resultSelector == null)
-                throw new ArgumentNullException(nameof(resultSelector));
-            
-            return source.Provider.CreateQuery<TResult>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.SelectMany<TSource, TCollection, TResult>(default(IQbservable<TSource>), default(Expression<Func<TSource, IEnumerable<TCollection>>>), default(Expression<Func<TSource, TCollection, TResult>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TCollection), typeof(TResult)),
-#endif
-                    source.Expression,
-                    collectionSelector,
-                    resultSelector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Projects each element of an observable sequence to an enumerable sequence by incorporating the element's index, invokes the result selector for the source element and each of the corresponding inner sequence's elements, and merges the results into one observable sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <typeparam name="TCollection">The type of the elements in the projected intermediate enumerable sequences.</typeparam>
-        /// <typeparam name="TResult">The type of the elements in the result sequence, obtained by using the selector to combine source sequence elements with their corresponding intermediate sequence elements.</typeparam>
-        /// <param name="source">An observable sequence of elements to project.</param>
-        /// <param name="collectionSelector">A transform function to apply to each element; the second parameter of the function represents the index of the source element.</param>
-        /// <param name="resultSelector">A transform function to apply to each element of the intermediate sequence; the second parameter of the function represents the index of the source element and the fourth parameter represents the index of the intermediate element.</param>
-        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function collectionSelector on each element of the input sequence and then mapping each of those sequence elements and their corresponding source element to a result element.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="collectionSelector" /> or <paramref name="resultSelector" /> is null.</exception>
-        /// <remarks>The projected sequences are enumerated synchonously within the OnNext call of the source sequence. In order to do a concurrent, non-blocking merge, change the selector to return an observable sequence obtained using the <see cref="Observable.ToObservable{TSource}(IEnumerable{TSource})" /> conversion.</remarks>
-        public static IQbservable<TResult> SelectMany<TSource, TCollection, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, int, IEnumerable<TCollection>>> collectionSelector, Expression<Func<TSource, int, TCollection, int, TResult>> resultSelector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (collectionSelector == null)
-                throw new ArgumentNullException(nameof(collectionSelector));
-            if (resultSelector == null)
-                throw new ArgumentNullException(nameof(resultSelector));
-            
-            return source.Provider.CreateQuery<TResult>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.SelectMany<TSource, TCollection, TResult>(default(IQbservable<TSource>), default(Expression<Func<TSource, int, IEnumerable<TCollection>>>), default(Expression<Func<TSource, int, TCollection, int, TResult>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TCollection), typeof(TResult)),
-#endif
-                    source.Expression,
-                    collectionSelector,
-                    resultSelector
-                )
-            );
-        }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to an observable sequence, invokes the result selector for the source element and each of the corresponding inner sequence's elements, and merges the results into one observable sequence.
         /// </summary>
@@ -11564,7 +11785,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(collectionSelector));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11579,7 +11800,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to an observable sequence by incorporating the element's index, invokes the result selector for the source element and each of the corresponding inner sequence's elements, and merges the results into one observable sequence.
         /// </summary>
@@ -11600,7 +11821,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(collectionSelector));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11615,7 +11836,81 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Projects each element of an observable sequence to an enumerable sequence, invokes the result selector for the source element and each of the corresponding inner sequence's elements, and merges the results into one observable sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TCollection">The type of the elements in the projected intermediate enumerable sequences.</typeparam>
+        /// <typeparam name="TResult">The type of the elements in the result sequence, obtained by using the selector to combine source sequence elements with their corresponding intermediate sequence elements.</typeparam>
+        /// <param name="source">An observable sequence of elements to project.</param>
+        /// <param name="collectionSelector">A transform function to apply to each element.</param>
+        /// <param name="resultSelector">A transform function to apply to each element of the intermediate sequence.</param>
+        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function collectionSelector on each element of the input sequence and then mapping each of those sequence elements and their corresponding source element to a result element.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="collectionSelector" /> or <paramref name="resultSelector" /> is null.</exception>
+        /// <remarks>The projected sequences are enumerated synchronously within the OnNext call of the source sequence. In order to do a concurrent, non-blocking merge, change the selector to return an observable sequence obtained using the <see cref="M:System.Reactive.Linq.Observable.ToObservable``1(System.Collections.Generic.IEnumerable{``0})" /> conversion.</remarks>
+        public static IQbservable<TResult> SelectMany<TSource, TCollection, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, IEnumerable<TCollection>>> collectionSelector, Expression<Func<TSource, TCollection, TResult>> resultSelector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (collectionSelector == null)
+                throw new ArgumentNullException(nameof(collectionSelector));
+            if (resultSelector == null)
+                throw new ArgumentNullException(nameof(resultSelector));
+
+            return source.Provider.CreateQuery<TResult>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.SelectMany<TSource, TCollection, TResult>(default(IQbservable<TSource>), default(Expression<Func<TSource, IEnumerable<TCollection>>>), default(Expression<Func<TSource, TCollection, TResult>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TCollection), typeof(TResult)),
+#endif
+                    source.Expression,
+                    collectionSelector,
+                    resultSelector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Projects each element of an observable sequence to an enumerable sequence by incorporating the element's index, invokes the result selector for the source element and each of the corresponding inner sequence's elements, and merges the results into one observable sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TCollection">The type of the elements in the projected intermediate enumerable sequences.</typeparam>
+        /// <typeparam name="TResult">The type of the elements in the result sequence, obtained by using the selector to combine source sequence elements with their corresponding intermediate sequence elements.</typeparam>
+        /// <param name="source">An observable sequence of elements to project.</param>
+        /// <param name="collectionSelector">A transform function to apply to each element; the second parameter of the function represents the index of the source element.</param>
+        /// <param name="resultSelector">A transform function to apply to each element of the intermediate sequence; the second parameter of the function represents the index of the source element and the fourth parameter represents the index of the intermediate element.</param>
+        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function collectionSelector on each element of the input sequence and then mapping each of those sequence elements and their corresponding source element to a result element.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="collectionSelector" /> or <paramref name="resultSelector" /> is null.</exception>
+        /// <remarks>The projected sequences are enumerated synchronously within the OnNext call of the source sequence. In order to do a concurrent, non-blocking merge, change the selector to return an observable sequence obtained using the <see cref="M:System.Reactive.Linq.Observable.ToObservable``1(System.Collections.Generic.IEnumerable{``0})" /> conversion.</remarks>
+        public static IQbservable<TResult> SelectMany<TSource, TCollection, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, int, IEnumerable<TCollection>>> collectionSelector, Expression<Func<TSource, int, TCollection, int, TResult>> resultSelector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (collectionSelector == null)
+                throw new ArgumentNullException(nameof(collectionSelector));
+            if (resultSelector == null)
+                throw new ArgumentNullException(nameof(resultSelector));
+
+            return source.Provider.CreateQuery<TResult>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.SelectMany<TSource, TCollection, TResult>(default(IQbservable<TSource>), default(Expression<Func<TSource, int, IEnumerable<TCollection>>>), default(Expression<Func<TSource, int, TCollection, int, TResult>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TCollection), typeof(TResult)),
+#endif
+                    source.Expression,
+                    collectionSelector,
+                    resultSelector
+                )
+            );
+        }
+
         /// <summary>
         /// Projects each element of the source observable sequence to the other observable sequence and merges the resulting observable sequences into one observable sequence.
         /// </summary>
@@ -11632,7 +11927,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
-            
+
             return source.Provider.CreateQuery<TOther>(
                 Expression.Call(
                     null,
@@ -11646,7 +11941,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each notification of an observable sequence to an observable sequence and merges the resulting observable sequences into one observable sequence.
         /// </summary>
@@ -11669,7 +11964,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(onError));
             if (onCompleted == null)
                 throw new ArgumentNullException(nameof(onCompleted));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11685,7 +11980,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each notification of an observable sequence to an observable sequence by incorporating the element's index and merges the resulting observable sequences into one observable sequence.
         /// </summary>
@@ -11708,7 +12003,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(onError));
             if (onCompleted == null)
                 throw new ArgumentNullException(nameof(onCompleted));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11724,71 +12019,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
-        /// <summary>
-        /// Projects each element of an observable sequence to an enumerable sequence and concatenates the resulting enumerable sequences into one observable sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <typeparam name="TResult">The type of the elements in the projected inner enumerable sequences and the elements in the merged result sequence.</typeparam>
-        /// <param name="source">An observable sequence of elements to project.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The projected sequences are enumerated synchonously within the OnNext call of the source sequence. In order to do a concurrent, non-blocking merge, change the selector to return an observable sequence obtained using the <see cref="Observable.ToObservable{TSource}(IEnumerable{TSource})" /> conversion.</remarks>
-        public static IQbservable<TResult> SelectMany<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, IEnumerable<TResult>>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<TResult>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.SelectMany<TSource, TResult>(default(IQbservable<TSource>), default(Expression<Func<TSource, IEnumerable<TResult>>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TResult)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Projects each element of an observable sequence to an enumerable sequence by incorporating the element's index and concatenates the resulting enumerable sequences into one observable sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <typeparam name="TResult">The type of the elements in the projected inner enumerable sequences and the elements in the merged result sequence.</typeparam>
-        /// <param name="source">An observable sequence of elements to project.</param>
-        /// <param name="selector">A transform function to apply to each element; the second parameter of the function represents the index of the source element.</param>
-        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The projected sequences are enumerated synchonously within the OnNext call of the source sequence. In order to do a concurrent, non-blocking merge, change the selector to return an observable sequence obtained using the <see cref="Observable.ToObservable{TSource}(IEnumerable{TSource})" /> conversion.</remarks>
-        public static IQbservable<TResult> SelectMany<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, int, IEnumerable<TResult>>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<TResult>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.SelectMany<TSource, TResult>(default(IQbservable<TSource>), default(Expression<Func<TSource, int, IEnumerable<TResult>>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TResult)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to an observable sequence and merges the resulting observable sequences into one observable sequence.
         /// </summary>
@@ -11805,7 +12036,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11819,7 +12050,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to an observable sequence by incorporating the element's index and merges the resulting observable sequences into one observable sequence.
         /// </summary>
@@ -11836,7 +12067,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11850,7 +12081,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to a task and merges all of the task results into one observable sequence.
         /// </summary>
@@ -11859,7 +12090,7 @@ namespace System.Reactive.Linq
         /// <param name="source">An observable sequence of elements to project.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>An observable sequence whose elements are the result of the tasks executed for each element of the input sequence.</returns>
-        /// <remarks>This overload supports composition of observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable{TSource}(Task{TSource})" />.</remarks>
+        /// <remarks>This overload supports composition of observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="M:System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable``1(System.Threading.Tasks.Task{``0})" />.</remarks>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         public static IQbservable<TResult> SelectMany<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, Task<TResult>>> selector)
@@ -11868,7 +12099,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11882,7 +12113,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to a task by incorporating the element's index and merges all of the task results into one observable sequence.
         /// </summary>
@@ -11891,7 +12122,7 @@ namespace System.Reactive.Linq
         /// <param name="source">An observable sequence of elements to project.</param>
         /// <param name="selector">A transform function to apply to each element; the second parameter of the function represents the index of the source element.</param>
         /// <returns>An observable sequence whose elements are the result of the tasks executed for each element of the input sequence.</returns>
-        /// <remarks>This overload supports composition of observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable{TSource}(Task{TSource})" />.</remarks>
+        /// <remarks>This overload supports composition of observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="M:System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable``1(System.Threading.Tasks.Task{``0})" />.</remarks>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         public static IQbservable<TResult> SelectMany<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, int, Task<TResult>>> selector)
@@ -11900,7 +12131,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11914,7 +12145,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to a task with cancellation support and merges all of the task results into one observable sequence.
         /// </summary>
@@ -11923,7 +12154,7 @@ namespace System.Reactive.Linq
         /// <param name="source">An observable sequence of elements to project.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>An observable sequence whose elements are the result of the tasks executed for each element of the input sequence.</returns>
-        /// <remarks>This overload supports composition of observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable{TSource}(Task{TSource})" />.</remarks>
+        /// <remarks>This overload supports composition of observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="M:System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable``1(System.Threading.Tasks.Task{``0})" />.</remarks>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         public static IQbservable<TResult> SelectMany<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, CancellationToken, Task<TResult>>> selector)
@@ -11932,7 +12163,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11946,7 +12177,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to a task by incorporating the element's index with cancellation support and merges all of the task results into one observable sequence.
         /// </summary>
@@ -11955,7 +12186,7 @@ namespace System.Reactive.Linq
         /// <param name="source">An observable sequence of elements to project.</param>
         /// <param name="selector">A transform function to apply to each element; the second parameter of the function represents the index of the source element.</param>
         /// <returns>An observable sequence whose elements are the result of the tasks executed for each element of the input sequence.</returns>
-        /// <remarks>This overload supports composition of observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable{TSource}(Task{TSource})" />.</remarks>
+        /// <remarks>This overload supports composition of observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="M:System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable``1(System.Threading.Tasks.Task{``0})" />.</remarks>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
         public static IQbservable<TResult> SelectMany<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, int, CancellationToken, Task<TResult>>> selector)
@@ -11964,7 +12195,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -11978,7 +12209,71 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Projects each element of an observable sequence to an enumerable sequence and concatenates the resulting enumerable sequences into one observable sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TResult">The type of the elements in the projected inner enumerable sequences and the elements in the merged result sequence.</typeparam>
+        /// <param name="source">An observable sequence of elements to project.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The projected sequences are enumerated synchronously within the OnNext call of the source sequence. In order to do a concurrent, non-blocking merge, change the selector to return an observable sequence obtained using the <see cref="M:System.Reactive.Linq.Observable.ToObservable``1(System.Collections.Generic.IEnumerable{``0})" /> conversion.</remarks>
+        public static IQbservable<TResult> SelectMany<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, IEnumerable<TResult>>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<TResult>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.SelectMany<TSource, TResult>(default(IQbservable<TSource>), default(Expression<Func<TSource, IEnumerable<TResult>>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TResult)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Projects each element of an observable sequence to an enumerable sequence by incorporating the element's index and concatenates the resulting enumerable sequences into one observable sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TResult">The type of the elements in the projected inner enumerable sequences and the elements in the merged result sequence.</typeparam>
+        /// <param name="source">An observable sequence of elements to project.</param>
+        /// <param name="selector">A transform function to apply to each element; the second parameter of the function represents the index of the source element.</param>
+        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The projected sequences are enumerated synchronously within the OnNext call of the source sequence. In order to do a concurrent, non-blocking merge, change the selector to return an observable sequence obtained using the <see cref="M:System.Reactive.Linq.Observable.ToObservable``1(System.Collections.Generic.IEnumerable{``0})" /> conversion.</remarks>
+        public static IQbservable<TResult> SelectMany<TSource, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, int, IEnumerable<TResult>>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<TResult>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.SelectMany<TSource, TResult>(default(IQbservable<TSource>), default(Expression<Func<TSource, int, IEnumerable<TResult>>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TResult)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
         /// <summary>
         /// Projects each element of an observable sequence to a task, invokes the result selector for the source element and the task result, and merges the results into one observable sequence.
         /// </summary>
@@ -11991,7 +12286,7 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence whose elements are the result of obtaining a task for each element of the input sequence and then mapping the task's result and its corresponding source element to a result element.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="taskSelector" /> or <paramref name="resultSelector" /> is null.</exception>
-        /// <remarks>This overload supports using LINQ query comprehension syntax in C# and Visual Basic to compose observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable{TSource}(Task{TSource})" />.</remarks>
+        /// <remarks>This overload supports using LINQ query comprehension syntax in C# and Visual Basic to compose observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="M:System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable``1(System.Threading.Tasks.Task{``0})" />.</remarks>
         public static IQbservable<TResult> SelectMany<TSource, TTaskResult, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, Task<TTaskResult>>> taskSelector, Expression<Func<TSource, TTaskResult, TResult>> resultSelector)
         {
             if (source == null)
@@ -12000,7 +12295,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(taskSelector));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -12015,7 +12310,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to a task by incorporating the element's index, invokes the result selector for the source element and the task result, and merges the results into one observable sequence.
         /// </summary>
@@ -12028,7 +12323,7 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence whose elements are the result of obtaining a task for each element of the input sequence and then mapping the task's result and its corresponding source element to a result element.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="taskSelector" /> or <paramref name="resultSelector" /> is null.</exception>
-        /// <remarks>This overload supports using LINQ query comprehension syntax in C# and Visual Basic to compose observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable{TSource}(Task{TSource})" />.</remarks>
+        /// <remarks>This overload supports using LINQ query comprehension syntax in C# and Visual Basic to compose observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="M:System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable``1(System.Threading.Tasks.Task{``0})" />.</remarks>
         public static IQbservable<TResult> SelectMany<TSource, TTaskResult, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, int, Task<TTaskResult>>> taskSelector, Expression<Func<TSource, int, TTaskResult, TResult>> resultSelector)
         {
             if (source == null)
@@ -12037,7 +12332,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(taskSelector));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -12052,7 +12347,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to a task with cancellation support, invokes the result selector for the source element and the task result, and merges the results into one observable sequence.
         /// </summary>
@@ -12065,7 +12360,7 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence whose elements are the result of obtaining a task for each element of the input sequence and then mapping the task's result and its corresponding source element to a result element.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="taskSelector" /> or <paramref name="resultSelector" /> is null.</exception>
-        /// <remarks>This overload supports using LINQ query comprehension syntax in C# and Visual Basic to compose observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable{TSource}(Task{TSource})" />.</remarks>
+        /// <remarks>This overload supports using LINQ query comprehension syntax in C# and Visual Basic to compose observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="M:System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable``1(System.Threading.Tasks.Task{``0})" />.</remarks>
         public static IQbservable<TResult> SelectMany<TSource, TTaskResult, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, CancellationToken, Task<TTaskResult>>> taskSelector, Expression<Func<TSource, TTaskResult, TResult>> resultSelector)
         {
             if (source == null)
@@ -12074,7 +12369,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(taskSelector));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -12089,7 +12384,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence to a task by incorporating the element's index with cancellation support, invokes the result selector for the source element and the task result, and merges the results into one observable sequence.
         /// </summary>
@@ -12102,7 +12397,7 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence whose elements are the result of obtaining a task for each element of the input sequence and then mapping the task's result and its corresponding source element to a result element.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="taskSelector" /> or <paramref name="resultSelector" /> is null.</exception>
-        /// <remarks>This overload supports using LINQ query comprehension syntax in C# and Visual Basic to compose observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable{TSource}(Task{TSource})" />.</remarks>
+        /// <remarks>This overload supports using LINQ query comprehension syntax in C# and Visual Basic to compose observable sequences and tasks, without requiring manual conversion of the tasks to observable sequences using <see cref="M:System.Reactive.Threading.Tasks.TaskObservableExtensions.ToObservable``1(System.Threading.Tasks.Task{``0})" />.</remarks>
         public static IQbservable<TResult> SelectMany<TSource, TTaskResult, TResult>(this IQbservable<TSource> source, Expression<Func<TSource, int, CancellationToken, Task<TTaskResult>>> taskSelector, Expression<Func<TSource, int, TTaskResult, TResult>> resultSelector)
         {
             if (source == null)
@@ -12111,7 +12406,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(taskSelector));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -12126,7 +12421,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether two sequences are equal by comparing the elements pairwise.
         /// </summary>
@@ -12143,7 +12438,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(first));
             if (second == null)
                 throw new ArgumentNullException(nameof(second));
-            
+
             return first.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -12157,7 +12452,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether an observable and enumerable sequence are equal by comparing the elements pairwise.
         /// </summary>
@@ -12174,7 +12469,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(first));
             if (second == null)
                 throw new ArgumentNullException(nameof(second));
-            
+
             return first.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -12188,7 +12483,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether two sequences are equal by comparing the elements pairwise using a specified equality comparer.
         /// </summary>
@@ -12208,7 +12503,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(second));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return first.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -12223,7 +12518,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Determines whether an observable and enumerable sequence are equal by comparing the elements pairwise using a specified equality comparer.
         /// </summary>
@@ -12243,7 +12538,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(second));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return first.Provider.CreateQuery<bool>(
                 Expression.Call(
                     null,
@@ -12258,7 +12553,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the only element of an observable sequence, and reports an exception if there is not exactly one element in the observable sequence.
         /// </summary>
@@ -12272,7 +12567,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12285,7 +12580,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the only element of an observable sequence that satisfies the condition in the predicate, and reports an exception if there is not exactly one element in the observable sequence.
         /// </summary>
@@ -12302,7 +12597,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12316,7 +12611,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the only element of an observable sequence, or a default value if the observable sequence is empty; this method reports an exception if there is more than one element in the observable sequence.
         /// </summary>
@@ -12330,7 +12625,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12343,7 +12638,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the only element of an observable sequence that matches the predicate, or a default value if no such element exists; this method reports an exception if there is more than one element in the observable sequence.
         /// </summary>
@@ -12360,7 +12655,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12374,7 +12669,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Bypasses a specified number of elements in an observable sequence and then returns the remaining elements.
         /// </summary>
@@ -12390,7 +12685,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12404,7 +12699,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Skips elements for the specified duration from the start of the observable source sequence.
         /// </summary>
@@ -12430,7 +12725,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12444,7 +12739,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Skips elements for the specified duration from the start of the observable source sequence, using the specified scheduler to run timers.
         /// </summary>
@@ -12473,7 +12768,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12488,7 +12783,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Bypasses a specified number of elements at the end of an observable sequence.
         /// </summary>
@@ -12508,7 +12803,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12522,7 +12817,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Skips elements for the specified duration from the end of the observable source sequence.
         /// </summary>
@@ -12543,7 +12838,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12557,7 +12852,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Skips elements for the specified duration from the end of the observable source sequence, using the specified scheduler to run timers.
         /// </summary>
@@ -12581,7 +12876,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12596,7 +12891,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Skips elements from the observable source sequence until the specified start time.
         /// </summary>
@@ -12613,7 +12908,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12627,7 +12922,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Skips elements from the observable source sequence until the specified start time, using the specified scheduler to run timers.
         /// </summary>
@@ -12647,7 +12942,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12662,9 +12957,11 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the elements from the source observable sequence only after the other observable sequence produces an element.
+        /// Starting from Rx.NET 4.0, this will subscribe to <paramref name="other" /> before subscribing to <paramref name="source" />
+        /// so in case <paramref name="other" /> emits an element right away, elements from <paramref name="source" /> are not missed.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <typeparam name="TOther">The type of the elements in the other sequence that indicates the end of skip behavior.</typeparam>
@@ -12679,7 +12976,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12693,7 +12990,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Bypasses elements in an observable sequence as long as a specified condition is true and then returns the remaining elements.
         /// </summary>
@@ -12709,7 +13006,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12723,7 +13020,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Bypasses elements in an observable sequence as long as a specified condition is true and then returns the remaining elements.
         /// The element's index is used in the logic of the predicate function.
@@ -12740,7 +13037,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -12754,7 +13051,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the action asynchronously, surfacing the result through an observable sequence.
         /// </summary>
@@ -12779,7 +13076,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -12793,7 +13090,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the action asynchronously on the specified scheduler, surfacing the result through an observable sequence.
         /// </summary>
@@ -12821,7 +13118,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -12836,7 +13133,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the specified function asynchronously, surfacing the result through an observable sequence.
         /// </summary>
@@ -12862,7 +13159,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -12876,7 +13173,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the specified function asynchronously on the specified scheduler, surfacing the result through an observable sequence
         /// </summary>
@@ -12905,7 +13202,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -12920,7 +13217,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the asynchronous action, surfacing the result through an observable sequence.
         /// </summary>
@@ -12945,7 +13242,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (actionAsync == null)
                 throw new ArgumentNullException(nameof(actionAsync));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -12959,7 +13256,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the asynchronous action, surfacing the result through an observable sequence.
         /// </summary>
@@ -12987,7 +13284,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(actionAsync));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -13002,7 +13299,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the asynchronous action, surfacing the result through an observable sequence.
         /// The CancellationToken is shared by all subscriptions on the resulting observable sequence. See the remarks section for more information.
@@ -13037,7 +13334,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (actionAsync == null)
                 throw new ArgumentNullException(nameof(actionAsync));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -13051,7 +13348,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the asynchronous action, surfacing the result through an observable sequence.
         /// The CancellationToken is shared by all subscriptions on the resulting observable sequence. See the remarks section for more information.
@@ -13089,7 +13386,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(actionAsync));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<Unit>(
                 Expression.Call(
                     null,
@@ -13104,7 +13401,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the asynchronous function, surfacing the result through an observable sequence.
         /// </summary>
@@ -13130,7 +13427,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (functionAsync == null)
                 throw new ArgumentNullException(nameof(functionAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -13144,7 +13441,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the asynchronous function, surfacing the result through an observable sequence.
         /// The CancellationToken is shared by all subscriptions on the resulting observable sequence. See the remarks section for more information.
@@ -13180,7 +13477,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (functionAsync == null)
                 throw new ArgumentNullException(nameof(functionAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -13194,7 +13491,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the asynchronous function, surfacing the result through an observable sequence.
         /// </summary>
@@ -13223,7 +13520,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(functionAsync));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -13238,7 +13535,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Invokes the asynchronous function, surfacing the result through an observable sequence.
         /// The CancellationToken is shared by all subscriptions on the resulting observable sequence. See the remarks section for more information.
@@ -13277,7 +13574,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(functionAsync));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -13292,7 +13589,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Prepends a sequence of values to an observable sequence.
         /// </summary>
@@ -13311,7 +13608,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(scheduler));
             if (values == null)
                 throw new ArgumentNullException(nameof(values));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -13326,7 +13623,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Prepends a sequence of values to an observable sequence.
         /// </summary>
@@ -13345,7 +13642,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(scheduler));
             if (values == null)
                 throw new ArgumentNullException(nameof(values));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -13360,7 +13657,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Prepends a sequence of values to an observable sequence.
         /// </summary>
@@ -13376,7 +13673,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (values == null)
                 throw new ArgumentNullException(nameof(values));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -13390,7 +13687,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Prepends a sequence of values to an observable sequence.
         /// </summary>
@@ -13406,7 +13703,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (values == null)
                 throw new ArgumentNullException(nameof(values));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -13420,7 +13717,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Wraps the source sequence in order to run its subscription and unsubscription logic on the specified synchronization context. This operation is not commonly used;
         /// see the remarks section for more information on the distinction between SubscribeOn and ObserveOn.
@@ -13433,7 +13730,7 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="context" /> is null.</exception>
         /// <remarks>
         /// This only performs the side-effects of subscription and unsubscription on the specified synchronization context. In order to invoke observer
-        /// callbacks on a synchronization context, use <see cref="Observable.ObserveOn{TSource}(IObservable{TSource},SynchronizationContext)" />.
+        /// callbacks on a synchronization context, use <see cref="M:System.Reactive.Linq.Observable.ObserveOn``1(System.IObservable{``0},System.Threading.SynchronizationContext)" />.
         /// </remarks>
         public static IQbservable<TSource> SubscribeOn<TSource>(this IQbservable<TSource> source, SynchronizationContext context)
         {
@@ -13441,7 +13738,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -13455,7 +13752,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Wraps the source sequence in order to run its subscription and unsubscription logic on the specified scheduler. This operation is not commonly used;
         /// see the remarks section for more information on the distinction between SubscribeOn and ObserveOn.
@@ -13468,7 +13765,7 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="scheduler" /> is null.</exception>
         /// <remarks>
         /// This only performs the side-effects of subscription and unsubscription on the specified scheduler. In order to invoke observer
-        /// callbacks on a scheduler, use <see cref="Observable.ObserveOn{TSource}(IObservable{TSource},IScheduler)" />.
+        /// callbacks on a scheduler, use <see cref="M:System.Reactive.Linq.Observable.ObserveOn``1(System.IObservable{``0},System.Reactive.Concurrency.IScheduler)" />.
         /// </remarks>
         public static IQbservable<TSource> SubscribeOn<TSource>(this IQbservable<TSource> source, IScheduler scheduler)
         {
@@ -13476,7 +13773,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -13490,7 +13787,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="Decimal" /> values.
         /// </summary>
@@ -13498,13 +13795,13 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Decimal.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<decimal> Sum(this IQbservable<decimal> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<decimal>(
                 Expression.Call(
                     null,
@@ -13517,7 +13814,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="double" /> values.
         /// </summary>
@@ -13530,7 +13827,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -13543,7 +13840,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="int" /> values.
         /// </summary>
@@ -13551,13 +13848,13 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Int32.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<int> Sum(this IQbservable<int> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -13570,7 +13867,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="long" /> values.
         /// </summary>
@@ -13578,13 +13875,13 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<long> Sum(this IQbservable<long> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -13597,7 +13894,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of nullable <see cref="Decimal" /> values.
         /// </summary>
@@ -13605,13 +13902,13 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Decimal.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<decimal?> Sum(this IQbservable<decimal?> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<decimal?>(
                 Expression.Call(
                     null,
@@ -13624,7 +13921,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of nullable <see cref="double" /> values.
         /// </summary>
@@ -13637,7 +13934,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<double?>(
                 Expression.Call(
                     null,
@@ -13650,7 +13947,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of nullable <see cref="int" /> values.
         /// </summary>
@@ -13658,13 +13955,13 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Int32.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<int?> Sum(this IQbservable<int?> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<int?>(
                 Expression.Call(
                     null,
@@ -13677,7 +13974,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of nullable <see cref="long" /> values.
         /// </summary>
@@ -13685,13 +13982,13 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<long?> Sum(this IQbservable<long?> source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<long?>(
                 Expression.Call(
                     null,
@@ -13704,7 +14001,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of nullable <see cref="Single" /> values.
         /// </summary>
@@ -13717,7 +14014,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<float?>(
                 Expression.Call(
                     null,
@@ -13730,7 +14027,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="Single" /> values.
         /// </summary>
@@ -13743,7 +14040,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<float>(
                 Expression.Call(
                     null,
@@ -13756,165 +14053,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
-        /// <summary>
-        /// Computes the sum of a sequence of nullable <see cref="double" /> values that are obtained by invoking a transform function on each element of the input sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<double?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, double?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<double?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, double?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Computes the sum of a sequence of nullable <see cref="Single" /> values that are obtained by invoking a transform function on each element of the input sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<float?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, float?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<float?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, float?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Computes the sum of a sequence of nullable <see cref="Decimal" /> values that are obtained by invoking a transform function on each element of the input sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Decimal.MaxValue" />.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<decimal?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<decimal?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, decimal?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Computes the sum of a sequence of nullable <see cref="int" /> values that are obtained by invoking a transform function on each element of the input sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Int32.MaxValue" />.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<int?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<int?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, int?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
-        /// <summary>
-        /// Computes the sum of a sequence of nullable <see cref="long" /> values that are obtained by invoking a transform function on each element of the input sequence.
-        /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
-        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
-        public static IQbservable<long?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long?>> selector)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (selector == null)
-                throw new ArgumentNullException(nameof(selector));
-            
-            return source.Provider.CreateQuery<long?>(
-                Expression.Call(
-                    null,
-#if CRIPPLED_REFLECTION
-                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, long?>>))),
-#else
-                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
-#endif
-                    source.Expression,
-                    selector
-                )
-            );
-        }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="double" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -13931,7 +14070,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<double>(
                 Expression.Call(
                     null,
@@ -13945,7 +14084,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="Single" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -13962,7 +14101,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<float>(
                 Expression.Call(
                     null,
@@ -13976,7 +14115,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="Decimal" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -13986,7 +14125,7 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Decimal.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<decimal> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal>> selector)
         {
@@ -13994,7 +14133,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<decimal>(
                 Expression.Call(
                     null,
@@ -14008,7 +14147,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="int" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -14018,7 +14157,7 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Int32.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<int> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int>> selector)
         {
@@ -14026,7 +14165,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<int>(
                 Expression.Call(
                     null,
@@ -14040,7 +14179,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Computes the sum of a sequence of <see cref="long" /> values that are obtained by invoking a transform function on each element of the input sequence.
         /// </summary>
@@ -14050,7 +14189,7 @@ namespace System.Reactive.Linq
         /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
-        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="Int64.MaxValue" />.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
         /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
         public static IQbservable<long> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long>> selector)
         {
@@ -14058,7 +14197,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
-            
+
             return source.Provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -14072,7 +14211,165 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Computes the sum of a sequence of nullable <see cref="double" /> values that are obtained by invoking a transform function on each element of the input sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<double?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, double?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<double?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, double?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Computes the sum of a sequence of nullable <see cref="Single" /> values that are obtained by invoking a transform function on each element of the input sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<float?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, float?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<float?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, float?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Computes the sum of a sequence of nullable <see cref="Decimal" /> values that are obtained by invoking a transform function on each element of the input sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<decimal?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, decimal?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<decimal?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, decimal?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Computes the sum of a sequence of nullable <see cref="int" /> values that are obtained by invoking a transform function on each element of the input sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<int?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, int?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<int?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, int?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
+        /// <summary>
+        /// Computes the sum of a sequence of nullable <see cref="long" /> values that are obtained by invoking a transform function on each element of the input sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">A sequence of values that are used to calculate a sum.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>An observable sequence containing a single element with the sum of the values in the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source" /> or <paramref name="selector" /> is null.</exception>
+        /// <exception cref="OverflowException">(Asynchronous) The sum of the projected values for the elements in the source sequence is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
+        /// <remarks>The return type of this operator differs from the corresponding operator on IEnumerable in order to retain asynchronous behavior.</remarks>
+        public static IQbservable<long?> Sum<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, long?>> selector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (selector == null)
+                throw new ArgumentNullException(nameof(selector));
+
+            return source.Provider.CreateQuery<long?>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.Sum<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, long?>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    selector
+                )
+            );
+        }
+
         /// <summary>
         /// Transforms an observable sequence of observable sequences into an observable sequence 
         /// producing values only from the most recent observable sequence.
@@ -14088,7 +14385,7 @@ namespace System.Reactive.Linq
         {
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return sources.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14101,7 +14398,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Transforms an observable sequence of tasks into an observable sequence 
         /// producing values only from the most recent observable sequence.
@@ -14112,12 +14409,12 @@ namespace System.Reactive.Linq
         /// <returns>The observable sequence that at any point in time produces the result of the most recent task that has been received.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="sources" /> is null.</exception>
-        /// <remarks>If the tasks support cancellation, consider manual conversion of the tasks using <see cref="Observable.FromAsync{TSource}(Func{CancellationToken,Task{TSource}})" />, followed by a switch operation using <see cref="Observable.Switch{TSource}(IObservable{IObservable{TSource}})" />.</remarks>
+        /// <remarks>If the tasks support cancellation, consider manual conversion of the tasks using <see cref="M:System.Reactive.Linq.Observable.FromAsync``1(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}})" />, followed by a switch operation using <see cref="M:System.Reactive.Linq.Observable.Switch``1(System.IObservable{System.IObservable{``0}})" />.</remarks>
         public static IQbservable<TSource> Switch<TSource>(this IQbservable<Task<TSource>> sources)
         {
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return sources.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14130,7 +14427,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Synchronizes the observable sequence such that observer notifications cannot be delivered concurrently.
         /// This overload is useful to "fix" an observable sequence that exhibits concurrent callbacks on individual observers, which is invalid behavior for the query processor.
@@ -14148,7 +14445,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14161,7 +14458,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Synchronizes the observable sequence such that observer notifications cannot be delivered concurrently, using the specified gate object.
         /// This overload is useful when writing n-ary query operators, in order to prevent concurrent callbacks from different sources by synchronizing on a common gate object.
@@ -14178,7 +14475,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (gate == null)
                 throw new ArgumentNullException(nameof(gate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14192,7 +14489,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a specified number of contiguous elements from the start of an observable sequence.
         /// </summary>
@@ -14208,7 +14505,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14222,7 +14519,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a specified number of contiguous elements from the start of an observable sequence, using the specified scheduler for the edge case of Take(0).
         /// </summary>
@@ -14241,7 +14538,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14256,7 +14553,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Takes elements for the specified duration from the start of the observable source sequence.
         /// </summary>
@@ -14277,7 +14574,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14291,7 +14588,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Takes elements for the specified duration from the start of the observable source sequence, using the specified scheduler to run timers.
         /// </summary>
@@ -14315,7 +14612,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14330,7 +14627,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a specified number of contiguous elements from the end of an observable sequence.
         /// </summary>
@@ -14350,7 +14647,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14364,7 +14661,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a specified number of contiguous elements from the end of an observable sequence, using the specified scheduler to drain the queue.
         /// </summary>
@@ -14387,7 +14684,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14402,7 +14699,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns elements within the specified duration from the end of the observable source sequence.
         /// </summary>
@@ -14423,7 +14720,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14437,7 +14734,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns elements within the specified duration from the end of the observable source sequence, using the specified scheduler to run timers.
         /// </summary>
@@ -14461,7 +14758,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14476,7 +14773,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns elements within the specified duration from the end of the observable source sequence, using the specified schedulers to run timers and to drain the collected elements.
         /// </summary>
@@ -14503,7 +14800,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(timerScheduler));
             if (loopScheduler == null)
                 throw new ArgumentNullException(nameof(loopScheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14519,7 +14816,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a list with the specified number of contiguous elements from the end of an observable sequence.
         /// </summary>
@@ -14539,7 +14836,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -14553,7 +14850,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a list with the elements within the specified duration from the end of the observable source sequence.
         /// </summary>
@@ -14573,7 +14870,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -14587,7 +14884,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns a list with the elements within the specified duration from the end of the observable source sequence, using the specified scheduler to run timers.
         /// </summary>
@@ -14610,7 +14907,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -14625,7 +14922,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Takes elements for the specified duration until the specified end time.
         /// </summary>
@@ -14639,7 +14936,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14653,7 +14950,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Takes elements for the specified duration until the specified end time, using the specified scheduler to run timers.
         /// </summary>
@@ -14670,7 +14967,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14685,7 +14982,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns the elements from the source observable sequence until the other observable sequence produces an element.
         /// </summary>
@@ -14702,7 +14999,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14716,7 +15013,47 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
+        /// <summary>
+        /// Relays elements from the source observable sequence and calls the predicate after an
+        /// emission to check if the sequence should stop after that specific item.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the source and result sequences.</typeparam>
+        /// <param name="source">The source sequence to relay elements of.</param>
+        /// <param name="stopPredicate">Called after each upstream item has been emitted with
+        /// that upstream item and should return <code>true</code> to indicate the sequence should
+        /// complete.</param>
+        /// <returns>The observable sequence with the source elements until the stop predicate returns true.</returns>
+        /// <example>
+        /// The following sequence will stop after the value 5 has been encountered:
+        /// <code>
+        /// Observable.Range(1, 10)
+        ///     .TakeUntil(item =&gt; item == 5)
+        ///     .Subscribe(Console.WriteLine);
+        /// </code>
+        /// </example>
+        /// <exception cref="ArgumentException">If <typeparamref name="TSource"/> or <paramref name="stopPredicate"/> is <code>null</code>.</exception>
+        public static IQbservable<TSource> TakeUntil<TSource>(this IQbservable<TSource> source, Expression<Func<TSource, bool>> stopPredicate)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (stopPredicate == null)
+                throw new ArgumentNullException(nameof(stopPredicate));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+#if CRIPPLED_REFLECTION
+                    InfoOf(() => Qbservable.TakeUntil<TSource>(default(IQbservable<TSource>), default(Expression<Func<TSource, bool>>))),
+#else
+                    ((MethodInfo)MethodInfo.GetCurrentMethod()).MakeGenericMethod(typeof(TSource)),
+#endif
+                    source.Expression,
+                    stopPredicate
+                )
+            );
+        }
+
         /// <summary>
         /// Returns elements from an observable sequence as long as a specified condition is true.
         /// </summary>
@@ -14732,7 +15069,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14746,7 +15083,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns elements from an observable sequence as long as a specified condition is true.
         /// The element's index is used in the logic of the predicate function.
@@ -14763,7 +15100,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14777,7 +15114,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Ignores elements from an observable sequence which are followed by another element within a specified relative time duration.
         /// </summary>
@@ -14808,7 +15145,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14822,7 +15159,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Ignores elements from an observable sequence which are followed by another element within a specified relative time duration, using the specified scheduler to run throttling timers.
         /// </summary>
@@ -14856,7 +15193,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14871,7 +15208,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Ignores elements from an observable sequence which are followed by another value within a computed throttle duration.
         /// </summary>
@@ -14895,7 +15232,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (throttleDurationSelector == null)
                 throw new ArgumentNullException(nameof(throttleDurationSelector));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -14909,12 +15246,12 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that terminates with an exception.
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <param name="exception">Exception object used for the sequence's termination.</param>
         /// <returns>The observable sequence that terminates exceptionally with the specified exception object.</returns>
         /// <exception cref="ArgumentNullException">
@@ -14925,7 +15262,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (exception == null)
                 throw new ArgumentNullException(nameof(exception));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -14939,12 +15276,12 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that terminates with an exception, using the specified scheduler to send out the single OnError message.
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <param name="exception">Exception object used for the sequence's termination.</param>
         /// <param name="scheduler">Scheduler to send the exceptional termination call on.</param>
         /// <returns>The observable sequence that terminates exceptionally with the specified exception object.</returns>
@@ -14958,7 +15295,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(exception));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -14973,12 +15310,12 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that terminates with an exception, using the specified scheduler to send out the single OnError message.
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <param name="exception">Exception object used for the sequence's termination.</param>
         /// <param name="scheduler">Scheduler to send the exceptional termination call on.</param>
         /// <param name="witness">Object solely used to infer the type of the <typeparamref name="TResult" /> type parameter. This parameter is typically used when creating a sequence of anonymously typed elements.</param>
@@ -14993,7 +15330,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(exception));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -15009,12 +15346,12 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that terminates with an exception.
         /// </summary>
         /// <param name="provider">Query provider used to construct the <see cref="IQbservable{T}"/> data source.</param>
-        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}"/> type parameter of the resulting sequence.</typeparam>
+        /// <typeparam name="TResult">The type used for the <see cref="IObservable{T}" /> type parameter of the resulting sequence.</typeparam>
         /// <param name="exception">Exception object used for the sequence's termination.</param>
         /// <param name="witness">Object solely used to infer the type of the <typeparamref name="TResult" /> type parameter. This parameter is typically used when creating a sequence of anonymously typed elements.</param>
         /// <returns>The observable sequence that terminates exceptionally with the specified exception object.</returns>
@@ -15026,7 +15363,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (exception == null)
                 throw new ArgumentNullException(nameof(exception));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -15041,7 +15378,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Records the time interval between consecutive elements in an observable sequence.
         /// </summary>
@@ -15054,7 +15391,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TimeInterval<TSource>>(
                 Expression.Call(
                     null,
@@ -15067,7 +15404,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Records the time interval between consecutive elements in an observable sequence, using the specified scheduler to compute time intervals.
         /// </summary>
@@ -15083,7 +15420,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TimeInterval<TSource>>(
                 Expression.Call(
                     null,
@@ -15110,15 +15447,15 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> is null.</exception>
         /// <exception cref="TimeoutException">(Asynchronous) If the sequence hasn't terminated before <paramref name="dueTime" />.</exception>
         /// <remarks>
-        /// In case you only want to timeout on the first element, consider using the <see cref="Observable.Amb{TSource}(IObservable{TSource},IObservable{TSource})" />
-        /// operator applied to the source sequence and a delayed <see cref="Observable.Throw{TSource}(Exception)" /> sequence. Alternatively, the general-purpose overload
-        /// of Timeout, <see cref="Observable.Timeout{TSource,TTimeout}(IObservable{TSource},IObservable{TTimeout},Func{TSource,IObservable{TTimeout}})" /> can be used.
+        /// In case you only want to timeout on the first element, consider using the <see cref="M:System.Reactive.Linq.Observable.Amb``1(System.IObservable{``0},System.IObservable{``0})" />
+        /// operator applied to the source sequence and a delayed <see cref="M:System.Reactive.Linq.Observable.Throw``1(System.Exception)" /> sequence. Alternatively, the general-purpose overload
+        /// of Timeout, <see cref="M:System.Reactive.Linq.Observable.Timeout``2(System.IObservable{``0},System.IObservable{``1},System.Func{``0,System.IObservable{``1}})" /> can be used.
         /// </remarks>
         public static IQbservable<TSource> Timeout<TSource>(this IQbservable<TSource> source, DateTimeOffset dueTime)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15145,9 +15482,9 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="other" /> is null.</exception>
         /// <remarks>
-        /// In case you only want to timeout on the first element, consider using the <see cref="Observable.Amb{TSource}(IObservable{TSource},IObservable{TSource})" />
-        /// operator applied to the source sequence and a delayed <see cref="Observable.Throw{TSource}(Exception)" /> sequence. Alternatively, the general-purpose overload
-        /// of Timeout, <see cref="Observable.Timeout{TSource,TTimeout}(IObservable{TSource},IObservable{TTimeout},Func{TSource,IObservable{TTimeout}})" /> can be used.
+        /// In case you only want to timeout on the first element, consider using the <see cref="M:System.Reactive.Linq.Observable.Amb``1(System.IObservable{``0},System.IObservable{``0})" />
+        /// operator applied to the source sequence and a delayed <see cref="M:System.Reactive.Linq.Observable.Throw``1(System.Exception)" /> sequence. Alternatively, the general-purpose overload
+        /// of Timeout, <see cref="M:System.Reactive.Linq.Observable.Timeout``2(System.IObservable{``0},System.IObservable{``1},System.Func{``0,System.IObservable{``1}})" /> can be used.
         /// </remarks>
         public static IQbservable<TSource> Timeout<TSource>(this IQbservable<TSource> source, DateTimeOffset dueTime, IObservable<TSource> other)
         {
@@ -15155,7 +15492,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15170,7 +15507,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy to the observable sequence based on an absolute time, using the specified scheduler to run timeout timers.
         /// If the sequence doesn't terminate before the specified absolute due time, the other observable sequence is used to produce future messages from that point on.
@@ -15184,9 +15521,9 @@ namespace System.Reactive.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="other" /> or <paramref name="scheduler" /> is null.</exception>
         /// <remarks>
-        /// In case you only want to timeout on the first element, consider using the <see cref="Observable.Amb{TSource}(IObservable{TSource},IObservable{TSource})" />
-        /// operator applied to the source sequence and a delayed <see cref="Observable.Throw{TSource}(Exception)" /> sequence. Alternatively, the general-purpose overload
-        /// of Timeout, <see cref="Observable.Timeout{TSource,TTimeout}(IObservable{TSource},IObservable{TTimeout},Func{TSource,IObservable{TTimeout}})" /> can be used.
+        /// In case you only want to timeout on the first element, consider using the <see cref="M:System.Reactive.Linq.Observable.Amb``1(System.IObservable{``0},System.IObservable{``0})" />
+        /// operator applied to the source sequence and a delayed <see cref="M:System.Reactive.Linq.Observable.Throw``1(System.Exception)" /> sequence. Alternatively, the general-purpose overload
+        /// of Timeout, <see cref="M:System.Reactive.Linq.Observable.Timeout``2(System.IObservable{``0},System.IObservable{``1},System.Func{``0,System.IObservable{``1}})" /> can be used.
         /// </remarks>
         public static IQbservable<TSource> Timeout<TSource>(this IQbservable<TSource> source, DateTimeOffset dueTime, IObservable<TSource> other, IScheduler scheduler)
         {
@@ -15196,7 +15533,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(other));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15212,7 +15549,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy to the observable sequence based on an absolute time, using the specified scheduler to run timeout timers.
         /// If the sequence doesn't terminate before the specified absolute due time, a TimeoutException is propagated to the observer.
@@ -15226,9 +15563,9 @@ namespace System.Reactive.Linq
         /// <paramref name="source" /> or <paramref name="scheduler" /> is null.</exception>
         /// <exception cref="TimeoutException">(Asynchronous) If the sequence hasn't terminated before <paramref name="dueTime" />.</exception>
         /// <remarks>
-        /// In case you only want to timeout on the first element, consider using the <see cref="Observable.Amb{TSource}(IObservable{TSource},IObservable{TSource})" />
-        /// operator applied to the source sequence and a delayed <see cref="Observable.Throw{TSource}(Exception)" /> sequence. Alternatively, the general-purpose overload
-        /// of Timeout, <see cref="Observable.Timeout{TSource,TTimeout}(IObservable{TSource},IObservable{TTimeout},Func{TSource,IObservable{TTimeout}})" /> can be used.
+        /// In case you only want to timeout on the first element, consider using the <see cref="M:System.Reactive.Linq.Observable.Amb``1(System.IObservable{``0},System.IObservable{``0})" />
+        /// operator applied to the source sequence and a delayed <see cref="M:System.Reactive.Linq.Observable.Throw``1(System.Exception)" /> sequence. Alternatively, the general-purpose overload
+        /// of Timeout, <see cref="M:System.Reactive.Linq.Observable.Timeout``2(System.IObservable{``0},System.IObservable{``1},System.Func{``0,System.IObservable{``1}})" /> can be used.
         /// </remarks>
         public static IQbservable<TSource> Timeout<TSource>(this IQbservable<TSource> source, DateTimeOffset dueTime, IScheduler scheduler)
         {
@@ -15236,7 +15573,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15251,7 +15588,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy for each element in the observable sequence.
         /// If the next element isn't received within the specified timeout duration starting from its predecessor, a TimeoutException is propagated to the observer.
@@ -15267,9 +15604,9 @@ namespace System.Reactive.Linq
         /// <exception cref="TimeoutException">(Asynchronous) If no element is produced within <paramref name="dueTime" /> from the previous element.</exception>
         /// <remarks>
         /// <para>
-        /// In case you only want to timeout on the first element, consider using the <see cref="Observable.Amb{TSource}(IObservable{TSource},IObservable{TSource})" />
-        /// operator applied to the source sequence and a delayed <see cref="Observable.Throw{TSource}(Exception)" /> sequence. Alternatively, the general-purpose overload
-        /// of Timeout, <see cref="Observable.Timeout{TSource,TTimeout}(IObservable{TSource},IObservable{TTimeout},Func{TSource,IObservable{TTimeout}})" /> can be used.
+        /// In case you only want to timeout on the first element, consider using the <see cref="M:System.Reactive.Linq.Observable.Amb``1(System.IObservable{``0},System.IObservable{``0})" />
+        /// operator applied to the source sequence and a delayed <see cref="M:System.Reactive.Linq.Observable.Throw``1(System.Exception)" /> sequence. Alternatively, the general-purpose overload
+        /// of Timeout, <see cref="M:System.Reactive.Linq.Observable.Timeout``2(System.IObservable{``0},System.IObservable{``1},System.Func{``0,System.IObservable{``1}})" /> can be used.
         /// </para>
         /// <para>
         /// Specifying a TimeSpan.Zero value for <paramref name="dueTime" /> is not recommended but supported, causing timeout timers to be scheduled that are due
@@ -15282,7 +15619,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15296,7 +15633,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy for each element in the observable sequence.
         /// If the next element isn't received within the specified timeout duration starting from its predecessor, the other observable sequence is used to produce future messages from that point on.
@@ -15312,9 +15649,9 @@ namespace System.Reactive.Linq
         /// <paramref name="dueTime" /> is less than TimeSpan.Zero.</exception>
         /// <remarks>
         /// <para>
-        /// In case you only want to timeout on the first element, consider using the <see cref="Observable.Amb{TSource}(IObservable{TSource},IObservable{TSource})" />
-        /// operator applied to the source sequence and a delayed <see cref="Observable.Throw{TSource}(Exception)" /> sequence. Alternatively, the general-purpose overload
-        /// of Timeout, <see cref="Observable.Timeout{TSource,TTimeout}(IObservable{TSource},IObservable{TTimeout},Func{TSource,IObservable{TTimeout}})" /> can be used.
+        /// In case you only want to timeout on the first element, consider using the <see cref="M:System.Reactive.Linq.Observable.Amb``1(System.IObservable{``0},System.IObservable{``0})" />
+        /// operator applied to the source sequence and a delayed <see cref="M:System.Reactive.Linq.Observable.Throw``1(System.Exception)" /> sequence. Alternatively, the general-purpose overload
+        /// of Timeout, <see cref="M:System.Reactive.Linq.Observable.Timeout``2(System.IObservable{``0},System.IObservable{``1},System.Func{``0,System.IObservable{``1}})" /> can be used.
         /// </para>
         /// <para>
         /// Specifying a TimeSpan.Zero value for <paramref name="dueTime" /> is not recommended but supported, causing timeout timers to be scheduled that are due
@@ -15329,7 +15666,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15344,7 +15681,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy for each element in the observable sequence, using the specified scheduler to run timeout timers.
         /// If the next element isn't received within the specified timeout duration starting from its predecessor, the other observable sequence is used to produce future messages from that point on.
@@ -15361,9 +15698,9 @@ namespace System.Reactive.Linq
         /// <paramref name="dueTime" /> is less than TimeSpan.Zero.</exception>
         /// <remarks>
         /// <para>
-        /// In case you only want to timeout on the first element, consider using the <see cref="Observable.Amb{TSource}(IObservable{TSource},IObservable{TSource})" />
-        /// operator applied to the source sequence and a delayed <see cref="Observable.Throw{TSource}(Exception)" /> sequence. Alternatively, the general-purpose overload
-        /// of Timeout, <see cref="Observable.Timeout{TSource,TTimeout}(IObservable{TSource},IObservable{TTimeout},Func{TSource,IObservable{TTimeout}})" /> can be used.
+        /// In case you only want to timeout on the first element, consider using the <see cref="M:System.Reactive.Linq.Observable.Amb``1(System.IObservable{``0},System.IObservable{``0})" />
+        /// operator applied to the source sequence and a delayed <see cref="M:System.Reactive.Linq.Observable.Throw``1(System.Exception)" /> sequence. Alternatively, the general-purpose overload
+        /// of Timeout, <see cref="M:System.Reactive.Linq.Observable.Timeout``2(System.IObservable{``0},System.IObservable{``1},System.Func{``0,System.IObservable{``1}})" /> can be used.
         /// </para>
         /// <para>
         /// Specifying a TimeSpan.Zero value for <paramref name="dueTime" /> is not recommended but supported, causing timeout timers to be scheduled that are due
@@ -15380,7 +15717,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(other));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15396,7 +15733,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy for each element in the observable sequence, using the specified scheduler to run timeout timers.
         /// If the next element isn't received within the specified timeout duration starting from its predecessor, a TimeoutException is propagated to the observer.
@@ -15413,9 +15750,9 @@ namespace System.Reactive.Linq
         /// <exception cref="TimeoutException">(Asynchronous) If no element is produced within <paramref name="dueTime" /> from the previous element.</exception>
         /// <remarks>
         /// <para>
-        /// In case you only want to timeout on the first element, consider using the <see cref="Observable.Amb{TSource}(IObservable{TSource},IObservable{TSource})" />
-        /// operator applied to the source sequence and a delayed <see cref="Observable.Throw{TSource}(Exception)" /> sequence. Alternatively, the general-purpose overload
-        /// of Timeout, <see cref="Observable.Timeout{TSource,TTimeout}(IObservable{TSource},IObservable{TTimeout},Func{TSource,IObservable{TTimeout}})" /> can be used.
+        /// In case you only want to timeout on the first element, consider using the <see cref="M:System.Reactive.Linq.Observable.Amb``1(System.IObservable{``0},System.IObservable{``0})" />
+        /// operator applied to the source sequence and a delayed <see cref="M:System.Reactive.Linq.Observable.Throw``1(System.Exception)" /> sequence. Alternatively, the general-purpose overload
+        /// of Timeout, <see cref="M:System.Reactive.Linq.Observable.Timeout``2(System.IObservable{``0},System.IObservable{``1},System.Func{``0,System.IObservable{``1}})" /> can be used.
         /// </para>
         /// <para>
         /// Specifying a TimeSpan.Zero value for <paramref name="dueTime" /> is not recommended but supported, causing timeout timers to be scheduled that are due
@@ -15430,7 +15767,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15445,7 +15782,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy to the observable sequence based on an initial timeout duration for the first element, and a timeout duration computed for each subsequent element.
         /// If the next element isn't received within the computed duration starting from its predecessor, a TimeoutException is propagated to the observer.
@@ -15466,7 +15803,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(firstTimeout));
             if (timeoutDurationSelector == null)
                 throw new ArgumentNullException(nameof(timeoutDurationSelector));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15481,7 +15818,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy to the observable sequence based on an initial timeout duration for the first element, and a timeout duration computed for each subsequent element.
         /// If the next element isn't received within the computed duration starting from its predecessor, the other observable sequence is used to produce future messages from that point on.
@@ -15505,7 +15842,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(timeoutDurationSelector));
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15521,7 +15858,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy to the observable sequence based on a timeout duration computed for each element.
         /// If the next element isn't received within the computed duration starting from its predecessor, a TimeoutException is propagated to the observer.
@@ -15539,7 +15876,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (timeoutDurationSelector == null)
                 throw new ArgumentNullException(nameof(timeoutDurationSelector));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15553,7 +15890,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Applies a timeout policy to the observable sequence based on a timeout duration computed for each element.
         /// If the next element isn't received within the computed duration starting from its predecessor, the other observable sequence is used to produce future messages from that point on.
@@ -15574,7 +15911,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(timeoutDurationSelector));
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -15589,7 +15926,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that produces a single value at the specified absolute due time.
         /// </summary>
@@ -15600,7 +15937,7 @@ namespace System.Reactive.Linq
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -15614,7 +15951,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that periodically produces a value starting at the specified initial absolute due time.
         /// </summary>
@@ -15628,7 +15965,7 @@ namespace System.Reactive.Linq
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -15643,7 +15980,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that periodically produces a value starting at the specified initial absolute due time, using the specified scheduler to run timers.
         /// </summary>
@@ -15662,7 +15999,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -15678,7 +16015,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that produces a single value at the specified absolute due time, using the specified scheduler to run the timer.
         /// </summary>
@@ -15694,7 +16031,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -15709,7 +16046,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that produces a single value after the specified relative due time has elapsed.
         /// </summary>
@@ -15720,7 +16057,7 @@ namespace System.Reactive.Linq
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -15734,7 +16071,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that periodically produces a value after the specified initial relative due time has elapsed.
         /// </summary>
@@ -15748,7 +16085,7 @@ namespace System.Reactive.Linq
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -15763,7 +16100,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that periodically produces a value after the specified initial relative due time has elapsed, using the specified scheduler to run timers.
         /// </summary>
@@ -15782,7 +16119,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -15798,7 +16135,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Returns an observable sequence that produces a single value after the specified relative due time has elapsed, using the specified scheduler to run the timer.
         /// </summary>
@@ -15814,7 +16151,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<long>(
                 Expression.Call(
                     null,
@@ -15829,7 +16166,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Timestamps each element in an observable sequence using the local system clock.
         /// </summary>
@@ -15842,7 +16179,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<Timestamped<TSource>>(
                 Expression.Call(
                     null,
@@ -15855,7 +16192,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Timestamp each element in an observable sequence using the clock of the specified scheduler.
         /// </summary>
@@ -15871,7 +16208,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<Timestamped<TSource>>(
                 Expression.Call(
                     null,
@@ -15885,7 +16222,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates an array from an observable sequence.
         /// </summary>
@@ -15899,7 +16236,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<TSource[]>(
                 Expression.Call(
                     null,
@@ -15912,7 +16249,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a dictionary from an observable sequence according to a specified key selector function.
         /// </summary>
@@ -15930,7 +16267,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (keySelector == null)
                 throw new ArgumentNullException(nameof(keySelector));
-            
+
             return source.Provider.CreateQuery<IDictionary<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -15944,7 +16281,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a dictionary from an observable sequence according to a specified key selector function, and a comparer.
         /// </summary>
@@ -15965,7 +16302,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IDictionary<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -15980,7 +16317,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a dictionary from an observable sequence according to a specified key selector function, and an element selector function.
         /// </summary>
@@ -16002,7 +16339,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (elementSelector == null)
                 throw new ArgumentNullException(nameof(elementSelector));
-            
+
             return source.Provider.CreateQuery<IDictionary<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -16017,7 +16354,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a dictionary from an observable sequence according to a specified key selector function, a comparer, and an element selector function.
         /// </summary>
@@ -16042,7 +16379,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(elementSelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<IDictionary<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -16058,7 +16395,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an observable sequence to an enumerable sequence.
         /// </summary>
@@ -16072,7 +16409,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return ((IQueryProvider)source.Provider).CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -16085,7 +16422,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a list from an observable sequence.
         /// </summary>
@@ -16099,7 +16436,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -16112,7 +16449,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a lookup from an observable sequence according to a specified key selector function.
         /// </summary>
@@ -16130,7 +16467,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (keySelector == null)
                 throw new ArgumentNullException(nameof(keySelector));
-            
+
             return source.Provider.CreateQuery<ILookup<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -16144,7 +16481,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a lookup from an observable sequence according to a specified key selector function, and a comparer.
         /// </summary>
@@ -16165,7 +16502,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<ILookup<TKey, TSource>>(
                 Expression.Call(
                     null,
@@ -16180,7 +16517,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a lookup from an observable sequence according to a specified key selector function, and an element selector function.
         /// </summary>
@@ -16202,7 +16539,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(keySelector));
             if (elementSelector == null)
                 throw new ArgumentNullException(nameof(elementSelector));
-            
+
             return source.Provider.CreateQuery<ILookup<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -16217,7 +16554,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Creates a lookup from an observable sequence according to a specified key selector function, a comparer, and an element selector function.
         /// </summary>
@@ -16242,7 +16579,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(elementSelector));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            
+
             return source.Provider.CreateQuery<ILookup<TKey, TElement>>(
                 Expression.Call(
                     null,
@@ -16258,7 +16595,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an enumerable sequence to an observable sequence.
         /// </summary>
@@ -16274,7 +16611,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -16288,7 +16625,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts an enumerable sequence to an observable sequence, using the specified scheduler to run the enumeration loop.
         /// </summary>
@@ -16307,7 +16644,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -16322,7 +16659,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Constructs an observable sequence that depends on a resource object, whose lifetime is tied to the resulting observable sequence's lifetime.
         /// </summary>
@@ -16343,7 +16680,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(resourceFactory));
             if (observableFactory == null)
                 throw new ArgumentNullException(nameof(observableFactory));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -16358,7 +16695,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Constructs an observable sequence that depends on a resource object, whose lifetime is tied to the resulting observable sequence's lifetime. The resource is obtained and used through asynchronous methods.
         /// The CancellationToken passed to the asynchronous methods is tied to the returned disposable subscription, allowing best-effort cancellation at any stage of the resource acquisition or usage.
@@ -16382,7 +16719,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(resourceFactoryAsync));
             if (observableFactoryAsync == null)
                 throw new ArgumentNullException(nameof(observableFactoryAsync));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -16397,7 +16734,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Filters the elements of an observable sequence based on a predicate.
         /// </summary>
@@ -16413,7 +16750,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -16427,13 +16764,13 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Filters the elements of an observable sequence based on a predicate by incorporating the element's index.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
         /// <param name="source">An observable sequence whose elements to filter.</param>
-        /// <param name="predicate">A function to test each source element for a conditio; the second parameter of the function represents the index of the source element.</param>
+        /// <param name="predicate">A function to test each source element for a condition; the second parameter of the function represents the index of the source element.</param>
         /// <returns>An observable sequence that contains elements from the input sequence that satisfy the condition.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="predicate" /> is null.</exception>
@@ -16443,7 +16780,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            
+
             return source.Provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -16457,7 +16794,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Repeats the given <paramref name="source" /> as long as the specified <paramref name="condition" /> holds, where the <paramref name="condition" /> is evaluated before each repeated <paramref name="source" /> is subscribed to.
         /// </summary>
@@ -16476,7 +16813,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(condition));
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return provider.CreateQuery<TSource>(
                 Expression.Call(
                     null,
@@ -16491,7 +16828,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping windows which are produced based on element count information.
         /// </summary>
@@ -16507,7 +16844,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16521,7 +16858,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into zero or more windows which are produced based on element count information.
         /// </summary>
@@ -16538,7 +16875,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16553,7 +16890,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping windows which are produced based on timing information.
         /// </summary>
@@ -16574,7 +16911,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16588,7 +16925,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into a window that is completed when either it's full or a given amount of time has elapsed.
         /// A useful real-world analogy of this overload is the behavior of a ferry leaving the dock when all seats are taken, or at the scheduled time of departure, whichever event occurs first.
@@ -16611,7 +16948,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16626,7 +16963,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into a window that is completed when either it's full or a given amount of time has elapsed, using the specified scheduler to run timers.
         /// A useful real-world analogy of this overload is the behavior of a ferry leaving the dock when all seats are taken, or at the scheduled time of departure, whichever event occurs first.
@@ -16652,7 +16989,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16668,7 +17005,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping windows which are produced based on timing information, using the specified scheduler to run timers.
         /// </summary>
@@ -16692,7 +17029,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16707,7 +17044,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into zero or more windows which are produced based on timing information.
         /// </summary>
@@ -16736,7 +17073,7 @@ namespace System.Reactive.Linq
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16751,7 +17088,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into zero or more windows which are produced based on timing information, using the specified scheduler to run timers.
         /// </summary>
@@ -16783,7 +17120,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16799,7 +17136,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping windows.
         /// </summary>
@@ -16816,7 +17153,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (windowBoundaries == null)
                 throw new ArgumentNullException(nameof(windowBoundaries));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16830,7 +17167,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into consecutive non-overlapping windows.
         /// </summary>
@@ -16847,7 +17184,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source));
             if (windowClosingSelector == null)
                 throw new ArgumentNullException(nameof(windowClosingSelector));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16861,7 +17198,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Projects each element of an observable sequence into zero or more windows.
         /// </summary>
@@ -16882,7 +17219,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(windowOpenings));
             if (windowClosingSelector == null)
                 throw new ArgumentNullException(nameof(windowClosingSelector));
-            
+
             return source.Provider.CreateQuery<IObservable<TSource>>(
                 Expression.Call(
                     null,
@@ -16897,9 +17234,11 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges two observable sequences into one observable sequence by combining each element from the first source with the latest element from the second source, if any.
+        /// Starting from Rx.NET 4.0, this will subscribe to <paramref name="second" /> before subscribing to <paramref name="first" /> to have a latest element readily available
+        /// in case <paramref name="first" /> emits an element right away.
         /// </summary>
         /// <typeparam name="TFirst">The type of the elements in the first source sequence.</typeparam>
         /// <typeparam name="TSecond">The type of the elements in the second source sequence.</typeparam>
@@ -16918,7 +17257,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(second));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return first.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -16933,7 +17272,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by emitting a list with the elements of the observable sequences at corresponding indexes.
         /// </summary>
@@ -16949,7 +17288,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -16963,7 +17302,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by emitting a list with the elements of the observable sequences at corresponding indexes.
         /// </summary>
@@ -16979,7 +17318,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (sources == null)
                 throw new ArgumentNullException(nameof(sources));
-            
+
             return provider.CreateQuery<IList<TSource>>(
                 Expression.Call(
                     null,
@@ -16993,7 +17332,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17013,7 +17352,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(sources));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17028,7 +17367,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges two observable sequences into one observable sequence by combining their elements in a pairwise fashion.
         /// </summary>
@@ -17049,7 +17388,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(second));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return first.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17064,7 +17403,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges an observable sequence and an enumerable sequence into one observable sequence by using the selector function.
         /// </summary>
@@ -17085,7 +17424,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(second));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return first.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17100,7 +17439,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17125,7 +17464,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source3));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17141,7 +17480,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17170,7 +17509,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source4));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17187,7 +17526,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17220,7 +17559,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source5));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17238,7 +17577,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17275,7 +17614,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source6));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17294,7 +17633,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17335,7 +17674,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source7));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17355,7 +17694,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17400,7 +17739,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source8));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17421,7 +17760,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17470,7 +17809,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source9));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17492,7 +17831,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17545,7 +17884,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source10));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17568,7 +17907,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17625,7 +17964,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source11));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17649,7 +17988,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17710,7 +18049,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source12));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17735,7 +18074,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17800,7 +18139,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source13));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17826,7 +18165,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17895,7 +18234,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source14));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -17922,7 +18261,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -17995,7 +18334,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source15));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -18023,7 +18362,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences have produced an element at a corresponding index.
         /// </summary>
@@ -18100,7 +18439,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(source16));
             if (resultSelector == null)
                 throw new ArgumentNullException(nameof(resultSelector));
-            
+
             return source1.Provider.CreateQuery<TResult>(
                 Expression.Call(
                     null,
@@ -18129,7 +18468,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18144,7 +18483,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync(default(IQbservableProvider), default(Expression<Action>)));
 #else
@@ -18161,7 +18500,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18179,7 +18518,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync(default(IQbservableProvider), default(Expression<Action>), default(IScheduler)));
 #else
@@ -18197,7 +18536,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18213,7 +18552,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1>(default(IQbservableProvider), default(Expression<Action<TArg1>>)));
 #else
@@ -18231,7 +18570,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18250,7 +18589,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1>(default(IQbservableProvider), default(Expression<Action<TArg1>>), default(IScheduler)));
 #else
@@ -18269,7 +18608,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18286,7 +18625,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2>>)));
 #else
@@ -18305,7 +18644,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18325,7 +18664,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2>>), default(IScheduler)));
 #else
@@ -18345,7 +18684,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18363,7 +18702,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3>>)));
 #else
@@ -18383,7 +18722,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18404,7 +18743,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3>>), default(IScheduler)));
 #else
@@ -18425,7 +18764,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18444,7 +18783,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4>>)));
 #else
@@ -18465,7 +18804,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18487,7 +18826,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4>>), default(IScheduler)));
 #else
@@ -18509,7 +18848,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18529,7 +18868,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5>>)));
 #else
@@ -18551,7 +18890,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18574,7 +18913,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5>>), default(IScheduler)));
 #else
@@ -18597,7 +18936,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18618,7 +18957,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>>)));
 #else
@@ -18641,7 +18980,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18665,7 +19004,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>>), default(IScheduler)));
 #else
@@ -18689,7 +19028,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18711,7 +19050,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>>)));
 #else
@@ -18735,7 +19074,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18760,7 +19099,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>>), default(IScheduler)));
 #else
@@ -18785,7 +19124,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18808,7 +19147,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>>)));
 #else
@@ -18833,7 +19172,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18859,7 +19198,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>>), default(IScheduler)));
 #else
@@ -18885,7 +19224,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -18909,7 +19248,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>>)));
 #else
@@ -18935,7 +19274,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -18962,7 +19301,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>>), default(IScheduler)));
 #else
@@ -18989,7 +19328,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -19014,7 +19353,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>>)));
 #else
@@ -19041,7 +19380,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -19069,7 +19408,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>>), default(IScheduler)));
 #else
@@ -19097,7 +19436,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -19123,7 +19462,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11>>)));
 #else
@@ -19151,7 +19490,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -19180,7 +19519,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11>>), default(IScheduler)));
 #else
@@ -19209,7 +19548,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -19236,7 +19575,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12>>)));
 #else
@@ -19265,7 +19604,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -19295,7 +19634,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12>>), default(IScheduler)));
 #else
@@ -19325,7 +19664,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -19353,7 +19692,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13>>)));
 #else
@@ -19383,7 +19722,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -19414,7 +19753,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13>>), default(IScheduler)));
 #else
@@ -19445,7 +19784,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -19474,7 +19813,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14>>)));
 #else
@@ -19505,7 +19844,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -19537,7 +19876,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14>>), default(IScheduler)));
 #else
@@ -19569,7 +19908,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -19599,7 +19938,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15>>)));
 #else
@@ -19631,7 +19970,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -19664,7 +20003,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15>>), default(IScheduler)));
 #else
@@ -19697,7 +20036,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the default scheduler.
         /// </summary>
@@ -19728,7 +20067,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TArg16>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TArg16>>)));
 #else
@@ -19761,7 +20100,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous action. Each invocation of the resulting asynchronous action causes an invocation of the original synchronous action on the specified scheduler.
         /// </summary>
@@ -19795,7 +20134,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(action));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TArg16>(default(IQbservableProvider), default(Expression<Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TArg16>>), default(IScheduler)));
 #else
@@ -19829,7 +20168,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -19845,7 +20184,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TResult>(default(IQbservableProvider), default(Expression<Func<TResult>>)));
 #else
@@ -19862,7 +20201,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -19881,7 +20220,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TResult>(default(IQbservableProvider), default(Expression<Func<TResult>>), default(IScheduler)));
 #else
@@ -19899,7 +20238,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -19916,7 +20255,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TResult>>)));
 #else
@@ -19934,7 +20273,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -19954,7 +20293,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TResult>>), default(IScheduler)));
 #else
@@ -19973,7 +20312,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -19991,7 +20330,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TResult>>)));
 #else
@@ -20010,7 +20349,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20031,7 +20370,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TResult>>), default(IScheduler)));
 #else
@@ -20051,7 +20390,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20070,7 +20409,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TResult>>)));
 #else
@@ -20090,7 +20429,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20112,7 +20451,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TResult>>), default(IScheduler)));
 #else
@@ -20133,7 +20472,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20153,7 +20492,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TResult>>)));
 #else
@@ -20174,7 +20513,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20197,7 +20536,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TResult>>), default(IScheduler)));
 #else
@@ -20219,7 +20558,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20240,7 +20579,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>>)));
 #else
@@ -20262,7 +20601,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20286,7 +20625,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>>), default(IScheduler)));
 #else
@@ -20309,7 +20648,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20331,7 +20670,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>>)));
 #else
@@ -20354,7 +20693,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20379,7 +20718,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>>), default(IScheduler)));
 #else
@@ -20403,7 +20742,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20426,7 +20765,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>>)));
 #else
@@ -20450,7 +20789,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20476,7 +20815,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>>), default(IScheduler)));
 #else
@@ -20501,7 +20840,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20525,7 +20864,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TResult>>)));
 #else
@@ -20550,7 +20889,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20577,7 +20916,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TResult>>), default(IScheduler)));
 #else
@@ -20603,7 +20942,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20628,7 +20967,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TResult>>)));
 #else
@@ -20654,7 +20993,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20682,7 +21021,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TResult>>), default(IScheduler)));
 #else
@@ -20709,7 +21048,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20735,7 +21074,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TResult>>)));
 #else
@@ -20762,7 +21101,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20791,7 +21130,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TResult>>), default(IScheduler)));
 #else
@@ -20819,7 +21158,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20846,7 +21185,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TResult>>)));
 #else
@@ -20874,7 +21213,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -20904,7 +21243,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TResult>>), default(IScheduler)));
 #else
@@ -20933,7 +21272,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -20961,7 +21300,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TResult>>)));
 #else
@@ -20990,7 +21329,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -21021,7 +21360,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TResult>>), default(IScheduler)));
 #else
@@ -21051,7 +21390,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -21080,7 +21419,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TResult>>)));
 #else
@@ -21110,7 +21449,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -21142,7 +21481,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TResult>>), default(IScheduler)));
 #else
@@ -21173,7 +21512,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -21203,7 +21542,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TResult>>)));
 #else
@@ -21234,7 +21573,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -21267,7 +21606,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TResult>>), default(IScheduler)));
 #else
@@ -21299,7 +21638,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -21330,7 +21669,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TResult>>)));
 #else
@@ -21362,7 +21701,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -21396,7 +21735,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TResult>>), default(IScheduler)));
 #else
@@ -21429,7 +21768,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function.
         /// </summary>
@@ -21461,7 +21800,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(provider));
             if (function == null)
                 throw new ArgumentNullException(nameof(function));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TArg16, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TArg16, TResult>>)));
 #else
@@ -21494,7 +21833,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts the function into an asynchronous function. Each invocation of the resulting asynchronous function causes an invocation of the original synchronous function on the specified scheduler.
         /// </summary>
@@ -21529,7 +21868,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(function));
             if (scheduler == null)
                 throw new ArgumentNullException(nameof(scheduler));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.ToAsync<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TArg16, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TArg15, TArg16, TResult>>), default(IScheduler)));
 #else
@@ -21563,8 +21902,8 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
-        
+
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21578,7 +21917,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<IQbservable<Unit>> FromAsyncPattern(this IQbservableProvider provider, Expression<Func<AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<IQbservable<Unit>> FromAsyncPattern(this IQbservableProvider provider, Expression<Func<AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21586,7 +21925,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern(default(IQbservableProvider), default(Expression<Func<AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21604,7 +21943,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21619,7 +21958,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, IQbservable<Unit>> FromAsyncPattern<TArg1>(this IQbservableProvider provider, Expression<Func<TArg1, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, IQbservable<Unit>> FromAsyncPattern<TArg1>(this IQbservableProvider provider, Expression<Func<TArg1, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21627,7 +21966,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1>(default(IQbservableProvider), default(Expression<Func<TArg1, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21646,7 +21985,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21662,7 +22001,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21670,7 +22009,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21690,7 +22029,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21707,7 +22046,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21715,7 +22054,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21736,7 +22075,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21754,7 +22093,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21762,7 +22101,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21784,7 +22123,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21803,7 +22142,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21811,7 +22150,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21834,7 +22173,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21854,7 +22193,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21862,7 +22201,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21886,7 +22225,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21907,7 +22246,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21915,7 +22254,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21940,7 +22279,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -21962,7 +22301,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -21970,7 +22309,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -21996,7 +22335,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22019,7 +22358,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22027,7 +22366,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -22054,7 +22393,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22078,7 +22417,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22086,7 +22425,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -22114,7 +22453,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22139,7 +22478,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22147,7 +22486,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -22176,7 +22515,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22202,7 +22541,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22210,7 +22549,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -22240,7 +22579,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22267,7 +22606,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22275,7 +22614,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -22306,7 +22645,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22334,7 +22673,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, IQbservable<Unit>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, AsyncCallback, object, IAsyncResult>> begin, Expression<Action<IAsyncResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22342,7 +22681,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, AsyncCallback, object, IAsyncResult>>), default(Expression<Action<IAsyncResult>>)));
 #else
@@ -22374,7 +22713,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22389,7 +22728,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<IQbservable<TResult>> FromAsyncPattern<TResult>(this IQbservableProvider provider, Expression<Func<AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<IQbservable<TResult>> FromAsyncPattern<TResult>(this IQbservableProvider provider, Expression<Func<AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22397,7 +22736,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TResult>(default(IQbservableProvider), default(Expression<Func<AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22415,7 +22754,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22431,7 +22770,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, IQbservable<TResult>> FromAsyncPattern<TArg1, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, IQbservable<TResult>> FromAsyncPattern<TArg1, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22439,7 +22778,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22458,7 +22797,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22475,7 +22814,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22483,7 +22822,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22503,7 +22842,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22521,7 +22860,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22529,7 +22868,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22550,7 +22889,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22569,7 +22908,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22577,7 +22916,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22599,7 +22938,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22619,7 +22958,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22627,7 +22966,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22650,7 +22989,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22671,7 +23010,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22679,7 +23018,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22703,7 +23042,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22725,7 +23064,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22733,7 +23072,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22758,7 +23097,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22781,7 +23120,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22789,7 +23128,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22815,7 +23154,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22839,7 +23178,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22847,7 +23186,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22874,7 +23213,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22899,7 +23238,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22907,7 +23246,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22935,7 +23274,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -22961,7 +23300,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -22969,7 +23308,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -22998,7 +23337,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -23025,7 +23364,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -23033,7 +23372,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -23063,7 +23402,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -23091,7 +23430,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -23099,7 +23438,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -23130,7 +23469,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
         /// <summary>
         /// Converts a Begin/End invoke function pair into an asynchronous function.
         /// </summary>
@@ -23159,7 +23498,7 @@ namespace System.Reactive.Linq
 #if PREFERASYNC
         [Obsolete(Constants_Linq.USE_TASK_FROMASYNCPATTERN)]
 #endif
-        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>>end)
+        public static Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, IQbservable<TResult>> FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TResult>(this IQbservableProvider provider, Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, AsyncCallback, object, IAsyncResult>> begin, Expression<Func<IAsyncResult, TResult>> end)
         {
             if (provider == null)
                 throw new ArgumentNullException(nameof(provider));
@@ -23167,7 +23506,7 @@ namespace System.Reactive.Linq
                 throw new ArgumentNullException(nameof(begin));
             if (end == null)
                 throw new ArgumentNullException(nameof(end));
-            
+
 #if CRIPPLED_REFLECTION
             var m = InfoOf(() => Qbservable.FromAsyncPattern<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, TResult>(default(IQbservableProvider), default(Expression<Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10, TArg11, TArg12, TArg13, TArg14, AsyncCallback, object, IAsyncResult>>), default(Expression<Func<IAsyncResult, TResult>>)));
 #else
@@ -23199,7 +23538,7 @@ namespace System.Reactive.Linq
                 )
             );
         }
-        
+
     }
 }
 

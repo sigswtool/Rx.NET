@@ -6,7 +6,7 @@ namespace System.Reactive.Linq.ObservableImpl
 {
     internal static class TakeWhile<TSource>
     {
-        internal sealed class Predicate : Producer<TSource>
+        internal sealed class Predicate : Producer<TSource, Predicate._>
         {
             private readonly IObservable<TSource> _source;
             private readonly Func<TSource, bool> _predicate;
@@ -17,26 +17,23 @@ namespace System.Reactive.Linq.ObservableImpl
                 _predicate = predicate;
             }
 
-            protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(_predicate, observer, cancel);
-                setSink(sink);
-                return _source.SubscribeSafe(sink);
-            }
+            protected override _ CreateSink(IObserver<TSource> observer) => new _(_predicate, observer);
 
-            private sealed class _ : Sink<TSource>, IObserver<TSource>
+            protected override void Run(_ sink) => sink.Run(_source);
+
+            internal sealed class _ : IdentitySink<TSource>
             {
                 private readonly Func<TSource, bool> _predicate;
                 private bool _running;
 
-                public _(Func<TSource, bool> predicate, IObserver<TSource> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(Func<TSource, bool> predicate, IObserver<TSource> observer)
+                    : base(observer)
                 {
                     _predicate = predicate;
                     _running = true;
                 }
 
-                public void OnNext(TSource value)
+                public override void OnNext(TSource value)
                 {
                     if (_running)
                     {
@@ -46,38 +43,24 @@ namespace System.Reactive.Linq.ObservableImpl
                         }
                         catch (Exception exception)
                         {
-                            base._observer.OnError(exception);
-                            base.Dispose();
+                            ForwardOnError(exception);
                             return;
                         }
 
                         if (_running)
                         {
-                            base._observer.OnNext(value);
+                            ForwardOnNext(value);
                         }
                         else
                         {
-                            base._observer.OnCompleted();
-                            base.Dispose();
+                            ForwardOnCompleted();
                         }
                     }
-                }
-
-                public void OnError(Exception error)
-                {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
-
-                public void OnCompleted()
-                {
-                    base._observer.OnCompleted();
-                    base.Dispose();
                 }
             }
         }
 
-        internal sealed class PredicateIndexed : Producer<TSource>
+        internal sealed class PredicateIndexed : Producer<TSource, PredicateIndexed._>
         {
             private readonly IObservable<TSource> _source;
             private readonly Func<TSource, int, bool> _predicate;
@@ -88,28 +71,24 @@ namespace System.Reactive.Linq.ObservableImpl
                 _predicate = predicate;
             }
 
-            protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(_predicate, observer, cancel);
-                setSink(sink);
-                return _source.SubscribeSafe(sink);
-            }
+            protected override _ CreateSink(IObserver<TSource> observer) => new _(_predicate, observer);
 
-            private sealed class _ : Sink<TSource>, IObserver<TSource>
+            protected override void Run(_ sink) => sink.Run(_source);
+
+            internal sealed class _ : IdentitySink<TSource>
             {
                 private readonly Func<TSource, int, bool> _predicate;
                 private bool _running;
                 private int _index;
 
-                public _(Func<TSource, int, bool> predicate, IObserver<TSource> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(Func<TSource, int, bool> predicate, IObserver<TSource> observer)
+                    : base(observer)
                 {
                     _predicate = predicate;
                     _running = true;
-                    _index = 0;
                 }
 
-                public void OnNext(TSource value)
+                public override void OnNext(TSource value)
                 {
                     if (_running)
                     {
@@ -119,33 +98,19 @@ namespace System.Reactive.Linq.ObservableImpl
                         }
                         catch (Exception exception)
                         {
-                            base._observer.OnError(exception);
-                            base.Dispose();
+                            ForwardOnError(exception);
                             return;
                         }
 
                         if (_running)
                         {
-                            base._observer.OnNext(value);
+                            ForwardOnNext(value);
                         }
                         else
                         {
-                            base._observer.OnCompleted();
-                            base.Dispose();
+                            ForwardOnCompleted();
                         }
                     }
-                }
-
-                public void OnError(Exception error)
-                {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
-
-                public void OnCompleted()
-                {
-                    base._observer.OnCompleted();
-                    base.Dispose();
                 }
             }
         }

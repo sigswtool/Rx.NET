@@ -2,10 +2,7 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace System.Linq
 {
@@ -21,12 +18,16 @@ namespace System.Linq
         public static TSource Max<TSource>(this IEnumerable<TSource> source, IComparer<TSource> comparer)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
-            if (comparer == null)
-                throw new ArgumentNullException(nameof(comparer));
+            }
 
-            return MaxBy(source, x => x, comparer)
-                .First();
+            if (comparer == null)
+            {
+                throw new ArgumentNullException(nameof(comparer));
+            }
+
+            return Extrema(source, x => x, comparer, 1);
         }
 
         /// <summary>
@@ -40,9 +41,14 @@ namespace System.Linq
         public static IList<TSource> MaxBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
+
             if (keySelector == null)
+            {
                 throw new ArgumentNullException(nameof(keySelector));
+            }
 
             return MaxBy(source, keySelector, Comparer<TKey>.Default);
         }
@@ -59,23 +65,69 @@ namespace System.Linq
         public static IList<TSource> MaxBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
-            if (keySelector == null)
-                throw new ArgumentNullException(nameof(keySelector));
-            if (comparer == null)
-                throw new ArgumentNullException(nameof(comparer));
+            }
 
-            return ExtremaBy(source, keySelector, (key, minValue) => comparer.Compare(key, minValue));
+            if (keySelector == null)
+            {
+                throw new ArgumentNullException(nameof(keySelector));
+            }
+
+            if (comparer == null)
+            {
+                throw new ArgumentNullException(nameof(comparer));
+            }
+
+            return ExtremaBy(source, keySelector, comparer, 1);
         }
 
-        private static IList<TSource> ExtremaBy<TSource, TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TKey, TKey, int> compare)
+        private static TSource Extrema<TSource, TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> compare, int direction)
+        {
+            var result = default(TSource);
+
+            using (var e = source.GetEnumerator())
+            {
+                if (!e.MoveNext())
+                {
+                    throw new InvalidOperationException("Source sequence doesn't contain any elements.");
+                }
+
+                var current = e.Current;
+                var resKey = keySelector(current);
+                result = current;
+
+                while (e.MoveNext())
+                {
+                    var cur = e.Current;
+                    var key = keySelector(cur);
+
+                    var cmp = compare.Compare(key, resKey) * direction;
+                    if (cmp == 0)
+                    {
+                        result = cur;
+                    }
+                    else if (cmp > 0)
+                    {
+                        result = cur;
+                        resKey = key;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static IList<TSource> ExtremaBy<TSource, TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> compare, int direction)
         {
             var result = new List<TSource>();
 
             using (var e = source.GetEnumerator())
             {
                 if (!e.MoveNext())
+                {
                     throw new InvalidOperationException("Source sequence doesn't contain any elements.");
+                }
 
                 var current = e.Current;
                 var resKey = keySelector(current);
@@ -86,7 +138,7 @@ namespace System.Linq
                     var cur = e.Current;
                     var key = keySelector(cur);
 
-                    var cmp = compare(key, resKey);
+                    var cmp = compare.Compare(key, resKey) * direction;
                     if (cmp == 0)
                     {
                         result.Add(cur);

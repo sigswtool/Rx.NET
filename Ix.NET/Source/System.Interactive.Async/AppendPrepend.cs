@@ -2,10 +2,8 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,10 +14,11 @@ namespace System.Linq
         public static IAsyncEnumerable<TSource> Append<TSource>(this IAsyncEnumerable<TSource> source, TSource element)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
-            var appendable = source as AppendPrepentAsyncIterator<TSource>;
-            if (appendable != null)
+            if (source is AppendPrepentAsyncIterator<TSource> appendable)
             {
                 return appendable.Append(element);
             }
@@ -30,10 +29,11 @@ namespace System.Linq
         public static IAsyncEnumerable<TSource> Prepend<TSource>(this IAsyncEnumerable<TSource> source, TSource element)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
-            var appendable = source as AppendPrepentAsyncIterator<TSource>;
-            if (appendable != null)
+            if (source is AppendPrepentAsyncIterator<TSource> appendable)
             {
                 return appendable.Prepend(element);
             }
@@ -97,8 +97,7 @@ namespace System.Linq
         {
             private readonly TSource item;
             private readonly bool appending;
-
-            bool hasEnumerator;
+            private bool hasEnumerator;
 
             public AppendPrepend1AsyncIterator(IAsyncEnumerable<TSource> source, TSource item, bool appending)
                 : base(source)
@@ -132,7 +131,7 @@ namespace System.Linq
                         if (!hasEnumerator)
                         {
                             GetSourceEnumerator();
-                            hasEnumerator = true;   
+                            hasEnumerator = true;
                         }
 
                         if (enumerator != null)
@@ -197,8 +196,7 @@ namespace System.Linq
                     index = 1;
                 }
 
-                var sourceCollection = source as ICollection<TSource>;
-                if (sourceCollection != null)
+                if (source is ICollection<TSource> sourceCollection)
                 {
                     sourceCollection.CopyTo(array, index);
                 }
@@ -253,8 +251,7 @@ namespace System.Linq
 
             public override async Task<int> GetCountAsync(bool onlyIfCheap, CancellationToken cancellationToken)
             {
-                var listProv = source as IIListProvider<TSource>;
-                if (listProv != null)
+                if (source is IIListProvider<TSource> listProv)
                 {
                     var count = await listProv.GetCountAsync(onlyIfCheap, cancellationToken).ConfigureAwait(false);
                     return count == -1 ? -1 : count + 1;
@@ -331,8 +328,8 @@ namespace System.Linq
                 return new AppendPrependNAsyncIterator<TSource>(source, prepended, appended);
             }
 
-            int mode;
-            IEnumerator<TSource> appendedEnumerator;
+            private int mode;
+            private IEnumerator<TSource> appendedEnumerator;
 
             public override void Dispose()
             {
@@ -351,7 +348,7 @@ namespace System.Linq
                 {
                     case AsyncIteratorState.Allocated:
                         mode = 1;
-                        state = AsyncIteratorState.Iterating; 
+                        state = AsyncIteratorState.Iterating;
                         goto case AsyncIteratorState.Iterating;
 
                     case AsyncIteratorState.Iterating:
@@ -389,7 +386,7 @@ namespace System.Linq
                                 }
 
                                 break;
-                                
+
 
                             case 4:
                                 if (appendedEnumerator.MoveNext())
@@ -433,8 +430,7 @@ namespace System.Linq
                     ++index;
                 }
 
-                var sourceCollection = source as ICollection<TSource>;
-                if (sourceCollection != null)
+                if (source is ICollection<TSource> sourceCollection)
                 {
                     sourceCollection.CopyTo(array, index);
                 }
@@ -478,7 +474,7 @@ namespace System.Linq
                         list.Add(en.Current);
                     }
                 }
-                
+
                 if (appended != null)
                 {
 
@@ -496,8 +492,7 @@ namespace System.Linq
 
             public override async Task<int> GetCountAsync(bool onlyIfCheap, CancellationToken cancellationToken)
             {
-                var listProv = source as IIListProvider<TSource>;
-                if (listProv != null)
+                if (source is IIListProvider<TSource> listProv)
                 {
                     var count = await listProv.GetCountAsync(onlyIfCheap, cancellationToken).ConfigureAwait(false);
                     return count == -1 ? -1 : count + (appended == null ? 0 : appended.Count) + (prepended == null ? 0 : prepended.Count);

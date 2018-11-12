@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class ToList<TSource> : Producer<IList<TSource>>
+    internal sealed class ToList<TSource> : Producer<IList<TSource>, ToList<TSource>._>
     {
         private readonly IObservable<TSource> _source;
 
@@ -15,39 +15,37 @@ namespace System.Reactive.Linq.ObservableImpl
             _source = source;
         }
 
-        protected override IDisposable Run(IObserver<IList<TSource>> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
+        protected override _ CreateSink(IObserver<IList<TSource>> observer) => new _(observer);
 
-        private sealed class _ : Sink<IList<TSource>>, IObserver<TSource>
-        {
-            private readonly List<TSource> _list;
+        protected override void Run(_ sink) => sink.Run(_source);
 
-            public _(IObserver<IList<TSource>> observer, IDisposable cancel)
-                : base(observer, cancel)
+        internal sealed class _ : Sink<TSource, IList<TSource>>
+        {
+            private List<TSource> _list;
+
+            public _(IObserver<IList<TSource>> observer)
+                : base(observer)
             {
                 _list = new List<TSource>();
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 _list.Add(value);
             }
 
-            public void OnError(Exception error)
+            public override void OnError(Exception error)
             {
-                base._observer.OnError(error);
-                base.Dispose();
+                _list = null;
+                ForwardOnError(error);
             }
 
-            public void OnCompleted()
+            public override void OnCompleted()
             {
-                base._observer.OnNext(_list);
-                base._observer.OnCompleted();
-                base.Dispose();
+                var list = _list;
+                _list = null;
+                ForwardOnNext(list);
+                ForwardOnCompleted();
             }
         }
     }

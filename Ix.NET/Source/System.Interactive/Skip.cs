@@ -2,15 +2,13 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace System.Linq
 {
     public static partial class EnumerableEx
     {
+#if !(REFERENCE_ASSEMBLY && (NETCOREAPP2_0 || NETSTANDARD2_1))
         /// <summary>
         ///     Bypasses a specified number of contiguous elements from the end of the sequence and returns the remaining elements.
         /// </summary>
@@ -24,12 +22,18 @@ namespace System.Linq
         public static IEnumerable<TSource> SkipLast<TSource>(this IEnumerable<TSource> source, int count)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
+
             if (count < 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(count));
+            }
 
             return source.SkipLast_(count);
         }
+#endif
 
         private static IEnumerable<TSource> SkipLast_<TSource>(this IEnumerable<TSource> source, int count)
         {
@@ -39,7 +43,9 @@ namespace System.Linq
             {
                 q.Enqueue(x);
                 if (q.Count > count)
+                {
                     yield return q.Dequeue();
+                }
             }
         }
     }

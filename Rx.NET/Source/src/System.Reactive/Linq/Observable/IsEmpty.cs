@@ -4,7 +4,7 @@
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class IsEmpty<TSource> : Producer<bool>
+    internal sealed class IsEmpty<TSource> : Producer<bool, IsEmpty<TSource>._>
     {
         private readonly IObservable<TSource> _source;
 
@@ -13,38 +13,27 @@ namespace System.Reactive.Linq.ObservableImpl
             _source = source;
         }
 
-        protected override IDisposable Run(IObserver<bool> observer, IDisposable cancel, Action<IDisposable> setSink)
+        protected override _ CreateSink(IObserver<bool> observer) => new _(observer);
+
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : Sink<TSource, bool>
         {
-            var sink = new _(observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
-
-        private sealed class _ : Sink<bool>, IObserver<TSource>
-        {
-            public _(IObserver<bool> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(IObserver<bool> observer)
+                : base(observer)
             {
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
-                base._observer.OnNext(false);
-                base._observer.OnCompleted();
-                base.Dispose();
+                ForwardOnNext(false);
+                ForwardOnCompleted();
             }
 
-            public void OnError(Exception error)
+            public override void OnCompleted()
             {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnNext(true);
-                base._observer.OnCompleted();
-                base.Dispose();
+                ForwardOnNext(true);
+                ForwardOnCompleted();
             }
         }
     }

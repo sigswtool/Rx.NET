@@ -4,23 +4,22 @@
 
 using System;
 using System.Reactive.Concurrency;
-using System.Diagnostics;
 using System.Threading;
-using Xunit;
 using Microsoft.Reactive.Testing;
+using Xunit;
 
 namespace ReactiveTests.Tests
 {
-    
+
     public class DefaultSchedulerTest
     {
         [Fact]
         public void Schedule_ArgumentChecking()
         {
-            ReactiveAssert.Throws<ArgumentNullException>(() => DefaultScheduler.Instance.Schedule<int>(42, default(Func<IScheduler, int, IDisposable>)));
-            ReactiveAssert.Throws<ArgumentNullException>(() => DefaultScheduler.Instance.Schedule<int>(42, DateTimeOffset.Now, default(Func<IScheduler, int, IDisposable>)));
-            ReactiveAssert.Throws<ArgumentNullException>(() => DefaultScheduler.Instance.Schedule<int>(42, TimeSpan.Zero, default(Func<IScheduler, int, IDisposable>)));
-            ReactiveAssert.Throws<ArgumentNullException>(() => DefaultScheduler.Instance.SchedulePeriodic(42, TimeSpan.FromSeconds(1), default(Func<int, int>)));
+            ReactiveAssert.Throws<ArgumentNullException>(() => DefaultScheduler.Instance.Schedule(42, default));
+            ReactiveAssert.Throws<ArgumentNullException>(() => DefaultScheduler.Instance.Schedule(42, DateTimeOffset.Now, default));
+            ReactiveAssert.Throws<ArgumentNullException>(() => DefaultScheduler.Instance.Schedule(42, TimeSpan.Zero, default));
+            ReactiveAssert.Throws<ArgumentNullException>(() => DefaultScheduler.Instance.SchedulePeriodic(42, TimeSpan.FromSeconds(1), default));
             ReactiveAssert.Throws<ArgumentOutOfRangeException>(() => DefaultScheduler.Instance.SchedulePeriodic(42, TimeSpan.FromSeconds(-1), _ => _));
         }
 
@@ -74,7 +73,9 @@ namespace ReactiveTests.Tests
                 try
                 {
                     if (Interlocked.Increment(ref n) > 1) // Without an AsyncLock this would fail.
+                    {
                         fail = true;
+                    }
 
                     Thread.Sleep(100);
 
@@ -94,15 +95,14 @@ namespace ReactiveTests.Tests
 #endif
 #if DESKTOPCLR
         [Trait("SkipCI", "true")]
+        [Fact]
         public void No_ThreadPool_Starvation_Dispose()
         {
-            var bwt = default(int);
-            var bio = default(int);
-            ThreadPool.GetAvailableThreads(out bwt, out bio);
+            ThreadPool.GetAvailableThreads(out var bwt, out var bio);
 
             var N = Environment.ProcessorCount * 2;
 
-            for (int i = 0; i < N; i++)
+            for (var i = 0; i < N; i++)
             {
                 var e = new ManualResetEvent(false);
                 var f = new ManualResetEvent(false);
@@ -112,9 +112,7 @@ namespace ReactiveTests.Tests
                 f.Set();
             }
 
-            var ewt = default(int);
-            var eio = default(int);
-            ThreadPool.GetAvailableThreads(out ewt, out eio);
+            ThreadPool.GetAvailableThreads(out var ewt, out var eio);
 
             Assert.False(bwt - ewt >= N);
         }

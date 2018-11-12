@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class MaxBy<TSource, TKey> : Producer<IList<TSource>>
+    internal sealed class MaxBy<TSource, TKey> : Producer<IList<TSource>, MaxBy<TSource, TKey>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly Func<TSource, TKey> _keySelector;
@@ -19,41 +19,39 @@ namespace System.Reactive.Linq.ObservableImpl
             _comparer = comparer;
         }
 
-        protected override IDisposable Run(IObserver<IList<TSource>> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(this, observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
+        protected override _ CreateSink(IObserver<IList<TSource>> observer) => new _(this, observer);
 
-        private sealed class _ : Sink<IList<TSource>>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : Sink<TSource, IList<TSource>>
         {
-            private readonly MaxBy<TSource, TKey> _parent;
+            private readonly Func<TSource, TKey> _keySelector;
+            private readonly IComparer<TKey> _comparer;
             private bool _hasValue;
             private TKey _lastKey;
             private List<TSource> _list;
 
-            public _(MaxBy<TSource, TKey> parent, IObserver<IList<TSource>> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(MaxBy<TSource, TKey> parent, IObserver<IList<TSource>> observer)
+                : base(observer)
             {
-                _parent = parent;
+                _keySelector = parent._keySelector;
+                _comparer = parent._comparer;
 
-                _hasValue = false;
-                _lastKey = default(TKey);
                 _list = new List<TSource>();
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 var key = default(TKey);
                 try
                 {
-                    key = _parent._keySelector(value);
+                    key = _keySelector(value);
                 }
                 catch (Exception ex)
                 {
-                    base._observer.OnError(ex);
-                    base.Dispose();
+                    _list = null;
+                    _lastKey = default;
+                    ForwardOnError(ex);
                     return;
                 }
 
@@ -68,12 +66,13 @@ namespace System.Reactive.Linq.ObservableImpl
                 {
                     try
                     {
-                        comparison = _parent._comparer.Compare(key, _lastKey);
+                        comparison = _comparer.Compare(key, _lastKey);
                     }
                     catch (Exception ex)
                     {
-                        base._observer.OnError(ex);
-                        base.Dispose();
+                        _list = null;
+                        _lastKey = default;
+                        ForwardOnError(ex);
                         return;
                     }
                 }
@@ -90,17 +89,20 @@ namespace System.Reactive.Linq.ObservableImpl
                 }
             }
 
-            public void OnError(Exception error)
+            public override void OnError(Exception error)
             {
-                base._observer.OnError(error);
-                base.Dispose();
+                _lastKey = default;
+                _list = null;
+                base.OnError(error);
             }
 
-            public void OnCompleted()
+            public override void OnCompleted()
             {
-                base._observer.OnNext(_list);
-                base._observer.OnCompleted();
-                base.Dispose();
+                var list = _list;
+                _list = null;
+                _lastKey = default;
+                ForwardOnNext(list);
+                ForwardOnCompleted();
             }
         }
     }

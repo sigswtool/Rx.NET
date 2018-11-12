@@ -4,7 +4,7 @@
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class ElementAtOrDefault<TSource> : Producer<TSource>
+    internal sealed class ElementAtOrDefault<TSource> : Producer<TSource, ElementAtOrDefault<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly int _index;
@@ -15,46 +15,35 @@ namespace System.Reactive.Linq.ObservableImpl
             _index = index;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(_index, observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(_index, observer);
 
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : IdentitySink<TSource>
         {
             private int _i;
 
-            public _(int index, IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(int index, IObserver<TSource> observer)
+                : base(observer)
             {
                 _i = index;
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 if (_i == 0)
                 {
-                    base._observer.OnNext(value);
-                    base._observer.OnCompleted();
-                    base.Dispose();
+                    ForwardOnNext(value);
+                    ForwardOnCompleted();
                 }
 
                 _i--;
             }
 
-            public void OnError(Exception error)
+            public override void OnCompleted()
             {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnNext(default(TSource));
-                base._observer.OnCompleted();
-                base.Dispose();
+                ForwardOnNext(default);
+                ForwardOnCompleted();
             }
         }
     }

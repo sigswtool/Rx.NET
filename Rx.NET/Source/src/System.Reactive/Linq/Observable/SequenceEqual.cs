@@ -4,12 +4,13 @@
 
 using System.Collections.Generic;
 using System.Reactive.Disposables;
+using System.Threading;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
     internal static class SequenceEqual<TSource>
     {
-        internal sealed class Observable : Producer<bool>
+        internal sealed class Observable : Producer<bool, Observable._>
         {
             private readonly IObservable<TSource> _first;
             private readonly IObservable<TSource> _second;
@@ -22,42 +23,44 @@ namespace System.Reactive.Linq.ObservableImpl
                 _comparer = comparer;
             }
 
-            protected override IDisposable Run(IObserver<bool> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(_comparer, observer, cancel);
-                setSink(sink);
-                return sink.Run(this);
-            }
+            protected override _ CreateSink(IObserver<bool> observer) => new _(_comparer, observer);
 
-            private sealed class _ : Sink<bool>
+            protected override void Run(_ sink) => sink.Run(this);
+
+            internal sealed class _ : IdentitySink<bool>
             {
                 private readonly IEqualityComparer<TSource> _comparer;
+                private readonly object _gate;
+                private readonly Queue<TSource> _ql;
+                private readonly Queue<TSource> _qr;
 
-                public _(IEqualityComparer<TSource> comparer, IObserver<bool> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(IEqualityComparer<TSource> comparer, IObserver<bool> observer)
+                    : base(observer)
                 {
                     _comparer = comparer;
-                }
-
-                private object _gate;
-                private bool _donel;
-                private bool _doner;
-                private Queue<TSource> _ql;
-                private Queue<TSource> _qr;
-
-                public IDisposable Run(Observable parent)
-                {
                     _gate = new object();
-                    _donel = false;
-                    _doner = false;
                     _ql = new Queue<TSource>();
                     _qr = new Queue<TSource>();
+                }
 
-                    return StableCompositeDisposable.Create
-                    (
-                        parent._first.SubscribeSafe(new FirstObserver(this)),
-                        parent._second.SubscribeSafe(new SecondObserver(this))
-                    );
+                private bool _donel;
+                private bool _doner;
+
+                private IDisposable _second;
+
+                public void Run(Observable parent)
+                {
+                    SetUpstream(parent._first.SubscribeSafe(new FirstObserver(this)));
+                    Disposable.SetSingle(ref _second, parent._second.SubscribeSafe(new SecondObserver(this)));
+                }
+
+                protected override void Dispose(bool disposing)
+                {
+                    if (disposing)
+                    {
+                        Disposable.TryDispose(ref _second);
+                    }
+                    base.Dispose(disposing);
                 }
 
                 private sealed class FirstObserver : IObserver<TSource>
@@ -83,25 +86,24 @@ namespace System.Reactive.Linq.ObservableImpl
                                 }
                                 catch (Exception exception)
                                 {
-                                    _parent._observer.OnError(exception);
-                                    _parent.Dispose();
+                                    _parent.ForwardOnError(exception);
                                     return;
                                 }
                                 if (!equal)
                                 {
-                                    _parent._observer.OnNext(false);
-                                    _parent._observer.OnCompleted();
-                                    _parent.Dispose();
+                                    _parent.ForwardOnNext(false);
+                                    _parent.ForwardOnCompleted();
                                 }
                             }
                             else if (_parent._doner)
                             {
-                                _parent._observer.OnNext(false);
-                                _parent._observer.OnCompleted();
-                                _parent.Dispose();
+                                _parent.ForwardOnNext(false);
+                                _parent.ForwardOnCompleted();
                             }
                             else
+                            {
                                 _parent._ql.Enqueue(value);
+                            }
                         }
                     }
 
@@ -109,8 +111,7 @@ namespace System.Reactive.Linq.ObservableImpl
                     {
                         lock (_parent._gate)
                         {
-                            _parent._observer.OnError(error);
-                            _parent.Dispose();
+                            _parent.ForwardOnError(error);
                         }
                     }
 
@@ -123,15 +124,13 @@ namespace System.Reactive.Linq.ObservableImpl
                             {
                                 if (_parent._qr.Count > 0)
                                 {
-                                    _parent._observer.OnNext(false);
-                                    _parent._observer.OnCompleted();
-                                    _parent.Dispose();
+                                    _parent.ForwardOnNext(false);
+                                    _parent.ForwardOnCompleted();
                                 }
                                 else if (_parent._doner)
                                 {
-                                    _parent._observer.OnNext(true);
-                                    _parent._observer.OnCompleted();
-                                    _parent.Dispose();
+                                    _parent.ForwardOnNext(true);
+                                    _parent.ForwardOnCompleted();
                                 }
                             }
                         }
@@ -161,25 +160,24 @@ namespace System.Reactive.Linq.ObservableImpl
                                 }
                                 catch (Exception exception)
                                 {
-                                    _parent._observer.OnError(exception);
-                                    _parent.Dispose();
+                                    _parent.ForwardOnError(exception);
                                     return;
                                 }
                                 if (!equal)
                                 {
-                                    _parent._observer.OnNext(false);
-                                    _parent._observer.OnCompleted();
-                                    _parent.Dispose();
+                                    _parent.ForwardOnNext(false);
+                                    _parent.ForwardOnCompleted();
                                 }
                             }
                             else if (_parent._donel)
                             {
-                                _parent._observer.OnNext(false);
-                                _parent._observer.OnCompleted();
-                                _parent.Dispose();
+                                _parent.ForwardOnNext(false);
+                                _parent.ForwardOnCompleted();
                             }
                             else
+                            {
                                 _parent._qr.Enqueue(value);
+                            }
                         }
                     }
 
@@ -187,8 +185,7 @@ namespace System.Reactive.Linq.ObservableImpl
                     {
                         lock (_parent._gate)
                         {
-                            _parent._observer.OnError(error);
-                            _parent.Dispose();
+                            _parent.ForwardOnError(error);
                         }
                     }
 
@@ -201,15 +198,13 @@ namespace System.Reactive.Linq.ObservableImpl
                             {
                                 if (_parent._ql.Count > 0)
                                 {
-                                    _parent._observer.OnNext(false);
-                                    _parent._observer.OnCompleted();
-                                    _parent.Dispose();
+                                    _parent.ForwardOnNext(false);
+                                    _parent.ForwardOnCompleted();
                                 }
                                 else if (_parent._donel)
                                 {
-                                    _parent._observer.OnNext(true);
-                                    _parent._observer.OnCompleted();
-                                    _parent.Dispose();
+                                    _parent.ForwardOnNext(true);
+                                    _parent.ForwardOnCompleted();
                                 }
                             }
                         }
@@ -218,7 +213,7 @@ namespace System.Reactive.Linq.ObservableImpl
             }
         }
 
-        internal sealed class Enumerable : Producer<bool>
+        internal sealed class Enumerable : Producer<bool, Enumerable._>
         {
             private readonly IObservable<TSource> _first;
             private readonly IEnumerable<TSource> _second;
@@ -231,26 +226,30 @@ namespace System.Reactive.Linq.ObservableImpl
                 _comparer = comparer;
             }
 
-            protected override IDisposable Run(IObserver<bool> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(_comparer, observer, cancel);
-                setSink(sink);
-                return sink.Run(this);
-            }
+            protected override _ CreateSink(IObserver<bool> observer) => new _(_comparer, observer);
 
-            private sealed class _ : Sink<bool>, IObserver<TSource>
+            protected override void Run(_ sink) => sink.Run(this);
+
+            internal sealed class _ : Sink<TSource, bool>
             {
                 private readonly IEqualityComparer<TSource> _comparer;
 
-                public _(IEqualityComparer<TSource> comparer, IObserver<bool> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(IEqualityComparer<TSource> comparer, IObserver<bool> observer)
+                    : base(observer)
                 {
                     _comparer = comparer;
                 }
 
                 private IEnumerator<TSource> _enumerator;
 
-                public IDisposable Run(Enumerable parent)
+                private static readonly IEnumerator<TSource> DisposedEnumerator = MakeDisposedEnumerator();
+
+                private static IEnumerator<TSource> MakeDisposedEnumerator()
+                {
+                    yield break;
+                }
+
+                public void Run(Enumerable parent)
                 {
                     //
                     // Notice the evaluation order of obtaining the enumerator and subscribing to the
@@ -261,22 +260,34 @@ namespace System.Reactive.Linq.ObservableImpl
                     //
                     try
                     {
-                        _enumerator = parent._second.GetEnumerator();
+                        var enumerator = parent._second.GetEnumerator();
+
+                        if (Interlocked.CompareExchange(ref _enumerator, enumerator, null) != null)
+                        {
+                            enumerator.Dispose();
+                            return;
+                        }
                     }
                     catch (Exception exception)
                     {
-                        base._observer.OnError(exception);
-                        base.Dispose();
-                        return Disposable.Empty;
+                        ForwardOnError(exception);
+
+                        return;
                     }
 
-                    return StableCompositeDisposable.Create(
-                        parent._first.SubscribeSafe(this),
-                        _enumerator
-                    );
+                    SetUpstream(parent._first.SubscribeSafe(this));
                 }
 
-                public void OnNext(TSource value)
+                protected override void Dispose(bool disposing)
+                {
+                    if (disposing)
+                    {
+                        Interlocked.Exchange(ref _enumerator, DisposedEnumerator)?.Dispose();
+                    }
+                    base.Dispose(disposing);
+                }
+
+                public override void OnNext(TSource value)
                 {
                     var equal = false;
 
@@ -290,26 +301,18 @@ namespace System.Reactive.Linq.ObservableImpl
                     }
                     catch (Exception exception)
                     {
-                        base._observer.OnError(exception);
-                        base.Dispose();
+                        ForwardOnError(exception);
                         return;
                     }
 
                     if (!equal)
                     {
-                        base._observer.OnNext(false);
-                        base._observer.OnCompleted();
-                        base.Dispose();
+                        ForwardOnNext(false);
+                        ForwardOnCompleted();
                     }
                 }
 
-                public void OnError(Exception error)
-                {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
-
-                public void OnCompleted()
+                public override void OnCompleted()
                 {
                     var hasNext = false;
 
@@ -319,14 +322,12 @@ namespace System.Reactive.Linq.ObservableImpl
                     }
                     catch (Exception exception)
                     {
-                        base._observer.OnError(exception);
-                        base.Dispose();
+                        ForwardOnError(exception);
                         return;
                     }
 
-                    base._observer.OnNext(!hasNext);
-                    base._observer.OnCompleted();
-                    base.Dispose();
+                    ForwardOnNext(!hasNext);
+                    ForwardOnCompleted();
                 }
             }
         }

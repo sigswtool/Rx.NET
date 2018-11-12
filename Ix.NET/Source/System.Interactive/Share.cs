@@ -2,11 +2,8 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace System.Linq
 {
@@ -35,7 +32,9 @@ namespace System.Linq
         public static IBuffer<TSource> Share<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
             return new SharedBuffer<TSource>(source.GetEnumerator());
         }
@@ -52,9 +51,14 @@ namespace System.Linq
         public static IEnumerable<TResult> Share<TSource, TResult>(this IEnumerable<TSource> source, Func<IEnumerable<TSource>, IEnumerable<TResult>> selector)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
+
             if (selector == null)
+            {
                 throw new ArgumentNullException(nameof(selector));
+            }
 
             return Create(() => selector(source.Share())
                               .GetEnumerator());
@@ -73,7 +77,9 @@ namespace System.Linq
             public IEnumerator<T> GetEnumerator()
             {
                 if (_disposed)
+                {
                     throw new ObjectDisposedException("");
+                }
 
                 return GetEnumerator_();
             }
@@ -81,7 +87,9 @@ namespace System.Linq
             IEnumerator IEnumerable.GetEnumerator()
             {
                 if (_disposed)
+                {
                     throw new ObjectDisposedException("");
+                }
 
                 return GetEnumerator();
             }
@@ -102,25 +110,62 @@ namespace System.Linq
 
             private IEnumerator<T> GetEnumerator_()
             {
-                while (true)
+                return new ShareEnumerator(this);
+            }
+
+            private sealed class ShareEnumerator : IEnumerator<T>
+            {
+                private readonly SharedBuffer<T> _parent;
+                private T _current;
+                private bool _disposed;
+
+                public ShareEnumerator(SharedBuffer<T> parent)
+                {
+                    _parent = parent;
+                }
+
+                public T Current => _current;
+
+                object IEnumerator.Current => _current;
+
+                public void Dispose()
+                {
+                    _disposed = true;
+                }
+
+                public bool MoveNext()
                 {
                     if (_disposed)
-                        throw new ObjectDisposedException("");
-
-                    var hasValue = default(bool);
-                    var current = default(T);
-
-                    lock (_source)
                     {
-                        hasValue = _source.MoveNext();
-                        if (hasValue)
-                            current = _source.Current;
+                        return false;
+                    }
+                    if (_parent._disposed)
+                    {
+                        throw new ObjectDisposedException("");
                     }
 
+                    var hasValue = false;
+                    var src = _parent._source;
+                    lock (src)
+                    {
+                        hasValue = src.MoveNext();
+                        if (hasValue)
+                        {
+                            _current = src.Current;
+                        }
+                    }
                     if (hasValue)
-                        yield return current;
-                    else
-                        break;
+                    {
+                        return true;
+                    }
+                    _disposed = true;
+                    _current = default;
+                    return false;
+                }
+
+                public void Reset()
+                {
+                    throw new NotSupportedException();
                 }
             }
         }

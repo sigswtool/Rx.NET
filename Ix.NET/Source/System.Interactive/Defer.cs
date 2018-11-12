@@ -2,10 +2,8 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace System.Linq
 {
@@ -20,15 +18,36 @@ namespace System.Linq
         public static IEnumerable<TResult> Defer<TResult>(Func<IEnumerable<TResult>> enumerableFactory)
         {
             if (enumerableFactory == null)
+            {
                 throw new ArgumentNullException(nameof(enumerableFactory));
+            }
 
             return Defer_(enumerableFactory);
         }
 
         private static IEnumerable<TSource> Defer_<TSource>(Func<IEnumerable<TSource>> enumerableFactory)
         {
-            foreach (var item in enumerableFactory())
-                yield return item;
+            return new DeferEnumerable<TSource>(enumerableFactory);
+        }
+
+        private sealed class DeferEnumerable<TSource> : IEnumerable<TSource>
+        {
+            private readonly Func<IEnumerable<TSource>> _enumerableFactory;
+
+            public DeferEnumerable(Func<IEnumerable<TSource>> enumerableFactory)
+            {
+                _enumerableFactory = enumerableFactory;
+            }
+
+            public IEnumerator<TSource> GetEnumerator()
+            {
+                return _enumerableFactory().GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace System.Reactive.Linq.ObservableImpl
 {
     internal static class TakeLastBuffer<TSource>
     {
-        internal sealed class Count : Producer<IList<TSource>>
+        internal sealed class Count : Producer<IList<TSource>, Count._>
         {
             private readonly IObservable<TSource> _source;
             private readonly int _count;
@@ -20,52 +20,46 @@ namespace System.Reactive.Linq.ObservableImpl
                 _count = count;
             }
 
-            protected override IDisposable Run(IObserver<IList<TSource>> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(_count, observer, cancel);
-                setSink(sink);
-                return _source.SubscribeSafe(sink);
-            }
+            protected override _ CreateSink(IObserver<IList<TSource>> observer) => new _(_count, observer);
 
-            private sealed class _ : Sink<IList<TSource>>, IObserver<TSource>
+            protected override void Run(_ sink) => sink.Run(_source);
+
+            internal sealed class _ : Sink<TSource, IList<TSource>>
             {
                 private readonly int _count;
-                private Queue<TSource> _queue;
+                private readonly Queue<TSource> _queue;
 
-                public _(int count, IObserver<IList<TSource>> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(int count, IObserver<IList<TSource>> observer)
+                    : base(observer)
                 {
                     _count = count;
                     _queue = new Queue<TSource>();
                 }
 
-                public void OnNext(TSource value)
+                public override void OnNext(TSource value)
                 {
                     _queue.Enqueue(value);
                     if (_queue.Count > _count)
+                    {
                         _queue.Dequeue();
+                    }
                 }
 
-                public void OnError(Exception error)
-                {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
-
-                public void OnCompleted()
+                public override void OnCompleted()
                 {
                     var res = new List<TSource>(_queue.Count);
                     while (_queue.Count > 0)
+                    {
                         res.Add(_queue.Dequeue());
+                    }
 
-                    base._observer.OnNext(res);
-                    base._observer.OnCompleted();
-                    base.Dispose();
+                    ForwardOnNext(res);
+                    ForwardOnCompleted();
                 }
             }
         }
 
-        internal sealed class Time : Producer<IList<TSource>>
+        internal sealed class Time : Producer<IList<TSource>, Time._>
         {
             private readonly IObservable<TSource> _source;
             private readonly TimeSpan _duration;
@@ -78,65 +72,59 @@ namespace System.Reactive.Linq.ObservableImpl
                 _scheduler = scheduler;
             }
 
-            protected override IDisposable Run(IObserver<IList<TSource>> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(_duration, observer, cancel);
-                setSink(sink);
-                return sink.Run(this);
-            }
+            protected override _ CreateSink(IObserver<IList<TSource>> observer) => new _(_duration, observer);
 
-            private sealed class _ : Sink<IList<TSource>>, IObserver<TSource>
+            protected override void Run(_ sink) => sink.Run(_source, _scheduler);
+
+            internal sealed class _ : Sink<TSource, IList<TSource>>
             {
                 private readonly TimeSpan _duration;
-                private Queue<System.Reactive.TimeInterval<TSource>> _queue;
+                private readonly Queue<Reactive.TimeInterval<TSource>> _queue;
 
-                public _(TimeSpan duration, IObserver<IList<TSource>> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(TimeSpan duration, IObserver<IList<TSource>> observer)
+                    : base(observer)
                 {
                     _duration = duration;
-                    _queue = new Queue<System.Reactive.TimeInterval<TSource>>();
+                    _queue = new Queue<Reactive.TimeInterval<TSource>>();
                 }
 
                 private IStopwatch _watch;
 
-                public IDisposable Run(Time parent)
+                public void Run(IObservable<TSource> source, IScheduler scheduler)
                 {
-                    _watch = parent._scheduler.StartStopwatch();
+                    _watch = scheduler.StartStopwatch();
 
-                    return parent._source.SubscribeSafe(this);
+                    Run(source);
                 }
 
-                public void OnNext(TSource value)
+                public override void OnNext(TSource value)
                 {
                     var now = _watch.Elapsed;
-                    _queue.Enqueue(new System.Reactive.TimeInterval<TSource>(value, now));
+                    _queue.Enqueue(new Reactive.TimeInterval<TSource>(value, now));
                     Trim(now);
                 }
 
-                public void OnError(Exception error)
-                {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
-
-                public void OnCompleted()
+                public override void OnCompleted()
                 {
                     var now = _watch.Elapsed;
                     Trim(now);
 
                     var res = new List<TSource>(_queue.Count);
                     while (_queue.Count > 0)
+                    {
                         res.Add(_queue.Dequeue().Value);
+                    }
 
-                    base._observer.OnNext(res);
-                    base._observer.OnCompleted();
-                    base.Dispose();
+                    ForwardOnNext(res);
+                    ForwardOnCompleted();
                 }
 
                 private void Trim(TimeSpan now)
                 {
                     while (_queue.Count > 0 && now - _queue.Peek().Interval >= _duration)
+                    {
                         _queue.Dequeue();
+                    }
                 }
             }
         }

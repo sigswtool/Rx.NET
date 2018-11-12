@@ -14,7 +14,9 @@ namespace System.Linq
         public static IAsyncEnumerable<T> CreateEnumerable<T>(Func<IAsyncEnumerator<T>> getEnumerator)
         {
             if (getEnumerator == null)
+            {
                 throw new ArgumentNullException(nameof(getEnumerator));
+            }
 
             return new AnonymousAsyncEnumerable<T>(getEnumerator);
         }
@@ -22,9 +24,11 @@ namespace System.Linq
         public static IAsyncEnumerator<T> CreateEnumerator<T>(Func<CancellationToken, Task<bool>> moveNext, Func<T> current, Action dispose)
         {
             if (moveNext == null)
+            {
                 throw new ArgumentNullException(nameof(moveNext));
+            }
 
-            // Note: Many methods pass null in for the second two params. We're assuming
+            // Note: Many methods pass null in for the second two parameters. We're assuming
             // That the caller is responsible and knows what they're doing
             return new AnonymousAsyncIterator<T>(moveNext, current, dispose);
         }
@@ -74,8 +78,8 @@ namespace System.Linq
         private sealed class AnonymousAsyncIterator<T> : AsyncIterator<T>
         {
             private readonly Func<T> currentFunc;
-            private readonly Action dispose;
             private readonly Func<CancellationToken, Task<bool>> moveNext;
+            private Action dispose;
 
 
             public AnonymousAsyncIterator(Func<CancellationToken, Task<bool>> moveNext, Func<T> currentFunc, Action dispose)
@@ -84,7 +88,7 @@ namespace System.Linq
 
                 this.moveNext = moveNext;
                 this.currentFunc = currentFunc;
-                this.dispose = dispose;
+                Volatile.Write(ref this.dispose, dispose);
 
                 // Explicit call to initialize enumerator mode
                 GetEnumerator();
@@ -97,8 +101,7 @@ namespace System.Linq
 
             public override void Dispose()
             {
-                dispose?.Invoke();
-
+                Interlocked.Exchange(ref this.dispose, null)?.Invoke();
                 base.Dispose();
             }
 

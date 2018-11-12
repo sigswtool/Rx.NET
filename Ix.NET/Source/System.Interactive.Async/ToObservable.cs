@@ -2,9 +2,7 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace System.Linq
@@ -14,7 +12,9 @@ namespace System.Linq
         public static IAsyncEnumerable<TSource> ToAsyncEnumerable<TSource>(this IObservable<TSource> source)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
             return CreateEnumerable(
                 () =>
@@ -78,7 +78,9 @@ namespace System.Linq
         public static IObservable<TSource> ToObservable<TSource>(this IAsyncEnumerable<TSource> source)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
             return new ToObservableObservable<TSource>(source);
         }
@@ -172,20 +174,19 @@ namespace System.Linq
 
         private class ToObservableObservable<T> : IObservable<T>
         {
-            private readonly IAsyncEnumerable<T> source;
+            private readonly IAsyncEnumerable<T> _source;
 
             public ToObservableObservable(IAsyncEnumerable<T> source)
             {
-                this.source = source;
+                _source = source;
             }
 
             public IDisposable Subscribe(IObserver<T> observer)
             {
                 var ctd = new CancellationTokenDisposable();
-                var e = source.GetEnumerator();
+                var e = _source.GetEnumerator();
 
-                var f = default(Action);
-                f = () => e.MoveNext(ctd.Token)
+                void f() => e.MoveNext(ctd.Token)
                            .ContinueWith(t =>
                                          {
                                              if (t.IsFaulted)
@@ -204,8 +205,10 @@ namespace System.Linq
                                                      observer.OnNext(e.Current);
 
                                                      if (!ctd.Token.IsCancellationRequested)
+                                                     {
                                                          f();
-                                                     
+                                                     }
+
                                                      //In case cancellation is requested, this could only have happened
                                                      //by disposing the returned composite disposable (see below).
                                                      //In that case, e will be disposed too, so there is no need to dispose e here.

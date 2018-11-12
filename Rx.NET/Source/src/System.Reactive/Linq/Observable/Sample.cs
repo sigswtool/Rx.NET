@@ -7,7 +7,7 @@ using System.Reactive.Disposables;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class Sample<TSource, TSample> : Producer<TSource>
+    internal sealed class Sample<TSource, TSample> : Producer<TSource, Sample<TSource, TSample>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly IObservable<TSample> _sampler;
@@ -18,40 +18,45 @@ namespace System.Reactive.Linq.ObservableImpl
             _sampler = sampler;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(observer, cancel);
-            setSink(sink);
-            return sink.Run(this);
-        }
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(observer);
 
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(this);
+
+        internal sealed class _ : IdentitySink<TSource>
         {
             private readonly object _gate = new object();
 
-            public _(IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(IObserver<TSource> observer)
+                : base(observer)
             {
             }
 
-            private IDisposable _sourceSubscription;
+            private IDisposable _sourceDisposable;
+            private IDisposable _samplerDisposable;
 
             private bool _hasValue;
             private TSource _value;
-            private bool _atEnd;
+            private bool _sourceAtEnd;
+            private bool _samplerAtEnd;
 
-            public IDisposable Run(Sample<TSource, TSample> parent)
+            public void Run(Sample<TSource, TSample> parent)
             {
-                var sourceSubscription = new SingleAssignmentDisposable();
-                _sourceSubscription = sourceSubscription;
-                sourceSubscription.Disposable = parent._source.SubscribeSafe(this);
+                Disposable.SetSingle(ref _sourceDisposable, parent._source.SubscribeSafe(this));
 
-                var samplerSubscription = parent._sampler.SubscribeSafe(new SampleObserver(this));
-
-                return StableCompositeDisposable.Create(_sourceSubscription, samplerSubscription);
+                Disposable.SetSingle(ref _samplerDisposable, parent._sampler.SubscribeSafe(new SampleObserver(this)));
             }
 
-            public void OnNext(TSource value)
+            protected override void Dispose(bool disposing)
+            {
+                if (disposing)
+                {
+                    Disposable.TryDispose(ref _sourceDisposable);
+                    Disposable.TryDispose(ref _samplerDisposable);
+                }
+                base.Dispose(disposing);
+            }
+
+            public override void OnNext(TSource value)
             {
                 lock (_gate)
                 {
@@ -60,21 +65,28 @@ namespace System.Reactive.Linq.ObservableImpl
                 }
             }
 
-            public void OnError(Exception error)
+            public override void OnError(Exception error)
             {
                 lock (_gate)
                 {
-                    base._observer.OnError(error);
-                    base.Dispose();
+                    ForwardOnError(error);
                 }
             }
 
-            public void OnCompleted()
+            public override void OnCompleted()
             {
                 lock (_gate)
                 {
-                    _atEnd = true;
-                    _sourceSubscription.Dispose();
+                    _sourceAtEnd = true;
+
+                    if (_samplerAtEnd)
+                    {
+                        ForwardOnCompleted();
+                    }
+                    else
+                    {
+                        Disposable.TryDispose(ref _sourceDisposable);
+                    }
                 }
             }
 
@@ -94,13 +106,12 @@ namespace System.Reactive.Linq.ObservableImpl
                         if (_parent._hasValue)
                         {
                             _parent._hasValue = false;
-                            _parent._observer.OnNext(_parent._value);
+                            _parent.ForwardOnNext(_parent._value);
                         }
 
-                        if (_parent._atEnd)
+                        if (_parent._sourceAtEnd)
                         {
-                            _parent._observer.OnCompleted();
-                            _parent.Dispose();
+                            _parent.ForwardOnCompleted();
                         }
                     }
                 }
@@ -110,8 +121,7 @@ namespace System.Reactive.Linq.ObservableImpl
                     // BREAKING CHANGE v2 > v1.x - This error used to be swallowed
                     lock (_parent._gate)
                     {
-                        _parent._observer.OnError(error);
-                        _parent.Dispose();
+                        _parent.ForwardOnError(error);
                     }
                 }
 
@@ -119,16 +129,21 @@ namespace System.Reactive.Linq.ObservableImpl
                 {
                     lock (_parent._gate)
                     {
+                        _parent._samplerAtEnd = true;
+
                         if (_parent._hasValue)
                         {
                             _parent._hasValue = false;
-                            _parent._observer.OnNext(_parent._value);
+                            _parent.ForwardOnNext(_parent._value);
                         }
 
-                        if (_parent._atEnd)
+                        if (_parent._sourceAtEnd)
                         {
-                            _parent._observer.OnCompleted();
-                            _parent.Dispose();
+                            _parent.ForwardOnCompleted();
+                        }
+                        else
+                        {
+                            Disposable.TryDispose(ref _parent._samplerDisposable);
                         }
                     }
                 }
@@ -136,7 +151,7 @@ namespace System.Reactive.Linq.ObservableImpl
         }
     }
 
-    internal sealed class Sample<TSource> : Producer<TSource>
+    internal sealed class Sample<TSource> : Producer<TSource, Sample<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly TimeSpan _interval;
@@ -149,38 +164,39 @@ namespace System.Reactive.Linq.ObservableImpl
             _scheduler = scheduler;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(observer, cancel);
-            setSink(sink);
-            return sink.Run(this);
-        }
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(observer);
 
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
-        {
-            private object _gate = new object();
+        protected override void Run(_ sink) => sink.Run(this);
 
-            public _(IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+        internal sealed class _ : IdentitySink<TSource>
+        {
+            private readonly object _gate = new object();
+
+            public _(IObserver<TSource> observer)
+                : base(observer)
             {
             }
 
-            private IDisposable _sourceSubscription;
+            private IDisposable _sourceDisposable;
 
             private bool _hasValue;
             private TSource _value;
             private bool _atEnd;
 
-            public IDisposable Run(Sample<TSource> parent)
+            public void Run(Sample<TSource> parent)
             {
-                var sourceSubscription = new SingleAssignmentDisposable();
-                _sourceSubscription = sourceSubscription;
-                sourceSubscription.Disposable = parent._source.SubscribeSafe(this);
+                Disposable.SetSingle(ref _sourceDisposable, parent._source.SubscribeSafe(this));
 
-                return StableCompositeDisposable.Create(
-                    sourceSubscription,
-                    parent._scheduler.SchedulePeriodic(parent._interval, Tick)
-                );
+                SetUpstream(parent._scheduler.SchedulePeriodic(parent._interval, Tick));
+            }
+
+            protected override void Dispose(bool disposing)
+            {
+                if (disposing)
+                {
+                    Disposable.TryDispose(ref _sourceDisposable);
+                }
+                base.Dispose(disposing);
             }
 
             private void Tick()
@@ -190,18 +206,17 @@ namespace System.Reactive.Linq.ObservableImpl
                     if (_hasValue)
                     {
                         _hasValue = false;
-                        base._observer.OnNext(_value);
+                        ForwardOnNext(_value);
                     }
 
                     if (_atEnd)
                     {
-                        base._observer.OnCompleted();
-                        base.Dispose();
+                        ForwardOnCompleted();
                     }
                 }
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 lock (_gate)
                 {
@@ -210,21 +225,20 @@ namespace System.Reactive.Linq.ObservableImpl
                 }
             }
 
-            public void OnError(Exception error)
+            public override void OnError(Exception error)
             {
                 lock (_gate)
                 {
-                    base._observer.OnError(error);
-                    base.Dispose();
+                    ForwardOnError(error);
                 }
             }
 
-            public void OnCompleted()
+            public override void OnCompleted()
             {
                 lock (_gate)
                 {
                     _atEnd = true;
-                    _sourceSubscription.Dispose();
+                    Disposable.TryDispose(ref _sourceDisposable);
                 }
             }
         }

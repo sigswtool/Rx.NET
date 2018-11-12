@@ -4,7 +4,7 @@
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class Materialize<TSource> : Producer<Notification<TSource>>
+    internal sealed class Materialize<TSource> : Producer<Notification<TSource>, Materialize<TSource>._>
     {
         private readonly IObservable<TSource> _source;
 
@@ -15,37 +15,32 @@ namespace System.Reactive.Linq.ObservableImpl
 
         public IObservable<TSource> Dematerialize() => _source.AsObservable();
 
-        protected override IDisposable Run(IObserver<Notification<TSource>> observer, IDisposable cancel, Action<IDisposable> setSink)
+        protected override _ CreateSink(IObserver<Notification<TSource>> observer) => new _(observer);
+
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : Sink<TSource, Notification<TSource>>
         {
-            var sink = new _(observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
-
-        private sealed class _ : Sink<Notification<TSource>>, IObserver<TSource>
-        {
-            public _(IObserver<Notification<TSource>> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(IObserver<Notification<TSource>> observer)
+                : base(observer)
             {
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
-                base._observer.OnNext(Notification.CreateOnNext<TSource>(value));
+                ForwardOnNext(Notification.CreateOnNext(value));
             }
 
-            public void OnError(Exception error)
+            public override void OnError(Exception error)
             {
-                base._observer.OnNext(Notification.CreateOnError<TSource>(error));
-                base._observer.OnCompleted();
-                base.Dispose();
+                ForwardOnNext(Notification.CreateOnError<TSource>(error));
+                ForwardOnCompleted();
             }
 
-            public void OnCompleted()
+            public override void OnCompleted()
             {
-                base._observer.OnNext(Notification.CreateOnCompleted<TSource>());
-                base._observer.OnCompleted();
-                base.Dispose();
+                ForwardOnNext(Notification.CreateOnCompleted<TSource>());
+                ForwardOnCompleted();
             }
         }
     }

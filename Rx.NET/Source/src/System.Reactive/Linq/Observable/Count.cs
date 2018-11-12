@@ -6,7 +6,7 @@ namespace System.Reactive.Linq.ObservableImpl
 {
     internal static class Count<TSource>
     {
-        internal sealed class All : Producer<int>
+        internal sealed class All : Producer<int, All._>
         {
             private readonly IObservable<TSource> _source;
 
@@ -15,24 +15,20 @@ namespace System.Reactive.Linq.ObservableImpl
                 _source = source;
             }
 
-            protected override IDisposable Run(IObserver<int> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(observer, cancel);
-                setSink(sink);
-                return _source.SubscribeSafe(sink);
-            }
+            protected override _ CreateSink(IObserver<int> observer) => new _(observer);
 
-            private sealed class _ : Sink<int>, IObserver<TSource>
+            protected override void Run(_ sink) => sink.Run(_source);
+
+            internal sealed class _ : Sink<TSource, int>
             {
                 private int _count;
 
-                public _(IObserver<int> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(IObserver<int> observer)
+                    : base(observer)
                 {
-                    _count = 0;
                 }
 
-                public void OnNext(TSource value)
+                public override void OnNext(TSource value)
                 {
                     try
                     {
@@ -43,27 +39,19 @@ namespace System.Reactive.Linq.ObservableImpl
                     }
                     catch (Exception ex)
                     {
-                        base._observer.OnError(ex);
-                        base.Dispose();
+                        ForwardOnError(ex);
                     }
                 }
 
-                public void OnError(Exception error)
+                public override void OnCompleted()
                 {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
-
-                public void OnCompleted()
-                {
-                    base._observer.OnNext(_count);
-                    base._observer.OnCompleted();
-                    base.Dispose();
+                    ForwardOnNext(_count);
+                    ForwardOnCompleted();
                 }
             }
         }
 
-        internal sealed class Predicate : Producer<int>
+        internal sealed class Predicate : Producer<int, Predicate._>
         {
             private readonly IObservable<TSource> _source;
             private readonly Func<TSource, bool> _predicate;
@@ -74,26 +62,22 @@ namespace System.Reactive.Linq.ObservableImpl
                 _predicate = predicate;
             }
 
-            protected override IDisposable Run(IObserver<int> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(_predicate, observer, cancel);
-                setSink(sink);
-                return _source.SubscribeSafe(sink);
-            }
+            protected override _ CreateSink(IObserver<int> observer) => new _(_predicate, observer);
 
-            private sealed class _ : Sink<int>, IObserver<TSource>
+            protected override void Run(_ sink) => sink.Run(_source);
+
+            internal sealed class _ : Sink<TSource, int>
             {
                 private readonly Func<TSource, bool> _predicate;
                 private int _count;
 
-                public _(Func<TSource, bool> predicate, IObserver<int> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(Func<TSource, bool> predicate, IObserver<int> observer)
+                    : base(observer)
                 {
                     _predicate = predicate;
-                    _count = 0;
                 }
 
-                public void OnNext(TSource value)
+                public override void OnNext(TSource value)
                 {
                     try
                     {
@@ -107,22 +91,14 @@ namespace System.Reactive.Linq.ObservableImpl
                     }
                     catch (Exception ex)
                     {
-                        base._observer.OnError(ex);
-                        base.Dispose();
+                        ForwardOnError(ex);
                     }
                 }
 
-                public void OnError(Exception error)
+                public override void OnCompleted()
                 {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
-
-                public void OnCompleted()
-                {
-                    base._observer.OnNext(_count);
-                    base._observer.OnCompleted();
-                    base.Dispose();
+                    ForwardOnNext(_count);
+                    ForwardOnCompleted();
                 }
             }
         }

@@ -2,10 +2,7 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace System.Linq
 {
@@ -21,11 +18,16 @@ namespace System.Linq
         public static IEnumerable<IList<TSource>> Buffer<TSource>(this IEnumerable<TSource> source, int count)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
-            if (count <= 0)
-                throw new ArgumentOutOfRangeException(nameof(count));
+            }
 
-            return source.Buffer_(count, count);
+            if (count <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count));
+            }
+
+            return BufferExact(source, count);
         }
 
         /// <summary>
@@ -39,11 +41,28 @@ namespace System.Linq
         public static IEnumerable<IList<TSource>> Buffer<TSource>(this IEnumerable<TSource> source, int count, int skip)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
+
             if (count <= 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(count));
+            }
+
             if (skip <= 0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(skip));
+            }
+
+            if (count == skip)
+            {
+                return BufferExact(source, count);
+            }
+            if (count < skip)
+            {
+                return BufferSkip(source, count, skip);
+            }
 
             return source.Buffer_(count, skip);
         }
@@ -55,21 +74,86 @@ namespace System.Linq
             var i = 0;
             foreach (var item in source)
             {
-                if (i%skip == 0)
+                if (i % skip == 0)
+                {
                     buffers.Enqueue(new List<TSource>(count));
+                }
 
                 foreach (var buffer in buffers)
+                {
                     buffer.Add(item);
+                }
 
                 if (buffers.Count > 0 && buffers.Peek()
                                                 .Count == count)
+                {
                     yield return buffers.Dequeue();
+                }
 
                 i++;
             }
 
             while (buffers.Count > 0)
+            {
                 yield return buffers.Dequeue();
+            }
+        }
+
+        private static IEnumerable<IList<TSource>> BufferExact<TSource>(IEnumerable<TSource> source, int count)
+        {
+            IList<TSource> buffer = null;
+
+            foreach (var v in source)
+            {
+                if (buffer == null)
+                {
+                    buffer = new List<TSource>();
+                }
+
+                buffer.Add(v);
+                if (buffer.Count == count)
+                {
+                    yield return buffer;
+                    buffer = null;
+                }
+            }
+
+            if (buffer != null)
+            {
+                yield return buffer;
+            }
+        }
+
+        private static IEnumerable<IList<TSource>> BufferSkip<TSource>(IEnumerable<TSource> source, int count, int skip)
+        {
+            IList<TSource> buffer = null;
+
+            var index = 0;
+
+            foreach (var v in source)
+            {
+                if (index == 0)
+                {
+                    buffer = new List<TSource>();
+                }
+
+                buffer?.Add(v);
+                if (++index == count)
+                {
+                    yield return buffer;
+                    buffer = null;
+                }
+
+                if (index == skip)
+                {
+                    index = 0;
+                }
+            }
+
+            if (buffer != null)
+            {
+                yield return buffer;
+            }
         }
     }
 

@@ -3,10 +3,11 @@
 // See the LICENSE file in the project root for more information. 
 
 using System.Reactive.Concurrency;
+using System.Reactive.Disposables;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class Empty<TResult> : Producer<TResult>
+    internal sealed class Empty<TResult> : Producer<TResult, Empty<TResult>._>
     {
         private readonly IScheduler _scheduler;
 
@@ -15,30 +16,34 @@ namespace System.Reactive.Linq.ObservableImpl
             _scheduler = scheduler;
         }
 
-        protected override IDisposable Run(IObserver<TResult> observer, IDisposable cancel, Action<IDisposable> setSink)
+        protected override _ CreateSink(IObserver<TResult> observer) => new _(observer);
+
+        protected override void Run(_ sink) => sink.Run(_scheduler);
+
+        internal sealed class _ : IdentitySink<TResult>
         {
-            var sink = new _(observer, cancel);
-            setSink(sink);
-            return sink.Run(_scheduler);
+            public _(IObserver<TResult> observer)
+                : base(observer)
+            {
+            }
+
+            public void Run(IScheduler scheduler)
+            {
+                SetUpstream(scheduler.ScheduleAction(this, target => target.OnCompleted()));
+            }
         }
+    }
 
-        private sealed class _ : Sink<TResult>
+    internal sealed class EmptyDirect<TResult> : BasicProducer<TResult>
+    {
+        internal static readonly IObservable<TResult> Instance = new EmptyDirect<TResult>();
+
+        private EmptyDirect() { }
+
+        protected override IDisposable Run(IObserver<TResult> observer)
         {
-            public _(IObserver<TResult> observer, IDisposable cancel)
-                : base(observer, cancel)
-            {
-            }
-
-            public IDisposable Run(IScheduler scheduler)
-            {
-                return scheduler.Schedule(Invoke);
-            }
-
-            private void Invoke()
-            {
-                base._observer.OnCompleted();
-                base.Dispose();
-            }
+            observer.OnCompleted();
+            return Disposable.Empty;
         }
     }
 }

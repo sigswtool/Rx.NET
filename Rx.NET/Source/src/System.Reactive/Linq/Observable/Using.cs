@@ -6,7 +6,7 @@ using System.Reactive.Disposables;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class Using<TSource, TResource> : Producer<TSource>
+    internal sealed class Using<TSource, TResource> : Producer<TSource, Using<TSource, TResource>._>
         where TResource : IDisposable
     {
         private readonly Func<TResource> _resourceFactory;
@@ -18,21 +18,20 @@ namespace System.Reactive.Linq.ObservableImpl
             _observableFactory = observableFactory;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(observer, cancel);
-            setSink(sink);
-            return sink.Run(this);
-        }
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(observer);
 
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(this);
+
+        internal sealed class _ : IdentitySink<TSource>
         {
-            public _(IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(IObserver<TSource> observer)
+                : base(observer)
             {
             }
 
-            public IDisposable Run(Using<TSource, TResource> parent)
+            private IDisposable _disposable;
+
+            public void Run(Using<TSource, TResource> parent)
             {
                 var source = default(IObservable<TSource>);
                 var disposable = Disposable.Empty;
@@ -40,32 +39,32 @@ namespace System.Reactive.Linq.ObservableImpl
                 {
                     var resource = parent._resourceFactory();
                     if (resource != null)
+                    {
                         disposable = resource;
+                    }
+
                     source = parent._observableFactory(resource);
                 }
                 catch (Exception exception)
                 {
-                    return StableCompositeDisposable.Create(Observable.Throw<TSource>(exception).SubscribeSafe(this), disposable);
+                    source = Observable.Throw<TSource>(exception);
                 }
 
-                return StableCompositeDisposable.Create(source.SubscribeSafe(this), disposable);
+                // It is important to set the disposable resource after
+                // Run(). In the synchronous case this would else dispose
+                // the the resource before the source subscription.
+                Run(source);
+                Disposable.SetSingle(ref _disposable, disposable);
             }
 
-            public void OnNext(TSource value)
+            protected override void Dispose(bool disposing)
             {
-                base._observer.OnNext(value);
-            }
+                base.Dispose(disposing);
 
-            public void OnError(Exception error)
-            {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnCompleted();
-                base.Dispose();
+                if (disposing)
+                {
+                    Disposable.TryDispose(ref _disposable);
+                }
             }
         }
     }

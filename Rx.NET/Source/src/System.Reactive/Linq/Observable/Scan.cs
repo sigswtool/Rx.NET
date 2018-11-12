@@ -4,7 +4,7 @@
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class Scan<TSource, TAccumulate> : Producer<TAccumulate>
+    internal sealed class Scan<TSource, TAccumulate> : Producer<TAccumulate, Scan<TSource, TAccumulate>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly TAccumulate _seed;
@@ -17,26 +17,23 @@ namespace System.Reactive.Linq.ObservableImpl
             _accumulator = accumulator;
         }
 
-        protected override IDisposable Run(IObserver<TAccumulate> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(this, observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
+        protected override _ CreateSink(IObserver<TAccumulate> observer) => new _(this, observer);
 
-        private sealed class _ : Sink<TAccumulate>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : Sink<TSource, TAccumulate>
         {
             private readonly Func<TAccumulate, TSource, TAccumulate> _accumulator;
             private TAccumulate _accumulation;
 
-            public _(Scan<TSource, TAccumulate> parent, IObserver<TAccumulate> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(Scan<TSource, TAccumulate> parent, IObserver<TAccumulate> observer)
+                : base(observer)
             {
                 _accumulator = parent._accumulator;
                 _accumulation = parent._seed;
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 try
                 {
@@ -44,29 +41,16 @@ namespace System.Reactive.Linq.ObservableImpl
                 }
                 catch (Exception exception)
                 {
-                    base._observer.OnError(exception);
-                    base.Dispose();
+                    ForwardOnError(exception);
                     return;
                 }
 
-                base._observer.OnNext(_accumulation);
-            }
-
-            public void OnError(Exception error)
-            {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnCompleted();
-                base.Dispose();
+                ForwardOnNext(_accumulation);
             }
         }
     }
 
-    internal sealed class Scan<TSource> : Producer<TSource>
+    internal sealed class Scan<TSource> : Producer<TSource, Scan<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly Func<TSource, TSource, TSource> _accumulator;
@@ -77,28 +61,23 @@ namespace System.Reactive.Linq.ObservableImpl
             _accumulator = accumulator;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(_accumulator, observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(_accumulator, observer);
 
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : IdentitySink<TSource>
         {
             private readonly Func<TSource, TSource, TSource> _accumulator;
             private TSource _accumulation;
             private bool _hasAccumulation;
 
-            public _(Func<TSource, TSource, TSource> accumulator, IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(Func<TSource, TSource, TSource> accumulator, IObserver<TSource> observer)
+                : base(observer)
             {
                 _accumulator = accumulator;
-                _accumulation = default(TSource);
-                _hasAccumulation = false;
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 try
                 {
@@ -114,24 +93,12 @@ namespace System.Reactive.Linq.ObservableImpl
                 }
                 catch (Exception exception)
                 {
-                    base._observer.OnError(exception);
-                    base.Dispose();
+                    ForwardOnError(exception);
+
                     return;
                 }
 
-                base._observer.OnNext(_accumulation);
-            }
-
-            public void OnError(Exception error)
-            {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnCompleted();
-                base.Dispose();
+                ForwardOnNext(_accumulation);
             }
         }
     }

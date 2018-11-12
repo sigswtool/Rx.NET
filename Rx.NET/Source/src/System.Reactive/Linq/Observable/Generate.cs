@@ -9,7 +9,7 @@ namespace System.Reactive.Linq.ObservableImpl
 {
     internal static class Generate<TState, TResult>
     {
-        internal sealed class NoTime : Producer<TResult>
+        internal sealed class NoTime : Producer<TResult, NoTime._>
         {
             private readonly TState _initialState;
             private readonly Func<TState, bool> _condition;
@@ -26,41 +26,40 @@ namespace System.Reactive.Linq.ObservableImpl
                 _scheduler = scheduler;
             }
 
-            protected override IDisposable Run(IObserver<TResult> observer, IDisposable cancel, Action<IDisposable> setSink)
+            protected override _ CreateSink(IObserver<TResult> observer) => new _(this, observer);
+
+            protected override void Run(_ sink) => sink.Run(_scheduler);
+
+            internal sealed class _ : IdentitySink<TResult>
             {
-                var sink = new _(this, observer, cancel);
-                setSink(sink);
-                return sink.Run();
-            }
+                private readonly Func<TState, bool> _condition;
+                private readonly Func<TState, TState> _iterate;
+                private readonly Func<TState, TResult> _resultSelector;
 
-            private sealed class _ : Sink<TResult>
-            {
-                // CONSIDER: This sink has a parent reference that can be considered for removal.
-
-                private readonly NoTime _parent;
-
-                public _(NoTime parent, IObserver<TResult> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(NoTime parent, IObserver<TResult> observer)
+                    : base(observer)
                 {
-                    _parent = parent;
+                    _condition = parent._condition;
+                    _iterate = parent._iterate;
+                    _resultSelector = parent._resultSelector;
+
+                    _state = parent._initialState;
+                    _first = true;
                 }
 
                 private TState _state;
                 private bool _first;
 
-                public IDisposable Run()
+                public void Run(IScheduler _scheduler)
                 {
-                    _state = _parent._initialState;
-                    _first = true;
-
-                    var longRunning = _parent._scheduler.AsLongRunning();
+                    var longRunning = _scheduler.AsLongRunning();
                     if (longRunning != null)
                     {
-                        return longRunning.ScheduleLongRunning(Loop);
+                        SetUpstream(longRunning.ScheduleLongRunning(this, (@this, c) => @this.Loop(c)));
                     }
                     else
                     {
-                        return _parent._scheduler.Schedule(LoopRec);
+                        SetUpstream(_scheduler.Schedule(this, (@this, a) => @this.LoopRec(a)));
                     }
                 }
 
@@ -78,26 +77,25 @@ namespace System.Reactive.Linq.ObservableImpl
                             }
                             else
                             {
-                                _state = _parent._iterate(_state);
+                                _state = _iterate(_state);
                             }
 
-                            hasResult = _parent._condition(_state);
+                            hasResult = _condition(_state);
 
                             if (hasResult)
                             {
-                                result = _parent._resultSelector(_state);
+                                result = _resultSelector(_state);
                             }
                         }
                         catch (Exception exception)
                         {
-                            base._observer.OnError(exception);
-                            base.Dispose();
+                            ForwardOnError(exception);
                             return;
                         }
 
                         if (hasResult)
                         {
-                            base._observer.OnNext(result);
+                            ForwardOnNext(result);
                         }
                         else
                         {
@@ -107,13 +105,11 @@ namespace System.Reactive.Linq.ObservableImpl
 
                     if (!cancel.IsDisposed)
                     {
-                        base._observer.OnCompleted();
+                        ForwardOnCompleted();
                     }
-
-                    base.Dispose();
                 }
 
-                private void LoopRec(Action recurse)
+                private void LoopRec(Action<_> recurse)
                 {
                     var hasResult = false;
                     var result = default(TResult);
@@ -125,38 +121,36 @@ namespace System.Reactive.Linq.ObservableImpl
                         }
                         else
                         {
-                            _state = _parent._iterate(_state);
+                            _state = _iterate(_state);
                         }
 
-                        hasResult = _parent._condition(_state);
+                        hasResult = _condition(_state);
 
                         if (hasResult)
                         {
-                            result = _parent._resultSelector(_state);
+                            result = _resultSelector(_state);
                         }
                     }
                     catch (Exception exception)
                     {
-                        base._observer.OnError(exception);
-                        base.Dispose();
+                        ForwardOnError(exception);
                         return;
                     }
 
                     if (hasResult)
                     {
-                        base._observer.OnNext(result);
-                        recurse();
+                        ForwardOnNext(result);
+                        recurse(this);
                     }
                     else
                     {
-                        base._observer.OnCompleted();
-                        base.Dispose();
+                        ForwardOnCompleted();
                     }
                 }
             }
         }
 
-        internal sealed class Absolute : Producer<TResult>
+        internal sealed class Absolute : Producer<TResult, Absolute._>
         {
             private readonly TState _initialState;
             private readonly Func<TState, bool> _condition;
@@ -175,36 +169,35 @@ namespace System.Reactive.Linq.ObservableImpl
                 _scheduler = scheduler;
             }
 
-            protected override IDisposable Run(IObserver<TResult> observer, IDisposable cancel, Action<IDisposable> setSink)
+            protected override _ CreateSink(IObserver<TResult> observer) => new _(this, observer);
+
+            protected override void Run(_ sink) => sink.Run(_scheduler, _initialState);
+
+            internal sealed class _ : IdentitySink<TResult>
             {
-                var sink = new _(this, observer, cancel);
-                setSink(sink);
-                return sink.Run();
-            }
+                private readonly Func<TState, bool> _condition;
+                private readonly Func<TState, TState> _iterate;
+                private readonly Func<TState, TResult> _resultSelector;
+                private readonly Func<TState, DateTimeOffset> _timeSelector;
 
-            private sealed class _ : Sink<TResult>
-            {
-                // CONSIDER: This sink has a parent reference that can be considered for removal.
-
-                private readonly Absolute _parent;
-
-                public _(Absolute parent, IObserver<TResult> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(Absolute parent, IObserver<TResult> observer)
+                    : base(observer)
                 {
-                    _parent = parent;
+                    _condition = parent._condition;
+                    _iterate = parent._iterate;
+                    _resultSelector = parent._resultSelector;
+                    _timeSelector = parent._timeSelector;
+
+                    _first = true;
                 }
 
                 private bool _first;
                 private bool _hasResult;
                 private TResult _result;
 
-                public IDisposable Run()
+                public void Run(IScheduler outerScheduler, TState initialState)
                 {
-                    _first = true;
-                    _hasResult = false;
-                    _result = default(TResult);
-
-                    return _parent._scheduler.Schedule(_parent._initialState, InvokeRec);
+                    SetUpstream(outerScheduler.Schedule((@this: this, initialState), (scheduler, tuple) => tuple.@this.InvokeRec(scheduler, tuple.initialState)));
                 }
 
                 private IDisposable InvokeRec(IScheduler self, TState state)
@@ -213,7 +206,7 @@ namespace System.Reactive.Linq.ObservableImpl
 
                     if (_hasResult)
                     {
-                        base._observer.OnNext(_result);
+                        ForwardOnNext(_result);
                     }
 
                     try
@@ -224,37 +217,35 @@ namespace System.Reactive.Linq.ObservableImpl
                         }
                         else
                         {
-                            state = _parent._iterate(state);
+                            state = _iterate(state);
                         }
 
-                        _hasResult = _parent._condition(state);
+                        _hasResult = _condition(state);
 
                         if (_hasResult)
                         {
-                            _result = _parent._resultSelector(state);
-                            time = _parent._timeSelector(state);
+                            _result = _resultSelector(state);
+                            time = _timeSelector(state);
                         }
                     }
                     catch (Exception exception)
                     {
-                        base._observer.OnError(exception);
-                        base.Dispose();
+                        ForwardOnError(exception);
                         return Disposable.Empty;
                     }
 
                     if (!_hasResult)
                     {
-                        base._observer.OnCompleted();
-                        base.Dispose();
+                        ForwardOnCompleted();
                         return Disposable.Empty;
                     }
 
-                    return self.Schedule(state, time, InvokeRec);
+                    return self.Schedule((@this: this, state), time, (scheduler, tuple) => tuple.@this.InvokeRec(scheduler, tuple.state));
                 }
             }
         }
 
-        internal sealed class Relative : Producer<TResult>
+        internal sealed class Relative : Producer<TResult, Relative._>
         {
             private readonly TState _initialState;
             private readonly Func<TState, bool> _condition;
@@ -273,36 +264,35 @@ namespace System.Reactive.Linq.ObservableImpl
                 _scheduler = scheduler;
             }
 
-            protected override IDisposable Run(IObserver<TResult> observer, IDisposable cancel, Action<IDisposable> setSink)
+            protected override _ CreateSink(IObserver<TResult> observer) => new _(this, observer);
+
+            protected override void Run(_ sink) => sink.Run(_scheduler, _initialState);
+
+            internal sealed class _ : IdentitySink<TResult>
             {
-                var sink = new _(this, observer, cancel);
-                setSink(sink);
-                return sink.Run();
-            }
+                private readonly Func<TState, bool> _condition;
+                private readonly Func<TState, TState> _iterate;
+                private readonly Func<TState, TResult> _resultSelector;
+                private readonly Func<TState, TimeSpan> _timeSelector;
 
-            private sealed class _ : Sink<TResult>
-            {
-                // CONSIDER: This sink has a parent reference that can be considered for removal.
-
-                private readonly Relative _parent;
-
-                public _(Relative parent, IObserver<TResult> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(Relative parent, IObserver<TResult> observer)
+                    : base(observer)
                 {
-                    _parent = parent;
+                    _condition = parent._condition;
+                    _iterate = parent._iterate;
+                    _resultSelector = parent._resultSelector;
+                    _timeSelector = parent._timeSelector;
+
+                    _first = true;
                 }
 
                 private bool _first;
                 private bool _hasResult;
                 private TResult _result;
 
-                public IDisposable Run()
+                public void Run(IScheduler outerScheduler, TState initialState)
                 {
-                    _first = true;
-                    _hasResult = false;
-                    _result = default(TResult);
-
-                    return _parent._scheduler.Schedule(_parent._initialState, InvokeRec);
+                    SetUpstream(outerScheduler.Schedule((@this: this, initialState), (scheduler, tuple) => tuple.@this.InvokeRec(scheduler, tuple.initialState)));
                 }
 
                 private IDisposable InvokeRec(IScheduler self, TState state)
@@ -311,7 +301,7 @@ namespace System.Reactive.Linq.ObservableImpl
 
                     if (_hasResult)
                     {
-                        base._observer.OnNext(_result);
+                        ForwardOnNext(_result);
                     }
 
                     try
@@ -322,34 +312,33 @@ namespace System.Reactive.Linq.ObservableImpl
                         }
                         else
                         {
-                            state = _parent._iterate(state);
+                            state = _iterate(state);
                         }
 
-                        _hasResult = _parent._condition(state);
+                        _hasResult = _condition(state);
 
                         if (_hasResult)
                         {
-                            _result = _parent._resultSelector(state);
-                            time = _parent._timeSelector(state);
+                            _result = _resultSelector(state);
+                            time = _timeSelector(state);
                         }
                     }
                     catch (Exception exception)
                     {
-                        base._observer.OnError(exception);
-                        base.Dispose();
+                        ForwardOnError(exception);
                         return Disposable.Empty;
                     }
 
                     if (!_hasResult)
                     {
-                        base._observer.OnCompleted();
-                        base.Dispose();
+                        ForwardOnCompleted();
                         return Disposable.Empty;
                     }
 
-                    return self.Schedule(state, time, InvokeRec);
+                    return self.Schedule((@this: this, state), time, (scheduler, tuple) => tuple.@this.InvokeRec(scheduler, tuple.state));
                 }
             }
         }
     }
 }
+

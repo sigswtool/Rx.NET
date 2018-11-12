@@ -15,7 +15,9 @@ namespace System.Linq
         public static IAsyncEnumerable<TSource> Reverse<TSource>(this IAsyncEnumerable<TSource> source)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
             return new ReverseAsyncIterator<TSource>(source);
         }
@@ -64,8 +66,7 @@ namespace System.Linq
             {
                 if (onlyIfCheap)
                 {
-                    var listProv = source as IIListProvider<TSource>;
-                    if (listProv != null)
+                    if (source is IIListProvider<TSource> listProv)
                     {
                         return listProv.GetCountAsync(true, cancellationToken);
                     }

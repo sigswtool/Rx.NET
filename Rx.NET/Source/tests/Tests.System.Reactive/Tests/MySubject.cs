@@ -9,7 +9,7 @@ using System.Reactive.Subjects;
 
 namespace ReactiveTests.Tests
 {
-    class MySubject : ISubject<int>
+    internal class MySubject : ISubject<int>
     {
         private Dictionary<int, IDisposable> _disposeOn = new Dictionary<int, IDisposable>();
 
@@ -24,9 +24,10 @@ namespace ReactiveTests.Tests
         {
             _observer.OnNext(value);
 
-            IDisposable disconnect;
-            if (_disposeOn.TryGetValue(value, out disconnect))
+            if (_disposeOn.TryGetValue(value, out var disconnect))
+            {
                 disconnect.Dispose();
+            }
         }
 
         public void OnError(Exception exception)

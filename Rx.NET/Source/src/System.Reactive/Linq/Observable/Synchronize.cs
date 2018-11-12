@@ -4,7 +4,7 @@
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class Synchronize<TSource> : Producer<TSource>
+    internal sealed class Synchronize<TSource> : Producer<TSource, Synchronize<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly object _gate;
@@ -20,46 +20,41 @@ namespace System.Reactive.Linq.ObservableImpl
             _source = source;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(_gate, observer, cancel);
-            setSink(sink);
-            return _source.Subscribe(sink);
-        }
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(_gate, observer);
 
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : IdentitySink<TSource>
         {
             private readonly object _gate;
 
-            public _(object gate, IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(object gate, IObserver<TSource> observer)
+                : base(observer)
             {
                 _gate = gate ?? new object();
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 lock (_gate)
                 {
-                    base._observer.OnNext(value);
+                    ForwardOnNext(value);
                 }
             }
 
-            public void OnError(Exception error)
+            public override void OnError(Exception error)
             {
                 lock (_gate)
                 {
-                    base._observer.OnError(error);
-                    base.Dispose();
+                    ForwardOnError(error);
                 }
             }
 
-            public void OnCompleted()
+            public override void OnCompleted()
             {
                 lock (_gate)
                 {
-                    base._observer.OnCompleted();
-                    base.Dispose();
+                    ForwardOnCompleted();
                 }
             }
         }

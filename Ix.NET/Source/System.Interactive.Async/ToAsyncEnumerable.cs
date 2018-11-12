@@ -15,16 +15,20 @@ namespace System.Linq
         public static IAsyncEnumerable<TSource> ToAsyncEnumerable<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
             // optimize these adapters for lists and collections
-            var list = source as IList<TSource>;
-            if (list != null)
+            if (source is IList<TSource> list)
+            {
                 return new AsyncIListEnumerableAdapter<TSource>(list);
+            }
 
-            var collection = source as ICollection<TSource>;
-            if (collection != null)
+            if (source is ICollection<TSource> collection)
+            {
                 return new AsyncICollectionEnumerableAdapter<TSource>(collection);
+            }
 
             return new AsyncEnumerableAdapter<TSource>(source);
         }
@@ -32,7 +36,9 @@ namespace System.Linq
         public static IAsyncEnumerable<TSource> ToAsyncEnumerable<TSource>(this Task<TSource> task)
         {
             if (task == null)
+            {
                 throw new ArgumentNullException(nameof(task));
+            }
 
             return CreateEnumerable(
                 () =>
@@ -58,7 +64,9 @@ namespace System.Linq
         public static IEnumerable<TSource> ToEnumerable<TSource>(this IAsyncEnumerable<TSource> source)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
             return ToEnumerable_(source);
         }
@@ -71,7 +79,10 @@ namespace System.Linq
                 {
                     if (!e.MoveNext(CancellationToken.None)
                           .Result)
+                    {
                         break;
+                    }
+
                     var c = e.Current;
                     yield return c;
                 }
@@ -83,7 +94,7 @@ namespace System.Linq
             private readonly IEnumerable<T> source;
 
             private IEnumerator<T> enumerator;
- 
+
             public AsyncEnumerableAdapter(IEnumerable<T> source)
             {
                 Debug.Assert(source != null);
@@ -126,7 +137,7 @@ namespace System.Linq
                         Dispose();
                         break;
                 }
-                
+
                 return Task.FromResult(false);
             }
 

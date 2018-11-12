@@ -1,48 +1,37 @@
-<Project>  
+﻿<Project>  
   
   <PropertyGroup>
-    <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <Copyright>Copyright (c) .NET Foundation and Contributors.</Copyright>
     <MinClientVersion>2.12</MinClientVersion>
-    <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>.NET Foundation and Contributors</Authors>
-    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
     <PackageIconUrl>http://go.microsoft.com/fwlink/?LinkId=261274</PackageIconUrl>
-    <PackageProjectUrl>http://go.microsoft.com/fwlink/?LinkId=261273</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/dotnet/reactive</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/Reactive-Extensions/Rx.NET/master/Ix.NET/Source/license.txt</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>    
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ReactiveX.snk</AssemblyOriginatorKeyFile>
-    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <NoWarn>$(NoWarn);1701;1702;CS1591;NU5105</NoWarn>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <WriteVersionInfoToBuildLog>false</WriteVersionInfoToBuildLog>
-    <IncludeSymbols>false</IncludeSymbols>
     <IsTestProject>$(MSBuildProjectName.Contains('Test'))</IsTestProject>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
     
-    <GetVersion Condition=" '$(NCrunch)' != '' ">false</GetVersion>
-  </PropertyGroup>
-  
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="4.0.0-beta0011" PrivateAssets="All" /> 
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="2.2.13" PrivateAssets="all" />
   </ItemGroup>
   
-  <ItemGroup Condition="'$(IsTestProject)' != 'true' and '$(NCrunch)' == '' and '$(SourceLinkEnabled)' != 'false'">
-    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.1.0" PrivateAssets="All" /> 
-  </ItemGroup>
-  
-    <!-- Workaround -->
-  <Target Name="GetPackagingOutputs" />
-   <PropertyGroup>
-    <GitVersionTaskVersion>4.0.0-beta0011</GitVersionTaskVersion>
-  </PropertyGroup>
+  <Target Name="AddCommitHashToAssemblyAttributes" BeforeTargets="GetAssemblyAttributes">
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition=" '$(SourceRevisionId)' != '' ">
+        <_Parameter1>CommitHash</_Parameter1>
+        <_Parameter2>$(SourceRevisionId)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
 
-  <!-- https://github.com/NuGet/Home/issues/4337 -->
-  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' == 'true' ">
-    <Import Project="$(UserProfile)\.nuget\packages\GitVersionTask\$(GitVersionTaskVersion)\buildMultiTargeting\GitVersionTask.targets"
-            Condition="Exists('$(UserProfile)\.nuget\packages\GitVersionTask\$(GitVersionTaskVersion)\buildMultiTargeting\GitVersionTask.targets')" />
-  </ImportGroup>
-  <Target Name="FixupVersion"
-      BeforeTargets="_GenerateRestoreProjectSpec"
-      DependsOnTargets="GetVersion"
-      Condition=" '$(GitVersion_Task_targets_Imported)' == 'True' " />
 </Project>

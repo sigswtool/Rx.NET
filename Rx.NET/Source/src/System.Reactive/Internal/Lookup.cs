@@ -19,9 +19,8 @@ namespace System.Reactive
 
         public void Add(K key, E element)
         {
-            var list = default(List<E>);
 
-            if (!_dictionary.TryGetValue(key, out list))
+            if (!_dictionary.TryGetValue(key, out var list))
             {
                 _dictionary[key] = list = new List<E>();
             }
@@ -37,22 +36,22 @@ namespace System.Reactive
         {
             get
             {
-                var list = default(List<E>);
 
-                if (!_dictionary.TryGetValue(key, out list))
+                if (!_dictionary.TryGetValue(key, out var list))
+                {
                     return Enumerable.Empty<E>();
+                }
 
                 return Hide(list);
             }
         }
 
-        private IEnumerable<E> Hide(List<E> elements)
-        {
-            foreach (var x in elements)
-            {
-                yield return x;
-            }
-        }
+        // Instead of yielding the elements in a foreach loop, zero
+        // elements are skipped. Technically the result is the same
+        // with the benefit that the LINQ implementation can internally
+        // generate a type that keeps track of count of the enumerable.
+        // Consecutive operators can benefit from that knowledge.
+        private static IEnumerable<E> Hide(List<E> elements) => elements.Skip(0);
 
         public IEnumerator<IGrouping<K, E>> GetEnumerator()
         {

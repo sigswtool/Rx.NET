@@ -4,7 +4,7 @@
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class All<TSource> : Producer<bool>
+    internal sealed class All<TSource> : Producer<bool, All<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly Func<TSource, bool> _predicate;
@@ -15,24 +15,21 @@ namespace System.Reactive.Linq.ObservableImpl
             _predicate = predicate;
         }
 
-        protected override IDisposable Run(IObserver<bool> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(_predicate, observer, cancel);
-            setSink(sink);
-            return _source.SubscribeSafe(sink);
-        }
+        protected override _ CreateSink(IObserver<bool> observer) => new _(_predicate, observer);
 
-        private sealed class _ : Sink<bool>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : Sink<TSource, bool>
         {
             private readonly Func<TSource, bool> _predicate;
 
-            public _(Func<TSource, bool> predicate, IObserver<bool> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(Func<TSource, bool> predicate, IObserver<bool> observer)
+                : base(observer)
             {
                 _predicate = predicate;
             }
 
-            public void OnNext(TSource value)
+            public override void OnNext(TSource value)
             {
                 var res = false;
                 try
@@ -41,30 +38,21 @@ namespace System.Reactive.Linq.ObservableImpl
                 }
                 catch (Exception ex)
                 {
-                    base._observer.OnError(ex);
-                    base.Dispose();
+                    ForwardOnError(ex);
                     return;
                 }
 
                 if (!res)
                 {
-                    base._observer.OnNext(false);
-                    base._observer.OnCompleted();
-                    base.Dispose();
+                    ForwardOnNext(false);
+                    ForwardOnCompleted();
                 }
             }
 
-            public void OnError(Exception error)
+            public override void OnCompleted()
             {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnNext(true);
-                base._observer.OnCompleted();
-                base.Dispose();
+                ForwardOnNext(true);
+                ForwardOnCompleted();
             }
         }
     }

@@ -3,10 +3,11 @@
 // See the LICENSE file in the project root for more information. 
 
 using System.Reactive.Disposables;
+using System.Threading;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal sealed class Finally<TSource> : Producer<TSource>
+    internal sealed class Finally<TSource> : Producer<TSource, Finally<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly Action _finallyAction;
@@ -17,55 +18,60 @@ namespace System.Reactive.Linq.ObservableImpl
             _finallyAction = finallyAction;
         }
 
-        protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-        {
-            var sink = new _(_finallyAction, observer, cancel);
-            setSink(sink);
-            return sink.Run(_source);
-        }
+        protected override _ CreateSink(IObserver<TSource> observer) => new _(_finallyAction, observer);
 
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
+        protected override void Run(_ sink) => sink.Run(_source);
+
+        internal sealed class _ : IdentitySink<TSource>
         {
             private readonly Action _finallyAction;
+            private IDisposable _sourceDisposable;
 
-            public _(Action finallyAction, IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(Action finallyAction, IObserver<TSource> observer)
+                : base(observer)
             {
                 _finallyAction = finallyAction;
             }
 
-            public IDisposable Run(IObservable<TSource> source)
+            public override void Run(IObservable<TSource> source)
             {
-                var subscription = source.SubscribeSafe(this);
+                var d = source.SubscribeSafe(this);
 
-                return Disposable.Create(() =>
+                if (Interlocked.CompareExchange(ref _sourceDisposable, d, null) == BooleanDisposable.True)
                 {
+                    // The Dispose(bool) methode was already called before the
+                    // subscription could be assign, hence the subscription
+                    // needs to be diposed here and the action needs to be invoked.
                     try
                     {
-                        subscription.Dispose();
+                        d.Dispose();
                     }
                     finally
                     {
                         _finallyAction();
                     }
-                });
+                }
             }
 
-            public void OnNext(TSource value)
+            protected override void Dispose(bool disposing)
             {
-                base._observer.OnNext(value);
-            }
+                base.Dispose(disposing);
 
-            public void OnError(Exception error)
-            {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnCompleted();
-                base.Dispose();
+                if (disposing)
+                {
+                    var d = Interlocked.Exchange(ref _sourceDisposable, BooleanDisposable.True);
+                    if (d != BooleanDisposable.True && d != null)
+                    {
+                        try
+                        {
+                            d.Dispose();
+                        }
+                        finally
+                        {
+                            _finallyAction();
+                        }
+                    }
+                }
             }
         }
     }

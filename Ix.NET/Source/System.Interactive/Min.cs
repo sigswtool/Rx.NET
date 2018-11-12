@@ -2,10 +2,7 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace System.Linq
 {
@@ -21,12 +18,16 @@ namespace System.Linq
         public static TSource Min<TSource>(this IEnumerable<TSource> source, IComparer<TSource> comparer)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
-            if (comparer == null)
-                throw new ArgumentNullException(nameof(comparer));
+            }
 
-            return MinBy(source, x => x, comparer)
-                .First();
+            if (comparer == null)
+            {
+                throw new ArgumentNullException(nameof(comparer));
+            }
+
+            return Extrema(source, x => x, comparer, -1);
         }
 
         /// <summary>
@@ -40,9 +41,14 @@ namespace System.Linq
         public static IList<TSource> MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
+
             if (keySelector == null)
+            {
                 throw new ArgumentNullException(nameof(keySelector));
+            }
 
             return MinBy(source, keySelector, Comparer<TKey>.Default);
         }
@@ -59,13 +65,21 @@ namespace System.Linq
         public static IList<TSource> MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
-            if (keySelector == null)
-                throw new ArgumentNullException(nameof(keySelector));
-            if (comparer == null)
-                throw new ArgumentNullException(nameof(comparer));
+            }
 
-            return ExtremaBy(source, keySelector, (key, minValue) => -comparer.Compare(key, minValue));
+            if (keySelector == null)
+            {
+                throw new ArgumentNullException(nameof(keySelector));
+            }
+
+            if (comparer == null)
+            {
+                throw new ArgumentNullException(nameof(comparer));
+            }
+
+            return ExtremaBy(source, keySelector, comparer, -1);
         }
     }
 }

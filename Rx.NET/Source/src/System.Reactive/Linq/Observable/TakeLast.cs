@@ -10,7 +10,7 @@ namespace System.Reactive.Linq.ObservableImpl
 {
     internal static class TakeLast<TSource>
     {
-        internal sealed class Count : Producer<TSource>
+        internal sealed class Count : Producer<TSource, Count._>
         {
             private readonly IObservable<TSource> _source;
             private readonly int _count;
@@ -23,76 +23,76 @@ namespace System.Reactive.Linq.ObservableImpl
                 _loopScheduler = loopScheduler;
             }
 
-            protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
+            protected override _ CreateSink(IObserver<TSource> observer) => new _(this, observer);
+
+            protected override void Run(_ sink) => sink.Run(_source);
+
+            internal sealed class _ : IdentitySink<TSource>
             {
-                var sink = new _(this, observer, cancel);
-                setSink(sink);
-                return sink.Run();
-            }
+                private readonly int _count;
+                private readonly IScheduler _loopScheduler;
+                private readonly Queue<TSource> _queue;
 
-            private sealed class _ : Sink<TSource>, IObserver<TSource>
-            {
-                // CONSIDER: This sink has a parent reference that can be considered for removal.
-
-                private readonly Count _parent;
-                private Queue<TSource> _queue;
-
-                public _(Count parent, IObserver<TSource> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(Count parent, IObserver<TSource> observer)
+                    : base(observer)
                 {
-                    _parent = parent;
+                    _count = parent._count;
+                    _loopScheduler = parent._loopScheduler;
                     _queue = new Queue<TSource>();
                 }
 
-                private SingleAssignmentDisposable _subscription;
-                private SingleAssignmentDisposable _loop;
+                private IDisposable _loopDisposable;
 
-                public IDisposable Run()
+                protected override void Dispose(bool disposing)
                 {
-                    _subscription = new SingleAssignmentDisposable();
-                    _loop = new SingleAssignmentDisposable();
+                    if (disposing)
+                    {
+                        Disposable.TryDispose(ref _loopDisposable);
+                    }
 
-                    _subscription.Disposable = _parent._source.SubscribeSafe(this);
-
-                    return StableCompositeDisposable.Create(_subscription, _loop);
+                    base.Dispose(disposing);
                 }
 
-                public void OnNext(TSource value)
+                public override void OnNext(TSource value)
                 {
                     _queue.Enqueue(value);
-                    if (_queue.Count > _parent._count)
+
+                    if (_queue.Count > _count)
+                    {
                         _queue.Dequeue();
+                    }
                 }
 
-                public void OnError(Exception error)
+                public override void OnCompleted()
                 {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
+                    DisposeUpstream();
 
-                public void OnCompleted()
-                {
-                    _subscription.Dispose();
-
-                    var longRunning = _parent._loopScheduler.AsLongRunning();
+                    var longRunning = _loopScheduler.AsLongRunning();
                     if (longRunning != null)
-                        _loop.Disposable = longRunning.ScheduleLongRunning(Loop);
+                    {
+                        Disposable.SetSingle(ref _loopDisposable, longRunning.ScheduleLongRunning(this, (@this, c) => @this.Loop(c)));
+                    }
                     else
-                        _loop.Disposable = _parent._loopScheduler.Schedule(LoopRec);
+                    {
+                        var first = _loopScheduler.Schedule(this, (innerScheduler, @this) => @this.LoopRec(innerScheduler));
+                        Disposable.TrySetSingle(ref _loopDisposable, first);
+                    }
                 }
 
-                private void LoopRec(Action recurse)
+                private IDisposable LoopRec(IScheduler scheduler)
                 {
                     if (_queue.Count > 0)
                     {
-                        base._observer.OnNext(_queue.Dequeue());
-                        recurse();
+                        ForwardOnNext(_queue.Dequeue());
+
+                        var next = scheduler.Schedule(this, (innerScheduler, @this) => @this.LoopRec(innerScheduler));
+                        Disposable.TrySetMultiple(ref _loopDisposable, next);
                     }
                     else
                     {
-                        base._observer.OnCompleted();
-                        base.Dispose();
+                        ForwardOnCompleted();
                     }
+                    return Disposable.Empty;
                 }
 
                 private void Loop(ICancelable cancel)
@@ -103,21 +103,21 @@ namespace System.Reactive.Linq.ObservableImpl
                     {
                         if (n == 0)
                         {
-                            base._observer.OnCompleted();
+                            ForwardOnCompleted();
                             break;
                         }
-                        else
-                            base._observer.OnNext(_queue.Dequeue());
+
+                        ForwardOnNext(_queue.Dequeue());
 
                         n--;
                     }
 
-                    base.Dispose();
+                    Dispose();
                 }
             }
         }
 
-        internal sealed class Time : Producer<TSource>
+        internal sealed class Time : Producer<TSource, Time._>
         {
             private readonly IObservable<TSource> _source;
             private readonly TimeSpan _duration;
@@ -132,81 +132,82 @@ namespace System.Reactive.Linq.ObservableImpl
                 _loopScheduler = loopScheduler;
             }
 
-            protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
+            protected override _ CreateSink(IObserver<TSource> observer) => new _(this, observer);
+
+            protected override void Run(_ sink) => sink.Run(_source, _scheduler);
+
+            internal sealed class _ : IdentitySink<TSource>
             {
-                var sink = new _(this, observer, cancel);
-                setSink(sink);
-                return sink.Run();
-            }
+                private readonly TimeSpan _duration;
+                private readonly IScheduler _loopScheduler;
+                private readonly Queue<Reactive.TimeInterval<TSource>> _queue;
 
-            private sealed class _ : Sink<TSource>, IObserver<TSource>
-            {
-                // CONSIDER: This sink has a parent reference that can be considered for removal.
-
-                private readonly Time _parent;
-                private Queue<System.Reactive.TimeInterval<TSource>> _queue;
-
-                public _(Time parent, IObserver<TSource> observer, IDisposable cancel)
-                    : base(observer, cancel)
+                public _(Time parent, IObserver<TSource> observer)
+                    : base(observer)
                 {
-                    _parent = parent;
-                    _queue = new Queue<System.Reactive.TimeInterval<TSource>>();
+                    _duration = parent._duration;
+                    _loopScheduler = parent._loopScheduler;
+                    _queue = new Queue<Reactive.TimeInterval<TSource>>();
                 }
 
-                private SingleAssignmentDisposable _subscription;
-                private SingleAssignmentDisposable _loop;
+                private IDisposable _loopDisposable;
                 private IStopwatch _watch;
 
-                public IDisposable Run()
+                public void Run(IObservable<TSource> source, IScheduler scheduler)
                 {
-                    _subscription = new SingleAssignmentDisposable();
-                    _loop = new SingleAssignmentDisposable();
-
-                    _watch = _parent._scheduler.StartStopwatch();
-                    _subscription.Disposable = _parent._source.SubscribeSafe(this);
-
-                    return StableCompositeDisposable.Create(_subscription, _loop);
+                    _watch = scheduler.StartStopwatch();
+                    Run(source);
                 }
 
-                public void OnNext(TSource value)
+                protected override void Dispose(bool disposing)
+                {
+                    if (disposing)
+                    {
+                        Disposable.TryDispose(ref _loopDisposable);
+                    }
+                    base.Dispose(disposing);
+                }
+
+                public override void OnNext(TSource value)
                 {
                     var now = _watch.Elapsed;
-                    _queue.Enqueue(new System.Reactive.TimeInterval<TSource>(value, now));
+                    _queue.Enqueue(new Reactive.TimeInterval<TSource>(value, now));
                     Trim(now);
                 }
 
-                public void OnError(Exception error)
+                public override void OnCompleted()
                 {
-                    base._observer.OnError(error);
-                    base.Dispose();
-                }
-
-                public void OnCompleted()
-                {
-                    _subscription.Dispose();
+                    DisposeUpstream();
 
                     var now = _watch.Elapsed;
                     Trim(now);
 
-                    var longRunning = _parent._loopScheduler.AsLongRunning();
+                    var longRunning = _loopScheduler.AsLongRunning();
                     if (longRunning != null)
-                        _loop.Disposable = longRunning.ScheduleLongRunning(Loop);
+                    {
+                        Disposable.SetSingle(ref _loopDisposable, longRunning.ScheduleLongRunning(this, (@this, c) => @this.Loop(c)));
+                    }
                     else
-                        _loop.Disposable = _parent._loopScheduler.Schedule(LoopRec);
+                    {
+                        var first = _loopScheduler.Schedule(this, (innerScheduler, @this) => @this.LoopRec(innerScheduler));
+                        Disposable.TrySetSingle(ref _loopDisposable, first);
+                    }
                 }
 
-                private void LoopRec(Action recurse)
+                private IDisposable LoopRec(IScheduler scheduler)
                 {
                     if (_queue.Count > 0)
                     {
-                        base._observer.OnNext(_queue.Dequeue().Value);
-                        recurse();
+                        ForwardOnNext(_queue.Dequeue().Value);
+
+                        var next = scheduler.Schedule(this, (innerScheduler, @this) => @this.LoopRec(innerScheduler));
+                        Disposable.TrySetMultiple(ref _loopDisposable, next);
                     }
                     else
                     {
-                        base._observer.OnCompleted();
-                        base.Dispose();
+                        ForwardOnCompleted();
                     }
+                    return Disposable.Empty;
                 }
 
                 private void Loop(ICancelable cancel)
@@ -217,22 +218,24 @@ namespace System.Reactive.Linq.ObservableImpl
                     {
                         if (n == 0)
                         {
-                            base._observer.OnCompleted();
+                            ForwardOnCompleted();
                             break;
                         }
-                        else
-                            base._observer.OnNext(_queue.Dequeue().Value);
+
+                        ForwardOnNext(_queue.Dequeue().Value);
 
                         n--;
                     }
 
-                    base.Dispose();
+                    Dispose();
                 }
 
                 private void Trim(TimeSpan now)
                 {
-                    while (_queue.Count > 0 && now - _queue.Peek().Interval >= _parent._duration)
+                    while (_queue.Count > 0 && now - _queue.Peek().Interval >= _duration)
+                    {
                         _queue.Dequeue();
+                    }
                 }
             }
         }

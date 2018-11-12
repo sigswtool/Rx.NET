@@ -6,12 +6,12 @@ using System.Reactive.Concurrency;
 
 namespace System.Reactive.Linq.ObservableImpl
 {
-    internal abstract class DelaySubscription<TSource> : Producer<TSource>
+    internal abstract class DelaySubscription<TSource> : Producer<TSource, DelaySubscription<TSource>._>
     {
         private readonly IObservable<TSource> _source;
         private readonly IScheduler _scheduler;
 
-        public DelaySubscription(IObservable<TSource> source, IScheduler scheduler)
+        protected DelaySubscription(IObservable<TSource> source, IScheduler scheduler)
         {
             _source = source;
             _scheduler = scheduler;
@@ -27,12 +27,9 @@ namespace System.Reactive.Linq.ObservableImpl
                 _dueTime = dueTime;
             }
 
-            protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(observer, cancel);
-                setSink(sink);
-                return _scheduler.Schedule(sink, _dueTime, Subscribe);
-            }
+            protected override _ CreateSink(IObserver<TSource> observer) => new _(observer);
+
+            protected override void Run(_ sink) => sink.Run(_source, _scheduler, _dueTime);
         }
 
         internal sealed class Absolute : DelaySubscription<TSource>
@@ -45,41 +42,26 @@ namespace System.Reactive.Linq.ObservableImpl
                 _dueTime = dueTime;
             }
 
-            protected override IDisposable Run(IObserver<TSource> observer, IDisposable cancel, Action<IDisposable> setSink)
-            {
-                var sink = new _(observer, cancel);
-                setSink(sink);
-                return _scheduler.Schedule(sink, _dueTime, Subscribe);
-            }
+            protected override _ CreateSink(IObserver<TSource> observer) => new _(observer);
+
+            protected override void Run(_ sink) => sink.Run(_source, _scheduler, _dueTime);
         }
 
-        private IDisposable Subscribe(IScheduler _, _ sink)
+        internal sealed class _ : IdentitySink<TSource>
         {
-            return _source.SubscribeSafe(sink);
-        }
-
-        private sealed class _ : Sink<TSource>, IObserver<TSource>
-        {
-            public _(IObserver<TSource> observer, IDisposable cancel)
-                : base(observer, cancel)
+            public _(IObserver<TSource> observer)
+                : base(observer)
             {
             }
 
-            public void OnNext(TSource value)
+            public void Run(IObservable<TSource> source, IScheduler scheduler, DateTimeOffset dueTime)
             {
-                base._observer.OnNext(value);
+                SetUpstream(scheduler.ScheduleAction((@this: this, source), dueTime, tuple => tuple.source.SubscribeSafe(tuple.@this)));
             }
 
-            public void OnError(Exception error)
+            public void Run(IObservable<TSource> source, IScheduler scheduler, TimeSpan dueTime)
             {
-                base._observer.OnError(error);
-                base.Dispose();
-            }
-
-            public void OnCompleted()
-            {
-                base._observer.OnCompleted();
-                base.Dispose();
+                SetUpstream(scheduler.ScheduleAction((@this: this, source), dueTime, tuple => tuple.source.SubscribeSafe(tuple.@this)));
             }
         }
     }

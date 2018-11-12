@@ -2,12 +2,9 @@
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 // See the LICENSE file in the project root for more information. 
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
 
 // from https://github.com/dotnet/corefx/blob/ec2685715b01d12f16b08d0dfa326649b12db8ec/src/System.Linq/src/System/Linq/Set.cs
 namespace System.Linq
@@ -35,10 +32,10 @@ namespace System.Linq
         public bool Add(TElement value)
         {
 #if DEBUG
-            Debug.Assert(!_haveRemoved, "This class is optimised for never calling Add after Remove. If your changes need to do so, undo that optimization.");
+            Debug.Assert(!_haveRemoved, "This class is optimized for never calling Add after Remove. If your changes need to do so, undo that optimization.");
 #endif
             var hashCode = InternalGetHashCode(value);
-            for (var i = _buckets[hashCode%_buckets.Length] - 1; i >= 0; i = _slots[i]._next)
+            for (var i = _buckets[hashCode % _buckets.Length] - 1; i >= 0; i = _slots[i]._next)
             {
                 if (_slots[i]._hashCode == hashCode && _comparer.Equals(_slots[i]._value, value))
                 {
@@ -53,7 +50,7 @@ namespace System.Linq
 
             var index = Count;
             Count++;
-            var bucket = hashCode%_buckets.Length;
+            var bucket = hashCode % _buckets.Length;
             _slots[index]._hashCode = hashCode;
             _slots[index]._value = value;
             _slots[index]._next = _buckets[bucket] - 1;
@@ -68,7 +65,7 @@ namespace System.Linq
             _haveRemoved = true;
 #endif
             var hashCode = InternalGetHashCode(value);
-            var bucket = hashCode%_buckets.Length;
+            var bucket = hashCode % _buckets.Length;
             var last = -1;
             for (var i = _buckets[bucket] - 1; i >= 0; last = i, i = _slots[i]._next)
             {
@@ -84,7 +81,7 @@ namespace System.Linq
                     }
 
                     _slots[i]._hashCode = -1;
-                    _slots[i]._value = default(TElement);
+                    _slots[i]._value = default;
                     _slots[i]._next = -1;
                     return true;
                 }
@@ -102,7 +99,7 @@ namespace System.Linq
         internal TElement[] ToArray()
         {
 #if DEBUG
-            Debug.Assert(!_haveRemoved, "Optimised ToArray cannot be called if Remove has been called.");
+            Debug.Assert(!_haveRemoved, "Optimized ToArray cannot be called if Remove has been called.");
 #endif
             var array = new TElement[Count];
             for (var i = 0; i != array.Length; ++i)
@@ -116,7 +113,7 @@ namespace System.Linq
         internal List<TElement> ToList()
         {
 #if DEBUG
-            Debug.Assert(!_haveRemoved, "Optimised ToList cannot be called if Remove has been called.");
+            Debug.Assert(!_haveRemoved, "Optimized ToList cannot be called if Remove has been called.");
 #endif
             var count = Count;
             var list = new List<TElement>(count);
@@ -130,13 +127,13 @@ namespace System.Linq
 
         private void Resize()
         {
-            var newSize = checked((Count*2) + 1);
+            var newSize = checked((Count * 2) + 1);
             var newBuckets = new int[newSize];
             var newSlots = new Slot[newSize];
             Array.Copy(_slots, 0, newSlots, 0, Count);
             for (var i = 0; i < Count; i++)
             {
-                var bucket = newSlots[i]._hashCode%newSize;
+                var bucket = newSlots[i]._hashCode % newSize;
                 newSlots[i]._next = newBuckets[bucket] - 1;
                 newBuckets[bucket] = i + 1;
             }
